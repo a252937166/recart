@@ -10,6 +10,9 @@ import { availabilityFor, reserveBundle, retainForIntent, setCheckoutReservation
 import { queueNotification } from "./notifications.js";
 import type { QuoteRow } from "./quotes.js";
 import { assertSessionActive, timingFor, type SessionRow } from "./sessions.js";
+import { fingerprint } from "../build-info.js";
+
+fingerprint(import.meta.url, "services/payments.js");
 
 /** Internal application payment states (spec §11), not PayPal enum values. */
 export type PaymentState =
@@ -238,7 +241,17 @@ export async function drive(ctx: Ctx, checkoutId: string): Promise<void> {
 export async function runOperation(ctx: Ctx, opId: string): Promise<void> {
   const claimed = await maybeOne<OpRow>(ctx.db, `update payment_operations set status='IN_FLIGHT', attempts=attempts+1, updated_at=$2
      where id=$1 and (status in ('PENDING','UNKNOWN') or (status='IN_FLIGHT' and updated_at < $3)) returning *`, [opId, clock.now(), new Date(clock.now().getTime() - STALE_IN_FLIGHT_MS)]);
-  if (!claimed) return;
+  if (!claimed) {
+    // A restart may hand the job back before the operation's in-flight fence expires. Keep a durable wakeup:
+    // a RUNNING job stores this in rerun_at, so its worker cannot mark it DONE and lose the unfinished payment.
+    const current = await maybeOne<Pick<OpRow, "status" | "updated_at">>(ctx.db, "select status, updated_at from payment_operations where id=$1", [opId]);
+    if (current?.status === "IN_FLIGHT") {
+      // The claim uses a strict '<' comparison, so the retry must be after the boundary, not exactly on it.
+      const retryAt = new Date(new Date(current.updated_at).getTime() + STALE_IN_FLIGHT_MS + 1);
+      await enqueueJob(ctx.db, "run_operation", { opId }, retryAt, `op:${opId}`);
+    }
+    return;
+  }
   const c = await one<CheckoutRow>(ctx.db, "select * from checkouts where id=$1", [claimed.checkout_id]);
   let r: PayPalResponse;
   switch (claimed.kind) {

@@ -47,9 +47,11 @@ afterAll(async () => {
 
 describe("SIGTERM with an open event stream and a running explanation", () => {
   it("exits in time without SIGKILL, hands the lease back, and a replacement runner takes the job over at once", async () => {
-    // A recovery case whose explanation job is due now, by the real clock the server process uses.
-    h.clock.set(new Date());
-    const p = await authorizedPurchase(h, "A");
+    // A recovery case whose explanation job is due now, by the real clock the server process uses; its pickup deadline
+    // must be in the real future too (a fixed Friday made this test fail once that Friday had passed).
+    const now = new Date();
+    h.clock.set(now);
+    const p = await authorizedPurchase(h, "A", new Date(now.getTime() + 4 * 86_400_000).toISOString());
     await reportMissing(h.ctx, p.session, { checkoutId: p.checkoutId, sku: "IF-2C-LB" });
     const rc = await one<any>(h.db, "select id, solve_run_id from recovery_cases where intent_id=$1", [p.intentId]);
     const key = `explain:${rc.id}:${rc.solve_run_id}`;

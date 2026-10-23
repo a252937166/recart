@@ -58,10 +58,13 @@ export async function acceptedQuote(h: Harness, session: SessionRow, intentId: s
   return quote;
 }
 
-/** Reach AUTHORIZED for scenario A's reference bundle through the same service calls the HTTP routes use. */
-export async function authorizedPurchase(h: Harness, scenario: ScenarioId = "A") {
+/**
+ * Reach AUTHORIZED for scenario A's reference bundle through the same service calls the HTTP routes use. A test on the
+ * real clock passes a pickup deadline in the real future; the default belongs to the controlled clock's week.
+ */
+export async function authorizedPurchase(h: Harness, scenario: ScenarioId = "A", pickupBy: string = FRIDAY_10AM_PT) {
   const { session, intentId } = await freshSession(h, scenario);
-  await confirmReferenceGoal(h, session, intentId);
+  await confirmReferenceGoal(h, session, intentId, { pickupBy });
   const quote = await acceptedQuote(h, session, intentId);
   const co = await startCheckout(h.ctx, session, quote.id);
   h.fake.approve(co.orderId!);

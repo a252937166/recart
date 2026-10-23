@@ -1,0 +1,100 @@
+{
+  "version": "eval-cases-v1",
+  "casesFile": "cases-v1.json",
+  "casesSha256": "4e54c9fcbcc1577aaea55523f01b3e5d163ba977b70fd2cf6dfb18a23f1e77c6",
+  "rulesSha256": "414407a367457f35eb1f2ac984888726e46dcbe978746ad06f48f191e5549bc9",
+  "runnerSha256": "330f65f6d2f6effcb8bf6888a1ce77cda3d20c6fee0346bf9fe7761caccda9c9",
+  "ranAt": "2026-10-09T18:00:49.481Z",
+  "nature": "Team-authored engineering fixtures on brand-free simulated products. Not an independent or real-user study.",
+  "promptVersion": "lang-prompts-v2",
+  "schemaVersion": "lang-schema-v1",
+  "solver": {
+    "classificationCorrect": "20/20",
+    "feasibleSolved": "14/14",
+    "infeasibleCorrect": "3/3",
+    "evidenceIncompleteCorrect": "2/2",
+    "unsupportedCorrect": "1/1",
+    "invalidPayableBundles": 0,
+    "searchComplete": "20/20",
+    "durationMs": {
+      "median": 2.37,
+      "max": 14.98
+    }
+  },
+  "baseline": {
+    "recoveryCases": 19,
+    "baselineSucceeded": 8,
+    "recartFeasible": 14,
+    "recartOnly": [
+      "C01",
+      "C02",
+      "C05",
+      "C06",
+      "C10",
+      "C12"
+    ],
+    "bothSucceeded": [
+      "C03",
+      "C04",
+      "C07",
+      "C08",
+      "C09",
+      "C11",
+      "C13",
+      "C14"
+    ],
+    "baselineOnly": [],
+    "matchesHandDerivedExpectation": "19/19"
+  },
+  "extraction": {
+    "model": "claude-haiku-4-5",
+    "cases": 20,
+    "calls": {
+      "ok": 20,
+      "failed": 0
+    },
+    "precision": {
+      "truePositives": 147,
+      "assertions": 150,
+      "percent": 98
+    },
+    "recall": {
+      "truePositives": 147,
+      "statedFacts": 149,
+      "percent": 98.7
+    },
+    "wrongValues": 2,
+    "unsupportedAssertions": 1,
+    "unknownsPreserved": "7/8",
+    "unknownsListedOrAsked": "6/8",
+    "conflictsFlagged": "2/2",
+    "silentlyResolvedConflicts": 0,
+    "wholeCaseCorrect": "17/20",
+    "latencyMs": {
+      "median": 2102,
+      "p95": 2835
+    },
+    "tokens": {
+      "input": 16616,
+      "output": 6459
+    },
+    "estimatedCostUsd": 0.0489
+  },
+  "corrections": [
+    {
+      "field": "extraction.recall",
+      "published": {
+        "truePositives": 147,
+        "statedFacts": 147,
+        "percent": 100
+      },
+      "corrected": {
+        "truePositives": 147,
+        "statedFacts": 149,
+        "percent": 98.7
+      },
+      "reason": "Runner bug: conflict fields were subtracted from the stated-fact count although stated labels never include them. Recomputed from the stored per-case results; no model output changed.",
+      "at": "2026-10-09"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "recart-shopify-sync-example",
+  "private": true,
+  "type": "module",
+  "description": "Reference example: read a Shopify store's catalog and stock and send it to ReCart through the public API. Read-only toward Shopify; no checkout, order or payment integration.",
+  "engines": { "node": ">=20.6" },
+  "scripts": { "sync": "node cli.mjs sync", "watch": "node cli.mjs watch", "test": "node --test test/*.test.mjs" }
+}

@@ -1,0 +1,23 @@
+{
+  "frozenAt": "2026-10-09T18:05:29+00:00",
+  "run": "v4, the third rerun after examining v1 to v3. Not an untouched holdout.",
+  "changesSinceV3": [
+    "Prompt lang-prompts-v3: conflicting values leave the field null and are listed in conflicts; one exact span per field. Motivated by C06, where the model joined two quoted spans and produced invalid JSON in two of three calls.",
+    "postprocess-v3: when the buyer text names more than one distinct dollar amount and no budget conflict is listed, the budget becomes a conflict and a question."
+  ],
+  "unchanged": [
+    "evaluation/cases-v1.json",
+    "evaluation/SCORING-v1.md",
+    "tools/run-benchmark.ts (same as v3)",
+    "the language model and the hosted endpoint"
+  ],
+  "sha256": {
+    "evaluation/cases-v1.json": "4e54c9fcbcc1577aaea55523f01b3e5d163ba977b70fd2cf6dfb18a23f1e77c6",
+    "evaluation/SCORING-v1.md": "414407a367457f35eb1f2ac984888726e46dcbe978746ad06f48f191e5549bc9",
+    "tools/run-benchmark.ts": "69e95a795323677a18839b1e6e6854a850244096ce5f8a7a93a75c432f066e8c",
+    "src/server/language/prompts.ts": "42376c3e122877794bf4a4153ee34c01c0e3998cb4699bac339d32bdcc1ca33d",
+    "src/server/language/dates.ts": "80354874486d8a468fa38a22d2d05fb916b106ca5184584df36db785ff10281a",
+    "src/server/language/adapter.ts": "b4149a024b32e0422f7413e40212765e92fccbffa7b51596ac7643710b2caa3b",
+    "src/server/language/rules.ts": "1c71fe70e5df5272bac1faba9217a2a653d1e39bb263fd974c95981165afb94d"
+  }
+}

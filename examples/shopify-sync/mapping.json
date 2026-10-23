@@ -1,0 +1,386 @@
+{
+  "$comment": "Reviewed compatibility facts for ReCart Audio Lab, keyed by Shopify variant SKU. Shopify has no field for these facts, so the integration supplies them. The store sells the fictional ReCart fixture products, so every fact carries evidence 'fixture' and cites the fixture specification sheet; a real store would cite its own spec sheets (documented) or bench tests (merchant_tested).",
+  "domain": "audio-recording-v1",
+  "products": {
+    "MIC-DX-A": {
+      "role": "mic",
+      "description": "Dynamic cardioid mic, XLR output, no phantom power needed.",
+      "attributes": {
+        "output": {
+          "value": "xlr",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#MIC-DX-A"
+        },
+        "needs_phantom": {
+          "value": false,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#MIC-DX-A"
+        }
+      }
+    },
+    "MIC-DX-B": {
+      "role": "mic",
+      "description": "Broadcast-style dynamic mic, XLR output.",
+      "attributes": {
+        "output": {
+          "value": "xlr",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#MIC-DX-B"
+        },
+        "needs_phantom": {
+          "value": false,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#MIC-DX-B"
+        }
+      }
+    },
+    "MIC-CX-C": {
+      "role": "mic",
+      "description": "Condenser mic, XLR output, requires 48 V phantom power.",
+      "attributes": {
+        "output": {
+          "value": "xlr",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#MIC-CX-C"
+        },
+        "needs_phantom": {
+          "value": true,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#MIC-CX-C"
+        }
+      }
+    },
+    "MIC-USB-D": {
+      "role": "mic",
+      "description": "USB-C mic with a built-in monitor jack; for one-person setups.",
+      "attributes": {
+        "output": {
+          "value": "usb-c",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#MIC-USB-D"
+        },
+        "needs_phantom": {
+          "value": false,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#MIC-USB-D"
+        },
+        "monitor_jack": {
+          "value": true,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#MIC-USB-D"
+        }
+      }
+    },
+    "IF-2C-LB": {
+      "role": "interface",
+      "description": "Two mic preamps, phantom power, two headphone outputs, USB-C, loopback routing.",
+      "attributes": {
+        "preamps": {
+          "value": 2,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2C-LB"
+        },
+        "phantom": {
+          "value": true,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2C-LB"
+        },
+        "headphone_outputs": {
+          "value": 2,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2C-LB"
+        },
+        "host_port": {
+          "value": "usb-c",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2C-LB"
+        },
+        "loopback": {
+          "value": true,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2C-LB"
+        },
+        "os_support": {
+          "value": [
+            "macos",
+            "windows"
+          ],
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2C-LB"
+        }
+      }
+    },
+    "IF-2C-NL": {
+      "role": "interface",
+      "description": "Two mic preamps and two headphone outputs, but no loopback routing.",
+      "attributes": {
+        "preamps": {
+          "value": 2,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2C-NL"
+        },
+        "phantom": {
+          "value": true,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2C-NL"
+        },
+        "headphone_outputs": {
+          "value": 2,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2C-NL"
+        },
+        "host_port": {
+          "value": "usb-c",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2C-NL"
+        },
+        "loopback": {
+          "value": false,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2C-NL"
+        },
+        "os_support": {
+          "value": [
+            "macos",
+            "windows"
+          ],
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2C-NL"
+        }
+      }
+    },
+    "IF-2B-LB": {
+      "role": "interface",
+      "description": "Two mic preamps, phantom power, two headphone outputs, USB-B port, loopback routing.",
+      "attributes": {
+        "preamps": {
+          "value": 2,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2B-LB"
+        },
+        "phantom": {
+          "value": true,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2B-LB"
+        },
+        "headphone_outputs": {
+          "value": 2,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2B-LB"
+        },
+        "host_port": {
+          "value": "usb-b",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2B-LB"
+        },
+        "loopback": {
+          "value": true,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2B-LB"
+        },
+        "os_support": {
+          "value": [
+            "macos",
+            "windows"
+          ],
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2B-LB"
+        }
+      }
+    },
+    "IF-4C-LB": {
+      "role": "interface",
+      "description": "Four mic preamps, phantom power, two headphone outputs, USB-C, loopback routing.",
+      "attributes": {
+        "preamps": {
+          "value": 4,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-4C-LB"
+        },
+        "phantom": {
+          "value": true,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-4C-LB"
+        },
+        "headphone_outputs": {
+          "value": 2,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-4C-LB"
+        },
+        "host_port": {
+          "value": "usb-c",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-4C-LB"
+        },
+        "loopback": {
+          "value": true,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-4C-LB"
+        },
+        "os_support": {
+          "value": [
+            "macos",
+            "windows"
+          ],
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-4C-LB"
+        }
+      }
+    },
+    "IF-2C-UK": {
+      "role": "interface",
+      "description": "Two preamps and two headphone outputs; loopback support not yet documented.",
+      "attributes": {
+        "preamps": {
+          "value": 2,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2C-UK"
+        },
+        "phantom": {
+          "value": true,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2C-UK"
+        },
+        "headphone_outputs": {
+          "value": 2,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2C-UK"
+        },
+        "host_port": {
+          "value": "usb-c",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2C-UK"
+        },
+        "loopback": {
+          "evidence": "unknown",
+          "source": "spec-sheet-v1#IF-2C-UK (loopback not documented)"
+        },
+        "os_support": {
+          "value": [
+            "macos",
+            "windows"
+          ],
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#IF-2C-UK"
+        }
+      }
+    },
+    "HP-CB-A": {
+      "role": "headphones",
+      "description": "Closed-back monitoring headphones; isolate well for shared rooms.",
+      "attributes": {
+        "type": {
+          "value": "closed",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#HP-CB-A"
+        }
+      }
+    },
+    "HP-OB-B": {
+      "role": "headphones",
+      "description": "Open-back headphones; comfortable, but leak more sound.",
+      "attributes": {
+        "type": {
+          "value": "open",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#HP-OB-B"
+        }
+      }
+    },
+    "CBL-XLR-3": {
+      "role": "mic_cable",
+      "description": "Balanced XLR microphone cable.",
+      "attributes": {
+        "ends": {
+          "value": [
+            "xlr",
+            "xlr"
+          ],
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#CBL-XLR-3"
+        }
+      }
+    },
+    "CBL-CC-1": {
+      "role": "host_cable",
+      "description": "Connects a USB-C device to a USB-C computer.",
+      "attributes": {
+        "device_end": {
+          "value": "usb-c",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#CBL-CC-1"
+        },
+        "host_end": {
+          "value": "usb-c",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#CBL-CC-1"
+        }
+      }
+    },
+    "CBL-BA-1": {
+      "role": "host_cable",
+      "description": "Connects a USB-B device to a USB-A port.",
+      "attributes": {
+        "device_end": {
+          "value": "usb-b",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#CBL-BA-1"
+        },
+        "host_end": {
+          "value": "usb-a",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#CBL-BA-1"
+        }
+      }
+    },
+    "ADP-AC": {
+      "role": "adapter",
+      "description": "Lets a USB-A cable plug into a USB-C computer port.",
+      "attributes": {
+        "from": {
+          "value": "usb-a",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#ADP-AC"
+        },
+        "to": {
+          "value": "usb-c",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#ADP-AC"
+        }
+      }
+    },
+    "STD-DK-A": {
+      "role": "stand",
+      "description": "Weighted desk stand.",
+      "attributes": {
+        "type": {
+          "value": "desk",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#STD-DK-A"
+        }
+      }
+    },
+    "STD-BM-B": {
+      "role": "stand",
+      "description": "Clamp-on boom arm.",
+      "attributes": {
+        "type": {
+          "value": "boom",
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#STD-BM-B"
+        }
+      }
+    },
+    "SPL-HP-2": {
+      "role": "splitter",
+      "description": "Feeds two headphones from one headphone output.",
+      "attributes": {
+        "outputs": {
+          "value": 2,
+          "evidence": "fixture",
+          "source": "spec-sheet-v1#SPL-HP-2"
+        }
+      }
+    }
+  }
+}

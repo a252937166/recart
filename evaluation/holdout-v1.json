@@ -1,0 +1,209 @@
+{
+  "name": "ReCart extraction holdout",
+  "version": "holdout-v1",
+  "authoredBy": "The ReCart builder, after the v1 to v4 runs, to measure the revised extraction path on requests it had never seen. Labels were fixed before the single run.",
+  "nature": "Team-authored engineering fixtures for first-pass extraction only (no solver expectations). Not an independent or real-user study.",
+  "referenceTime": "2026-10-22T16:00:00Z (Thursday 09:00 PDT)",
+  "cases": [
+    {
+      "id": "H01",
+      "text": "Our two-person show records in my garage; a third co-host dials in on Riverside. Mac mini with USB-C, running macOS. We can spend up to $500 with tax. Next session: this Saturday at 3:30 pm.",
+      "labels": {
+        "stated": {
+          "localPeople": 2,
+          "remoteGuests": 1,
+          "callApp": "riverside",
+          "hostPort": "usb-c",
+          "os": "macos",
+          "budgetCents": {
+            "value": 50000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-24",
+          "recordingTime": "15:30"
+        },
+        "unknown": [],
+        "conflicts": []
+      },
+      "context": {
+        "referenceTime": "2026-10-22T16:00:00Z",
+        "timezone": "America/Los_Angeles"
+      }
+    },
+    {
+      "id": "H02",
+      "text": "Just me plus a guest calling in, but I'm not sure which app yet. Windows PC with USB-A. I'd like to stay below $250, or $275 at most. Recording Monday morning.",
+      "labels": {
+        "stated": {
+          "localPeople": 1,
+          "remoteGuests": 1,
+          "hostPort": "usb-a",
+          "os": "windows",
+          "recordingDate": "2026-10-26"
+        },
+        "unknown": [
+          "callApp",
+          "recordingTime"
+        ],
+        "conflicts": [
+          "budgetCents"
+        ]
+      },
+      "context": {
+        "referenceTime": "2026-10-22T16:00:00Z",
+        "timezone": "America/Los_Angeles"
+      }
+    },
+    {
+      "id": "H03",
+      "text": "Three hosts around one table, nobody remote, USB-C laptop running Linux. Budget $700 all in. We start recording the 30th at 7 pm.",
+      "labels": {
+        "stated": {
+          "localPeople": 3,
+          "remoteGuests": 0,
+          "hostPort": "usb-c",
+          "os": "linux",
+          "budgetCents": {
+            "value": 70000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-30",
+          "recordingTime": "19:00"
+        },
+        "unknown": [],
+        "conflicts": []
+      },
+      "context": {
+        "referenceTime": "2026-10-22T16:00:00Z",
+        "timezone": "America/Los_Angeles"
+      }
+    },
+    {
+      "id": "H04",
+      "text": "I already own two pairs of headphones and two mic stands. Two of us record in the same room and one guest joins on Google Meet. Windows, USB-C. Under $420 before tax. Sometime early next week, evenings.",
+      "labels": {
+        "stated": {
+          "owned.headphones": 2,
+          "owned.stands": 2,
+          "localPeople": 2,
+          "remoteGuests": 1,
+          "callApp": "google-meet",
+          "os": "windows",
+          "hostPort": "usb-c",
+          "budgetCents": {
+            "value": 42000,
+            "allIn": false
+          }
+        },
+        "unknown": [
+          "recordingDate",
+          "recordingTime"
+        ],
+        "conflicts": []
+      },
+      "context": {
+        "referenceTime": "2026-10-22T16:00:00Z",
+        "timezone": "America/Los_Angeles"
+      }
+    },
+    {
+      "id": "H05",
+      "text": "Recording tomorrow at noon with my brother, just the two of us, no call-in guests. We use a USB-C MacBook. Our cap is $390.",
+      "labels": {
+        "stated": {
+          "localPeople": 2,
+          "remoteGuests": 0,
+          "hostPort": "usb-c",
+          "os": "macos",
+          "budgetCents": {
+            "value": 39000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-23",
+          "recordingTime": "12:00"
+        },
+        "unknown": [],
+        "conflicts": []
+      },
+      "labelNote": "A MacBook establishes macOS under the declared extraction rule.",
+      "context": {
+        "referenceTime": "2026-10-22T16:00:00Z",
+        "timezone": "America/Los_Angeles"
+      }
+    },
+    {
+      "id": "H06",
+      "text": "Two people in the room, one remote guest on Zoom, Windows laptop with USB-C. We have about $300, maybe $350 if needed. Friday at 10 am.",
+      "labels": {
+        "stated": {
+          "localPeople": 2,
+          "remoteGuests": 1,
+          "callApp": "zoom",
+          "os": "windows",
+          "hostPort": "usb-c",
+          "recordingDate": "2026-10-23",
+          "recordingTime": "10:00"
+        },
+        "unknown": [],
+        "conflicts": [
+          "budgetCents"
+        ]
+      },
+      "context": {
+        "referenceTime": "2026-10-22T16:00:00Z",
+        "timezone": "America/Los_Angeles"
+      }
+    },
+    {
+      "id": "H07",
+      "text": "Solo podcast, I'm the only one recording, no remote people at all. My computer is a Windows desktop; not sure what ports it has. Budget $200. Recording next Tuesday at 8 pm.",
+      "labels": {
+        "stated": {
+          "localPeople": 1,
+          "remoteGuests": 0,
+          "os": "windows",
+          "budgetCents": {
+            "value": 20000,
+            "allIn": true
+          },
+          "recordingTime": "20:00"
+        },
+        "unknown": [
+          "hostPort",
+          "recordingDate"
+        ],
+        "conflicts": []
+      },
+      "labelNote": "Said on Thursday, \"next Tuesday\" can mean Oct 27 or Nov 3.",
+      "context": {
+        "referenceTime": "2026-10-22T16:00:00Z",
+        "timezone": "America/Los_Angeles"
+      }
+    },
+    {
+      "id": "H08",
+      "text": "We're two hosts with one remote guest over Google Meet. My laptop has USB-C and runs macOS. Total budget $480. We record on October 29 at 9:15 am.",
+      "labels": {
+        "stated": {
+          "localPeople": 2,
+          "remoteGuests": 1,
+          "callApp": "google-meet",
+          "hostPort": "usb-c",
+          "os": "macos",
+          "budgetCents": {
+            "value": 48000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-29",
+          "recordingTime": "09:15"
+        },
+        "unknown": [],
+        "conflicts": []
+      },
+      "context": {
+        "referenceTime": "2026-10-22T16:00:00Z",
+        "timezone": "America/Los_Angeles"
+      }
+    }
+  ]
+}

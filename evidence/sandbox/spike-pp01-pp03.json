@@ -1,0 +1,77 @@
+{
+  "startedAt": "2026-10-09T15:11:41.593Z",
+  "merchant": "recart-store-20261009@business.example.com",
+  "app": "ReCart Sandbox",
+  "pp01": {
+    "orderId": "68A84797T9491711E",
+    "createStatus": "PAYER_ACTION_REQUIRED",
+    "total": "376.92",
+    "approval": {
+      "returned": true,
+      "payerIdPresent": true
+    },
+    "authorize": {
+      "http": 201,
+      "debugId": "f852178df998b",
+      "orderStatus": "COMPLETED",
+      "authorizationId": "13960289KH896564W",
+      "authorizationStatus": "CREATED",
+      "expiration": "2026-11-07T15:12:12Z"
+    },
+    "capture": {
+      "http": 201,
+      "debugId": "f5475037abc37",
+      "captureId": "15V03069YX6337827",
+      "status": "COMPLETED"
+    },
+    "captureReplay": {
+      "http": 200,
+      "sameCaptureId": true,
+      "status": "COMPLETED"
+    },
+    "authorizationAfter": {
+      "status": "CAPTURED"
+    }
+  },
+  "pp03": {
+    "captureId": "15V03069YX6337827",
+    "http": 201,
+    "debugId": "f1910941a517c",
+    "refundId": "1WK55031CR8239609",
+    "status": "PENDING",
+    "amount": {
+      "currency_code": "USD",
+      "value": "376.92"
+    },
+    "captureAfter": {
+      "status": "REFUNDED"
+    }
+  },
+  "pp02": {
+    "orderId": "49E92321JH278650M",
+    "createStatus": "PAYER_ACTION_REQUIRED",
+    "total": "241.08",
+    "approval": {
+      "returned": true,
+      "payerIdPresent": true
+    },
+    "authorize": {
+      "http": 201,
+      "authorizationId": "64P283292L069803U",
+      "authorizationStatus": "CREATED"
+    },
+    "void": {
+      "http": 200,
+      "debugId": "f641257a33198",
+      "status": "VOIDED"
+    },
+    "authorizationAfter": {
+      "status": "VOIDED"
+    },
+    "captureAfterVoid": {
+      "http": 422,
+      "issue": "AUTHORIZATION_VOIDED"
+    }
+  },
+  "finishedAt": "2026-10-09T15:12:51.378Z"
+}

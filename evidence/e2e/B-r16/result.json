@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "at": "2026-10-23T16:11:46.266Z",
+  "base": "https://recart.axiqo.xyz",
+  "scenario": "B",
+  "release": "r2026.10.11-signal-room-16",
+  "extraction": {
+    "status": "OK",
+    "model": "gpt-6-luna",
+    "provider": "codex",
+    "fallbackFrom": null,
+    "durationMs": 14589
+  },
+  "explanation": {
+    "source": "model",
+    "model": "gpt-6-luna",
+    "pending": false,
+    "error": null,
+    "waitedMs": 505
+  },
+  "attempts": [
+    {
+      "state": "VOIDED",
+      "order": "6C679024R6555811D",
+      "authorization": "0NT51542VC9608703",
+      "capture": null,
+      "refund": null
+    },
+    {
+      "state": "PAID",
+      "order": "1Y268732J09900928",
+      "authorization": "34A19008H44119057",
+      "capture": "2PH7003186067242G",
+      "refund": null
+    }
+  ],
+  "caseStatus": "RESOLVED_RECOVERED",
+  "log": [
+    "2026-10-23T16:09:22.965Z open https://recart.axiqo.xyz",
+    "2026-10-23T16:09:26.358Z release r2026.10.11-signal-room-16",
+    "2026-10-23T16:09:35.543Z demo session 18fdd892-8829-4e0a-9301-26c206589618",
+    "2026-10-23T16:09:55.435Z extraction shown: AI draft (gpt-6-luna)",
+    "2026-10-23T16:09:56.779Z draft by codex (gpt-6-luna) in 14589 ms",
+    "2026-10-23T16:10:12.621Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-23T16:10:20.608Z PayPal login submitted",
+    "2026-10-23T16:10:23.325Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-23T16:10:27.338Z PayPal popup closed (approved)",
+    "2026-10-23T16:10:29.642Z attempt 1 authorized",
+    "2026-10-23T16:10:31.899Z discrepancy reported",
+    "2026-10-23T16:10:36.482Z decision needed: No complete setup fits your limit\nThe closest one costs $422.28, above your $400.00 limit. ReCart will not change your limit for you.",
+    "2026-10-23T16:10:40.518Z budget raised to $425; rebuilt setup offered",
+    "2026-10-23T16:10:47.099Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-23T16:10:51.580Z PayPal session already signed in",
+    "2026-10-23T16:10:52.111Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-23T16:10:56.627Z PayPal popup closed (approved)",
+    "2026-10-23T16:10:59.992Z attempt 2 authorized",
+    "2026-10-23T16:11:37.767Z handed over",
+    "2026-10-23T16:11:45.748Z explanation model (gpt-6-luna) after 505 ms of waiting at the end"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "frozenAt": "2026-10-09T17:57:22+00:00",
+  "statement": "Cases, labels, expected outcomes, scoring rules and the runner were frozen before any scored run. Neither the solver nor the language model had been run on these 20 cases; the runner was debugged only on evaluation/dev-examples.json (demo scenarios A and C).",
+  "sha256": {
+    "evaluation/cases-v1.json": "4e54c9fcbcc1577aaea55523f01b3e5d163ba977b70fd2cf6dfb18a23f1e77c6",
+    "evaluation/SCORING-v1.md": "414407a367457f35eb1f2ac984888726e46dcbe978746ad06f48f191e5549bc9",
+    "tools/run-benchmark.ts": "8de66d97cbabc8801b9ceb39598f074de53c6cd92d14ef078b7ee6d3e76e481b"
+  }
+}

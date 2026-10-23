@@ -1,0 +1,19 @@
+{
+  "ok": false,
+  "error": "locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('#email, [data-testid=submit-button-initial], #payment-submit-btn').first() to be visible\u001b[22m\n",
+  "log": [
+    "2026-10-10T16:19:06.070Z open https://recart.axiqo.xyz",
+    "2026-10-10T16:19:08.595Z release r2026.10.10-signal-room-9",
+    "2026-10-10T16:19:23.604Z extraction shown: AI draft (claude-haiku-4-5)",
+    "2026-10-10T16:19:38.604Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-10T16:19:46.839Z PayPal login submitted",
+    "2026-10-10T16:19:49.163Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-10T16:19:52.673Z PayPal popup closed (approved)",
+    "2026-10-10T16:19:54.964Z attempt 1 authorized",
+    "2026-10-10T16:19:57.620Z discrepancy reported",
+    "2026-10-10T16:20:02.204Z decision needed: No complete setup fits your limit\nThe closest one costs $422.28, above your $400.00 limit. ReCart will not change your limit for you.",
+    "2026-10-10T16:20:07.012Z budget raised to $425; rebuilt setup offered",
+    "2026-10-10T16:20:13.495Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-10T16:20:25.299Z FAILED: locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('#email, [data-testid=submit-button-initial], #payment-submit-btn').first() to be visible\u001b[22m\n"
+  ]
+}

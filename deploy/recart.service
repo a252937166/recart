@@ -1,0 +1,30 @@
+[Unit]
+Description=ReCart demo (PayPal AI Hackathon 2026) - whole-bundle purchase recovery on PayPal Sandbox
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=recart
+Group=recart
+WorkingDirectory=/opt/recart/app
+EnvironmentFile=/opt/recart/recart.env
+ExecStart=/usr/local/bin/node dist/server/server/main.js
+Restart=always
+RestartSec=3
+MemoryLimit=256M
+NoNewPrivileges=true
+# Logs go to the systemd journal (`journalctl -u recart`). systemd 219 on the demo host has no `append:` or `file:`
+# outputs (added in 240 and 236). rsyslog's imjournal copies each line to /var/log/messages, rotated weekly by logrotate,
+# which is the record that survives a reboot there (the journal itself is kept in memory on that host).
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=recart
+# console.error and console.warn lines carry <3> and <4> prefixes that journald turns into err and warning priorities.
+Environment=LOG_PRIORITY_PREFIX=true
+# SIGTERM shutdown is bounded by the app (25 s with the default SHUTDOWN_* settings); this leaves a margin before SIGKILL.
+KillSignal=SIGTERM
+TimeoutStopSec=45
+
+[Install]
+WantedBy=multi-user.target

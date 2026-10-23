@@ -1,0 +1,89 @@
+{
+  "recordedAt": "2026-10-23T16:13:46.678Z",
+  "rows": [
+    {
+      "id": "PP01",
+      "path": "Authorize, then capture; replay the capture with the same PayPal-Request-Id",
+      "result": "COMPLETED; the replay returned the same capture",
+      "resources": "order 68A84797T9491711E, authorization 13960289KH896564W, capture 15V03069YX6337827"
+    },
+    {
+      "id": "PP02",
+      "path": "Authorize, then void; try to capture afterwards",
+      "result": "VOIDED; the later capture was rejected with AUTHORIZATION_VOIDED",
+      "resources": "order 49E92321JH278650M, authorization 64P283292L069803U"
+    },
+    {
+      "id": "PP03",
+      "path": "Full refund of a capture",
+      "result": "COMPLETED at once; capture now REFUNDED. The first run, before the merchant float, stayed PENDING (bank-funded)",
+      "resources": "refund 9HK820913T810645Y, capture 68H33284UP270244V; first run refund 1WK55031CR8239609"
+    },
+    {
+      "id": "PP04",
+      "path": "Capture reply lost after PayPal executed it (local server, injected fault)",
+      "result": "ReCart marked the capture unknown and held the goods, then reconciled: 2 attempts with one request ID, final PAID. PayPal shows 1 capture; handoff consumed exactly the purchased goods",
+      "resources": "order 3EC56906LD284143P, authorization 4VT46538MR833102N, capture 9VG767246L088333H"
+    },
+    {
+      "id": "PP05",
+      "path": "Real PayPal webhooks verified on the public server (verify-webhook-signature on the raw body)",
+      "result": "299 verified with PayPal: 273 matched purchases here and triggered reconciliation, 26 were other Sandbox test orders; 1 unverifiable event quarantined. Delivered through the Astropods-hosted relay because Sandbox does not deliver to this domain",
+      "resources": "webhook 04034153BN793150U; PAYMENT.AUTHORIZATION.VOIDED, PAYMENT.AUTHORIZATION.CREATED, CHECKOUT.ORDER.APPROVED, PAYMENT.CAPTURE.COMPLETED"
+    },
+    {
+      "id": "OPS-1",
+      "path": "Proxy timeouts and failover on the public server: a primary delayed past the old 60 s limit, a slow failure with the backup answering, and a refusal, on /api/, /v1/ and /mcp (faults scoped to one session and one merchant)",
+      "result": "10 of 10 checks passed. Drafts completed without a 504 after 91 s on /api/goal/extract, 92 s on /v1/requirement-drafts and 85 s on the MCP tool; a primary failing after 75 s was answered by the hosted backup; the simulated refusal left the shared cooldown untouched",
+      "resources": "worst case 140 s, proxy read timeout 180 s. An earlier run on r2026.10.10-signal-room-12 failed \"/mcp draft_requirements with the primary delayed 70 s\" (HTTP 504): the simulated delay was added outside the provider's own time bound, so delay plus a slow real call outran the proxy; fixed in the next release",
+      "recordedAt": "2026-10-11T08:15:57.439Z",
+      "release": "r2026.10.11-signal-room-15",
+      "record": "evidence/checks/proxy-timeouts.json"
+    },
+    {
+      "id": "OPS-2",
+      "path": "Service restart on the public server while an event stream was open and an explanation job was running (SIGTERM, no SIGKILL)",
+      "result": "11 of 11 checks passed. The old process shut down on its own in 1013 ms and handed the job's lease back; the open stream ended with a shutdown event 982 ms after the restart began; systemctl restart took 1044 ms on the host with no forced kill; the new process took the job over 388 ms after starting and finished it 142 s later",
+      "resources": "PID 12481 to 13482; unreachable 2273 ms from SIGTERM to the new process listening. An earlier run on r2026.10.11-signal-room-14 passed 9 of 10: its takeover was timed over SSH calls that took 7 to 9 s each (server-side, the claim came within 1 s of the new process starting); the same run showed the site unreachable for 10 s while the explanation used the full 10 s job grace, cut to 1 s in the next release",
+      "recordedAt": "2026-10-11T08:04:33.567Z",
+      "release": "r2026.10.11-signal-room-15",
+      "record": "evidence/checks/restart.r2026.10.11-signal-room-15.passed.json"
+    },
+    {
+      "id": "OPS-3",
+      "path": "Service unit and logging on the host's systemd 219: unit verified before install, effective settings after, startup and error lines reaching the journal and /var/log/messages",
+      "result": "22 of 22 checks passed. Logs go to the journal (stdout at info, stderr at err via priority prefixes) and are copied to /var/log/messages by rsyslog; no unsupported-directive warnings",
+      "resources": "deploy/validate-service.sh verify, installed, running",
+      "recordedAt": "2026-10-11T08:09:55.947264Z",
+      "release": "r2026.10.11-signal-room-15",
+      "record": "evidence/checks/service-validation.r2026.10.11-signal-room-15.json"
+    },
+    {
+      "id": "E2E-A",
+      "path": "Story A (Recovered) through the public site: rebuilt and recovered",
+      "result": "attempt 1 voided, attempt 2 paid; case resolved recovered; draft by codex (gpt-6-luna), explanation by the model (gpt-6-luna)",
+      "resources": "order 6VP72388J9092700W; order 0UD55432LH3526831 capture 28K68779T7737142A",
+      "recordedAt": "2026-10-23T16:09:21.076Z",
+      "release": "r2026.10.11-signal-room-16",
+      "record": "evidence/e2e/A-r16/"
+    },
+    {
+      "id": "E2E-B",
+      "path": "Story B (Buyer decides) through the public site: decision needed, limit raised to $425, recovered",
+      "result": "attempt 1 voided, attempt 2 paid; case resolved recovered; draft by codex (gpt-6-luna), explanation by the model (gpt-6-luna)",
+      "resources": "order 6C679024R6555811D; order 1Y268732J09900928 capture 2PH7003186067242G",
+      "recordedAt": "2026-10-23T16:11:46.266Z",
+      "release": "r2026.10.11-signal-room-16",
+      "record": "evidence/e2e/B-r16/"
+    },
+    {
+      "id": "E2E-C",
+      "path": "Story C (No safe replacement) through the public site: no supported fix, purchase closed",
+      "result": "attempt 1 voided; case closed no solution; draft by codex (gpt-6-luna), explanation by the model (gpt-6-luna) after 10 s",
+      "resources": "order 5VC36679F7447313J",
+      "recordedAt": "2026-10-23T16:13:30.265Z",
+      "release": "r2026.10.11-signal-room-16",
+      "record": "evidence/e2e/C-r16/"
+    }
+  ]
+}

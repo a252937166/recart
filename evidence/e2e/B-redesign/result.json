@@ -1,0 +1,41 @@
+{
+  "ok": true,
+  "at": "2026-10-10T08:47:57.382Z",
+  "base": "https://recart.axiqo.xyz",
+  "scenario": "B",
+  "attempts": [
+    {
+      "state": "VOIDED",
+      "order": "2EJ22094MU2476840",
+      "authorization": "551467308D7805708",
+      "capture": null,
+      "refund": null
+    },
+    {
+      "state": "PAID",
+      "order": "81429778DG122251C",
+      "authorization": "3WA26469GK993244V",
+      "capture": "50T66563AM7570531",
+      "refund": null
+    }
+  ],
+  "caseStatus": "RESOLVED_RECOVERED",
+  "log": [
+    "2026-10-10T08:46:33.286Z open https://recart.axiqo.xyz",
+    "2026-10-10T08:46:49.618Z extraction shown: AI draft (claude-haiku-4-5)",
+    "2026-10-10T08:47:02.695Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-10T08:47:10.787Z PayPal login submitted",
+    "2026-10-10T08:47:13.225Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-10T08:47:22.750Z PayPal popup closed (approved)",
+    "2026-10-10T08:47:22.933Z attempt 1 authorized",
+    "2026-10-10T08:47:24.133Z discrepancy reported",
+    "2026-10-10T08:47:28.663Z decision needed: No complete setup fits your limit\nThe closest one costs $422.28, above your $400.00 limit. ReCart will not change your limit for you.",
+    "2026-10-10T08:47:32.447Z budget raised to $425; rebuilt setup offered",
+    "2026-10-10T08:47:36.853Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-10T08:47:41.356Z PayPal session already signed in",
+    "2026-10-10T08:47:42.286Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-10T08:47:46.797Z PayPal popup closed (approved)",
+    "2026-10-10T08:47:46.823Z attempt 2 authorized",
+    "2026-10-10T08:47:52.648Z handed over"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-09T16:25:09.022Z",
+  "purpose": "merchant float for instant refunds",
+  "orderId": "7LP52947FH0069045",
+  "captureId": "1S144119SX9452402",
+  "status": "COMPLETED",
+  "amount": "1000.00"
+}

@@ -1,0 +1,48 @@
+{
+  "version": "holdout-v1",
+  "casesFile": "holdout-v1.json",
+  "casesSha256": "1296d4e589fe963396f949805b1425f6bf17491bc2682043a2e0c6c96acea96b",
+  "rulesSha256": "414407a367457f35eb1f2ac984888726e46dcbe978746ad06f48f191e5549bc9",
+  "runnerSha256": "4d2506d83ab111452eee79d96538961ab3d8e03e8c9eda31929f21b867577b30",
+  "ranAt": "2026-10-09T18:08:10.809Z",
+  "nature": "Team-authored engineering fixtures for first-pass extraction only (no solver expectations). Not an independent or real-user study.",
+  "promptVersion": "lang-prompts-v3",
+  "schemaVersion": "lang-schema-v1",
+  "postprocessVersion": "postprocess-v3",
+  "solver": null,
+  "baseline": null,
+  "extraction": {
+    "model": "claude-haiku-4-5",
+    "cases": 8,
+    "calls": {
+      "ok": 8,
+      "failed": 0
+    },
+    "precision": {
+      "truePositives": 55,
+      "assertions": 55,
+      "percent": 100
+    },
+    "recall": {
+      "truePositives": 55,
+      "statedFacts": 55,
+      "percent": 100
+    },
+    "wrongValues": 0,
+    "unsupportedAssertions": 0,
+    "unknownsPreserved": "6/6",
+    "unknownsListedOrAsked": "6/6",
+    "conflictsFlagged": "2/2",
+    "silentlyResolvedConflicts": 0,
+    "wholeCaseCorrect": "8/8",
+    "latencyMs": {
+      "median": 2106,
+      "p95": 3905
+    },
+    "tokens": {
+      "input": 6205,
+      "output": 2592
+    },
+    "estimatedCostUsd": 0.0192
+  }
+}

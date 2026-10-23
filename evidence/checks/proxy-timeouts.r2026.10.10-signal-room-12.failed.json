@@ -1,0 +1,190 @@
+{
+  "recordedAt": "2026-10-10T22:30:39.605Z",
+  "base": "https://recart.axiqo.xyz",
+  "release": "r2026.10.10-signal-room-12",
+  "language": {
+    "active": "codex",
+    "worstCaseSeconds": {
+      "extract": 140,
+      "explain": 190
+    },
+    "codex": {
+      "configured": true,
+      "reachable": true,
+      "model": "gpt-6-luna",
+      "coolingDown": false,
+      "cooldown": null
+    },
+    "hosted": {
+      "configured": true,
+      "reachable": true
+    }
+  },
+  "slowMs": 70000,
+  "checks": [
+    {
+      "label": "/api/goal/extract baseline",
+      "ms": 15624,
+      "status": 200,
+      "source": "model",
+      "provider": "codex",
+      "fallbackFrom": null,
+      "model": "gpt-6-luna",
+      "expect": {
+        "provider": "codex",
+        "source": "model",
+        "maxMs": 140000
+      },
+      "ok": true,
+      "problems": []
+    },
+    {
+      "label": "/api/goal/extract with the primary delayed 70 s",
+      "ms": 83332,
+      "status": 200,
+      "source": "model",
+      "provider": "codex",
+      "fallbackFrom": null,
+      "model": "gpt-6-luna",
+      "expect": {
+        "provider": "codex",
+        "source": "model",
+        "minMs": 70000,
+        "maxMs": 140000
+      },
+      "ok": true,
+      "problems": []
+    },
+    {
+      "label": "/api/goal/extract with the primary failing after 70 s, backup answering",
+      "ms": 74263,
+      "status": 200,
+      "source": "model",
+      "provider": "hosted",
+      "fallbackFrom": "codex",
+      "model": "claude-haiku-4-5",
+      "expect": {
+        "provider": "hosted",
+        "fallbackFrom": "codex",
+        "source": "model",
+        "minMs": 70000,
+        "maxMs": 140000
+      },
+      "ok": true,
+      "problems": []
+    },
+    {
+      "label": "/api/goal/extract with the primary refusing (429), backup answering",
+      "ms": 7596,
+      "status": 200,
+      "source": "model",
+      "provider": "hosted",
+      "fallbackFrom": "codex",
+      "model": "claude-haiku-4-5",
+      "expect": {
+        "provider": "hosted",
+        "fallbackFrom": "codex",
+        "source": "model",
+        "maxMs": 140000
+      },
+      "ok": true,
+      "problems": []
+    },
+    {
+      "label": "shared cooldown untouched by the scoped refusal",
+      "ok": true,
+      "codex": {
+        "configured": true,
+        "reachable": true,
+        "model": "gpt-6-luna",
+        "detail": "a request is running",
+        "coolingDown": false,
+        "cooldown": null
+      },
+      "active": "codex"
+    },
+    {
+      "label": "/v1/requirement-drafts baseline",
+      "ms": 14833,
+      "status": 200,
+      "source": "model",
+      "provider": "codex",
+      "model": "gpt-6-luna",
+      "expect": {
+        "provider": "codex",
+        "source": "model",
+        "maxMs": 140000
+      },
+      "ok": true,
+      "problems": []
+    },
+    {
+      "label": "/v1/requirement-drafts with the primary delayed 70 s",
+      "ms": 85368,
+      "status": 200,
+      "source": "model",
+      "provider": "codex",
+      "model": "gpt-6-luna",
+      "expect": {
+        "provider": "codex",
+        "source": "model",
+        "minMs": 70000,
+        "maxMs": 140000
+      },
+      "ok": true,
+      "problems": []
+    },
+    {
+      "label": "/mcp draft_requirements with the primary delayed 70 s",
+      "ms": 181952,
+      "status": 504,
+      "body": "<html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n",
+      "expect": {
+        "provider": "codex",
+        "source": "model",
+        "minMs": 70000,
+        "maxMs": 140000
+      },
+      "ok": false,
+      "problems": [
+        "HTTP 504",
+        "took 181952 ms, over 140000",
+        "provider undefined, expected codex",
+        "source undefined, expected model"
+      ]
+    },
+    {
+      "label": "/v1/requirement-drafts with the primary failing after 70 s, backup answering",
+      "ms": 74531,
+      "status": 200,
+      "source": "model",
+      "provider": "hosted",
+      "model": "claude-haiku-4-5",
+      "expect": {
+        "provider": "hosted",
+        "source": "model",
+        "minMs": 70000,
+        "maxMs": 140000
+      },
+      "ok": true,
+      "problems": []
+    },
+    {
+      "label": "/mcp draft_requirements with the primary failing after 70 s, backup answering",
+      "ms": 74828,
+      "status": 200,
+      "source": "model",
+      "provider": "hosted",
+      "model": "claude-haiku-4-5",
+      "expect": {
+        "provider": "hosted",
+        "source": "model",
+        "minMs": 70000,
+        "maxMs": 140000
+      },
+      "ok": true,
+      "problems": []
+    }
+  ],
+  "ok": false
+}

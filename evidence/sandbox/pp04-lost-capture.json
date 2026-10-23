@@ -1,0 +1,262 @@
+{
+  "test": "PP04 capture response lost after PayPal executed it",
+  "at": "2026-10-10T02:49:32.398Z",
+  "method": "Local ReCart server against the real PayPal Sandbox with PAYPAL_FAULT_INJECTION=1. The capture request reached PayPal; its reply was discarded before ReCart saw it. The run then completed handoff.",
+  "recart": {
+    "checkout": {
+      "id": "6aab3043-7fc5-41d1-af92-347fd9b3c782",
+      "payment_state": "PAID",
+      "authorization_id": "4VT46538MR833102N",
+      "capture_id": "9VG767246L088333H"
+    },
+    "operations": [
+      {
+        "kind": "CREATE_ORDER",
+        "status": "SUCCEEDED",
+        "request_id": "78fec242-ec50-44ee-94b1-7bc510e54d36",
+        "attempts": 1,
+        "http_status": 200,
+        "provider_ref": "3EC56906LD284143P",
+        "provider_status": "PAYER_ACTION_REQUIRED",
+        "error": null,
+        "created_at": "2026-10-10T02:48:55.282Z",
+        "updated_at": "2026-10-10T02:48:57.773Z"
+      },
+      {
+        "kind": "AUTHORIZE",
+        "status": "SUCCEEDED",
+        "request_id": "939fcbb4-def8-4cf8-9355-f26ddab688ed",
+        "attempts": 1,
+        "http_status": 201,
+        "provider_ref": "4VT46538MR833102N",
+        "provider_status": "CREATED",
+        "error": null,
+        "created_at": "2026-10-10T02:49:03.622Z",
+        "updated_at": "2026-10-10T02:49:09.968Z"
+      },
+      {
+        "kind": "CAPTURE",
+        "status": "SUCCEEDED",
+        "request_id": "1cdaeb68-9425-442b-bff1-ce08d3c686dc",
+        "attempts": 2,
+        "http_status": 200,
+        "provider_ref": "9VG767246L088333H",
+        "provider_status": "COMPLETED",
+        "error": null,
+        "created_at": "2026-10-10T02:49:10.531Z",
+        "updated_at": "2026-10-10T02:49:19.289Z"
+      }
+    ],
+    "audit": [
+      {
+        "at": "2026-10-10T02:48:21.075Z",
+        "actor": "buyer",
+        "action": "checkout.started",
+        "detail": {
+          "quote": "bbec7298-db41-427d-8f24-160820cda1d6",
+          "total": 37692,
+          "approvalDeadline": "2026-10-10T03:03:21.069Z"
+        }
+      },
+      {
+        "at": "2026-10-10T02:48:23.821Z",
+        "actor": "paypal",
+        "action": "create_order.response",
+        "detail": {
+          "http": 200,
+          "state": "READY_FOR_APPROVAL",
+          "debugId": "f676610edf8fe"
+        }
+      },
+      {
+        "at": "2026-10-10T02:48:47.884Z",
+        "actor": "paypal",
+        "action": "authorize.response",
+        "detail": {
+          "http": 201,
+          "state": "AUTHORIZED",
+          "debugId": "ca4824ee31b01"
+        }
+      },
+      {
+        "at": "2026-10-10T02:48:49.407Z",
+        "actor": "paypal",
+        "action": "void.response",
+        "detail": {
+          "http": 200,
+          "state": "VOIDED",
+          "debugId": "ca4824eeec942"
+        }
+      },
+      {
+        "at": "2026-10-10T02:48:55.283Z",
+        "actor": "buyer",
+        "action": "checkout.started",
+        "detail": {
+          "quote": "bf0b17f2-f463-40da-af86-166e9a83d013",
+          "total": 42228,
+          "approvalDeadline": "2026-10-10T03:03:55.280Z"
+        }
+      },
+      {
+        "at": "2026-10-10T02:48:57.774Z",
+        "actor": "paypal",
+        "action": "create_order.response",
+        "detail": {
+          "http": 200,
+          "state": "READY_FOR_APPROVAL",
+          "debugId": "f185185308c90"
+        }
+      },
+      {
+        "at": "2026-10-10T02:49:09.969Z",
+        "actor": "paypal",
+        "action": "authorize.response",
+        "detail": {
+          "http": 201,
+          "state": "AUTHORIZED",
+          "debugId": "f7449579cf8bd"
+        }
+      },
+      {
+        "at": "2026-10-10T02:49:13.501Z",
+        "actor": "paypal",
+        "action": "capture.unknown",
+        "detail": {
+          "reason": "injected: captureAuthorization response discarded after provider status 201"
+        }
+      },
+      {
+        "at": "2026-10-10T02:49:19.292Z",
+        "actor": "paypal",
+        "action": "capture.response",
+        "detail": {
+          "http": 200,
+          "state": "PAID",
+          "debugId": "f7484876f71c8"
+        }
+      },
+      {
+        "at": "2026-10-10T02:49:19.714Z",
+        "actor": "merchant(simulated)",
+        "action": "handoff.completed",
+        "detail": null
+      }
+    ],
+    "reservations": [
+      {
+        "sku": "ADP-AC",
+        "qty": 1,
+        "status": "FULFILLED"
+      },
+      {
+        "sku": "CBL-BA-1",
+        "qty": 1,
+        "status": "FULFILLED"
+      },
+      {
+        "sku": "CBL-XLR-3",
+        "qty": 2,
+        "status": "FULFILLED"
+      },
+      {
+        "sku": "HP-CB-A",
+        "qty": 2,
+        "status": "FULFILLED"
+      },
+      {
+        "sku": "IF-2B-LB",
+        "qty": 1,
+        "status": "FULFILLED"
+      },
+      {
+        "sku": "MIC-DX-A",
+        "qty": 2,
+        "status": "FULFILLED"
+      },
+      {
+        "sku": "STD-DK-A",
+        "qty": 2,
+        "status": "FULFILLED"
+      }
+    ],
+    "ticket": "HANDED_OVER",
+    "consumption": [
+      {
+        "sku": "ADP-AC",
+        "purchased": 1,
+        "initial": 4,
+        "onHandNow": 3,
+        "consumed": 1
+      },
+      {
+        "sku": "CBL-BA-1",
+        "purchased": 1,
+        "initial": 5,
+        "onHandNow": 4,
+        "consumed": 1
+      },
+      {
+        "sku": "CBL-XLR-3",
+        "purchased": 2,
+        "initial": 10,
+        "onHandNow": 8,
+        "consumed": 2
+      },
+      {
+        "sku": "HP-CB-A",
+        "purchased": 2,
+        "initial": 6,
+        "onHandNow": 4,
+        "consumed": 2
+      },
+      {
+        "sku": "IF-2B-LB",
+        "purchased": 1,
+        "initial": 2,
+        "onHandNow": 1,
+        "consumed": 1
+      },
+      {
+        "sku": "MIC-DX-A",
+        "purchased": 2,
+        "initial": 4,
+        "onHandNow": 2,
+        "consumed": 2
+      },
+      {
+        "sku": "STD-DK-A",
+        "purchased": 2,
+        "initial": 6,
+        "onHandNow": 4,
+        "consumed": 2
+      }
+    ]
+  },
+  "paypal": {
+    "orderId": "3EC56906LD284143P",
+    "orderStatus": "COMPLETED",
+    "authorization": {
+      "id": "4VT46538MR833102N",
+      "status": "CAPTURED"
+    },
+    "captures": [
+      {
+        "id": "9VG767246L088333H",
+        "status": "COMPLETED",
+        "amount": {
+          "currency_code": "USD",
+          "value": "422.28"
+        }
+      }
+    ]
+  },
+  "result": {
+    "captureCountAtPayPal": 1,
+    "recartCaptureMatchesPayPal": true,
+    "finalPaymentState": "PAID",
+    "ticket": "HANDED_OVER",
+    "reservationsFulfilled": true,
+    "stockConsumedMatchesPurchase": true
+  }
+}

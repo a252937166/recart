@@ -1,0 +1,133 @@
+{
+  "purpose": "A stock change made in Shopify admin reaches ReCart through the read-only Shopify reference sync and revises the open recovery proposal.",
+  "base": "https://recart.axiqo.xyz",
+  "recovery_id": "rec_3yewun4p27yxpj0afffm",
+  "watched_product": {
+    "sku": "IF-2C-LB",
+    "product_id": "gid://shopify/ProductVariant/67707300151390",
+    "name": "2-in USB-C Interface with Loopback"
+  },
+  "started_at": "2026-10-10T07:53:34.766Z",
+  "versions": [
+    {
+      "observed_at": "2026-10-10T07:53:37.346Z",
+      "version": 1,
+      "outcome": "no_change_needed",
+      "recovery_status": "no_change_needed",
+      "proposal_created_at": "2026-10-10T07:53:13.349Z",
+      "watched_stock": [
+        {
+          "location_id": "gid://shopify/Location/86563356766",
+          "available": 1,
+          "as_of": "2026-10-10T07:53:09.049Z"
+        }
+      ],
+      "total_cents": 37692,
+      "difference_cents": 0,
+      "added": [],
+      "removed": [],
+      "summary": "The 2-in USB-C Interface with Loopback could not be found when the order was packed. Enough stock is available to fulfil the original items, so no change is needed."
+    },
+    {
+      "observed_at": "2026-10-10T07:58:45.109Z",
+      "version": 2,
+      "outcome": "proposal_ready",
+      "recovery_status": "awaiting_buyer",
+      "proposal_created_at": "2026-10-10T07:58:35.798Z",
+      "watched_stock": [
+        {
+          "location_id": "gid://shopify/Location/86563356766",
+          "available": 0,
+          "as_of": "2026-10-10T07:58:34.276Z"
+        }
+      ],
+      "total_cents": 42228,
+      "difference_cents": 4536,
+      "added": [
+        "2-in USB-B Interface with Loopback",
+        "USB-B to USB-A Cable 1 m",
+        "USB-A to USB-C Host Adapter"
+      ],
+      "removed": [
+        "2-in USB-C Interface with Loopback",
+        "USB-C to USB-C Cable 1 m"
+      ],
+      "summary": "The 2-in USB-C Interface with Loopback could not be found when the order was packed. Replacing only that item fails with every in-stock alternative, so connected parts change too. The proposed setup uses the 2-in USB-B Interface with Loopback, the USB-B to USB-A Cable 1 m and the USB-A to USB-C Host Adapter in place of the 2-in USB-C Interface with Loopback and the USB-C to USB-C Cable 1 m. The new total is $422.28, $45.36 more than the original order, within the buyer's $450.00 limit."
+    },
+    {
+      "observed_at": "2026-10-10T08:00:48.346Z",
+      "version": 3,
+      "outcome": "no_change_needed",
+      "recovery_status": "no_change_needed",
+      "proposal_created_at": "2026-10-10T08:00:37.081Z",
+      "watched_stock": [
+        {
+          "location_id": "gid://shopify/Location/86563356766",
+          "available": 1,
+          "as_of": "2026-10-10T08:00:35.939Z"
+        }
+      ],
+      "total_cents": 37692,
+      "difference_cents": 0,
+      "added": [],
+      "removed": [],
+      "summary": "The 2-in USB-C Interface with Loopback could not be found when the order was packed. Enough stock is available to fulfil the original items, so no change is needed."
+    }
+  ],
+  "events": [
+    {
+      "id": "evt_8nlskowoj9r40nch3f39",
+      "type": "inventory.updated",
+      "created_at": "2026-10-10T07:38:13.821Z",
+      "reason": null,
+      "version": null
+    },
+    {
+      "id": "evt_g8pcs7ew435uj0igt8qr",
+      "type": "recovery.created",
+      "created_at": "2026-10-10T07:53:13.347Z",
+      "reason": null,
+      "version": null
+    },
+    {
+      "id": "evt_6nr5ylow1l0j6zwc812i",
+      "type": "proposal.created",
+      "created_at": "2026-10-10T07:53:13.361Z",
+      "reason": "recovery_created",
+      "version": 1
+    },
+    {
+      "id": "evt_t5q6y4ddpkjy8tgy1p97",
+      "type": "inventory.updated",
+      "created_at": "2026-10-10T07:58:35.057Z",
+      "reason": null,
+      "version": null
+    },
+    {
+      "id": "evt_bf0mbw7n7aj8ymurvnt8",
+      "type": "proposal.revised",
+      "created_at": "2026-10-10T07:58:35.816Z",
+      "reason": "catalog_changed",
+      "version": 2
+    },
+    {
+      "id": "evt_zfwxvgg23swgswu5nvqs",
+      "type": "inventory.updated",
+      "created_at": "2026-10-10T08:00:36.722Z",
+      "reason": null,
+      "version": null
+    },
+    {
+      "id": "evt_f5rjhhwyxv8cyu3bo077",
+      "type": "proposal.revised",
+      "created_at": "2026-10-10T08:00:37.088Z",
+      "reason": "catalog_changed",
+      "version": 3
+    }
+  ],
+  "finished_at": "2026-10-10T08:00:48.850Z",
+  "correction": {
+    "noted_at": "2026-10-10",
+    "detail": "The proposal.revised events in this record carry reason 'catalog_changed', but both revisions were caused by the Shopify stock changes shown in watched_stock (the sync log reads 'stock changed in Shopify: 67707300151390 -> 0'). Cause: the re-planning job was de-duplicated per merchant and a re-queued job kept the payload of the first (catalog) sync. Fixed after this recording by keying the job per merchant and cause; tests/platform/api.test.ts now asserts reason 'inventory_changed'. The versions, outcomes, stock counts and totals above are unaffected."
+  }
+}

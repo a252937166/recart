@@ -1,0 +1,14 @@
+{
+  "frozenAt": "2026-10-09T18:07:49+00:00",
+  "run": "holdout-v1: one run of the final extraction path (lang-prompts-v3, postprocess-v3) on 8 new requests.",
+  "statement": "Labels were written and hashed before the system processed any of these requests. The runner differs from v4 only by the recall-denominator fix and by skipping solver scoring for extraction-only cases.",
+  "sha256": {
+    "evaluation/holdout-v1.json": "1296d4e589fe963396f949805b1425f6bf17491bc2682043a2e0c6c96acea96b",
+    "evaluation/SCORING-v1.md": "414407a367457f35eb1f2ac984888726e46dcbe978746ad06f48f191e5549bc9",
+    "tools/run-benchmark.ts": "4d2506d83ab111452eee79d96538961ab3d8e03e8c9eda31929f21b867577b30",
+    "src/server/language/prompts.ts": "42376c3e122877794bf4a4153ee34c01c0e3998cb4699bac339d32bdcc1ca33d",
+    "src/server/language/dates.ts": "80354874486d8a468fa38a22d2d05fb916b106ca5184584df36db785ff10281a",
+    "src/server/language/adapter.ts": "b4149a024b32e0422f7413e40212765e92fccbffa7b51596ac7643710b2caa3b",
+    "src/server/language/rules.ts": "1c71fe70e5df5272bac1faba9217a2a653d1e39bb263fd974c95981165afb94d"
+  }
+}

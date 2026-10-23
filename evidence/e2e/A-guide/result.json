@@ -1,0 +1,39 @@
+{
+  "ok": true,
+  "at": "2026-10-10T09:36:27.160Z",
+  "base": "https://recart.axiqo.xyz",
+  "scenario": "A",
+  "attempts": [
+    {
+      "state": "VOIDED",
+      "order": "0TA74521D6925394D",
+      "authorization": "039195693X097640L",
+      "capture": null,
+      "refund": null
+    },
+    {
+      "state": "PAID",
+      "order": "6UH791441W639453F",
+      "authorization": "69713137YK7264523",
+      "capture": "4ET87911JP894991P",
+      "refund": null
+    }
+  ],
+  "caseStatus": "RESOLVED_RECOVERED",
+  "log": [
+    "2026-10-10T09:35:11.544Z open https://recart.axiqo.xyz",
+    "2026-10-10T09:35:28.428Z extraction shown: AI draft (claude-haiku-4-5)",
+    "2026-10-10T09:35:41.090Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-10T09:35:48.193Z PayPal login submitted",
+    "2026-10-10T09:35:51.244Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-10T09:35:55.261Z PayPal popup closed (approved)",
+    "2026-10-10T09:35:55.266Z attempt 1 authorized",
+    "2026-10-10T09:35:56.974Z discrepancy reported",
+    "2026-10-10T09:36:06.633Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-10T09:36:10.996Z PayPal session already signed in",
+    "2026-10-10T09:36:11.412Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-10T09:36:16.930Z PayPal popup closed (approved)",
+    "2026-10-10T09:36:16.935Z attempt 2 authorized",
+    "2026-10-10T09:36:21.853Z handed over"
+  ]
+}

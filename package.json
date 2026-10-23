@@ -1,0 +1,49 @@
+{
+  "name": "recart",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ReCart: recover a complete purchase when a product change breaks the buyer's goal. PayPal Sandbox + AI demo.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev:db": "node tools/dev-postgres.mjs",
+    "dev:server": "tsx watch src/server/main.ts",
+    "dev:web": "vite",
+    "build:web": "vite build",
+    "build:server": "tsc -p tsconfig.server.json",
+    "build": "npm run build:web && npm run build:server",
+    "start": "node dist/server/server/main.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "admin": "node dist/server/server/admin.js"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^11.1.3",
+    "@fastify/static": "^10.1.6",
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "fastify": "^5.12.5",
+    "pg": "^8.23.1",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@fontsource-variable/jetbrains-mono": "5.3.0",
+    "@fontsource-variable/source-sans-3": "5.3.0",
+    "@fontsource-variable/space-grotesk": "5.3.0",
+    "@types/node": "^26.6.4",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "embedded-postgres": "^18.4.0-beta.17",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.3"
+  }
+}

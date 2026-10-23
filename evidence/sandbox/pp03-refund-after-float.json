@@ -1,0 +1,19 @@
+{
+  "test": "PP03 full refund after merchant float",
+  "at": "2026-10-09T17:14:09.516Z",
+  "orderId": "47T53406UF893144X",
+  "captureId": "68H33284UP270244V",
+  "captureStatus": "COMPLETED",
+  "amount": "12.34",
+  "refund": {
+    "httpStatus": 201,
+    "id": "9HK820913T810645Y",
+    "status": "COMPLETED",
+    "statusDetails": null,
+    "amount": {
+      "currency_code": "USD",
+      "value": "12.34"
+    }
+  },
+  "captureStatusAfter": "REFUNDED"
+}

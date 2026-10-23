@@ -1,0 +1,239 @@
+{
+  "name": "ReCart development examples (not part of the frozen evaluation)",
+  "version": "dev-examples",
+  "nature": "Demo scenarios A and C, used only to debug the runner.",
+  "cases": [
+    {
+      "id": "D01",
+      "text": "I need to record a podcast on Friday with two people in the room and one remote guest. I have a USB-C laptop. My total budget is $450.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 2,
+          "remoteGuests": 1,
+          "hostPort": "usb-c",
+          "budgetCents": {
+            "value": 45000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-16"
+        },
+        "unknown": [
+          "os",
+          "callApp",
+          "recordingTime"
+        ],
+        "conflicts": []
+      },
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 2,
+        "remoteGuests": 1,
+        "hostPort": "usb-c",
+        "os": "macos",
+        "callApp": "zoom",
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 45000,
+        "pickupBy": "2026-10-16T17:00:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "recovery": {
+        "recipeId": "R-LOCAL2-REMOTE1",
+        "original": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2C-LB",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "missingSku": "IF-2C-LB"
+      },
+      "availability": {
+        "MIC-DX-A": 4,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 0,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "FEASIBLE",
+        "best": {
+          "recipeId": "R-LOCAL2-REMOTE1",
+          "lines": [
+            {
+              "sku": "MIC-DX-A",
+              "qty": 2
+            },
+            {
+              "sku": "IF-2B-LB",
+              "qty": 1
+            },
+            {
+              "sku": "HP-CB-A",
+              "qty": 2
+            },
+            {
+              "sku": "CBL-XLR-3",
+              "qty": 2
+            },
+            {
+              "sku": "CBL-BA-1",
+              "qty": 1
+            },
+            {
+              "sku": "ADP-AC",
+              "qty": 1
+            },
+            {
+              "sku": "STD-DK-A",
+              "qty": 2
+            }
+          ],
+          "totalCents": 42228
+        },
+        "baseline": {
+          "success": false
+        }
+      }
+    },
+    {
+      "id": "D02",
+      "text": "I need to record a podcast on Friday with two people in the room and one remote guest. I have a USB-C laptop. My total budget is $450.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 2,
+          "remoteGuests": 1,
+          "hostPort": "usb-c",
+          "budgetCents": {
+            "value": 45000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-16"
+        },
+        "unknown": [
+          "os",
+          "callApp",
+          "recordingTime"
+        ],
+        "conflicts": []
+      },
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 2,
+        "remoteGuests": 1,
+        "hostPort": "usb-c",
+        "os": "macos",
+        "callApp": "zoom",
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 45000,
+        "pickupBy": "2026-10-16T17:00:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "recovery": {
+        "recipeId": "R-LOCAL2-REMOTE1",
+        "original": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2C-LB",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "missingSku": "IF-2C-LB"
+      },
+      "availability": {
+        "MIC-DX-A": 4,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 0,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 0,
+        "IF-4C-LB": 0,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "NO_FEASIBLE_SUPPORTED_BUNDLE",
+        "baseline": {
+          "success": false
+        }
+      }
+    }
+  ]
+}

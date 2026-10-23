@@ -1,0 +1,45 @@
+{
+  "ok": true,
+  "at": "2026-10-10T22:34:05.307Z",
+  "base": "https://recart.axiqo.xyz",
+  "scenario": "C",
+  "release": "r2026.10.10-signal-room-12",
+  "extraction": {
+    "status": "OK",
+    "model": "gpt-6-luna",
+    "provider": "codex",
+    "fallbackFrom": null,
+    "durationMs": 15068
+  },
+  "explanation": {
+    "source": "model",
+    "model": "gpt-6-luna",
+    "pending": false,
+    "error": null,
+    "waitedMs": 8811
+  },
+  "attempts": [
+    {
+      "state": "VOIDED",
+      "order": "9V5583347X2002903",
+      "authorization": "4TH78173P8013871G",
+      "capture": null,
+      "refund": null
+    }
+  ],
+  "caseStatus": "CLOSED_NO_SOLUTION",
+  "log": [
+    "2026-10-10T22:32:32.631Z open https://recart.axiqo.xyz",
+    "2026-10-10T22:32:35.462Z release r2026.10.10-signal-room-12",
+    "2026-10-10T22:32:43.868Z demo session 64c23156-7b14-4300-9b1d-9538a81f8930",
+    "2026-10-10T22:33:02.765Z extraction shown: AI draft (gpt-6-luna)",
+    "2026-10-10T22:33:04.227Z draft by codex (gpt-6-luna) in 15068 ms",
+    "2026-10-10T22:33:18.346Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-10T22:33:25.577Z PayPal login submitted",
+    "2026-10-10T22:33:34.074Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-10T22:33:38.090Z PayPal popup closed (approved)",
+    "2026-10-10T22:33:41.909Z attempt 1 authorized",
+    "2026-10-10T22:33:43.553Z discrepancy reported",
+    "2026-10-10T22:34:04.636Z explanation model (gpt-6-luna) after 8811 ms of waiting at the end"
+  ]
+}

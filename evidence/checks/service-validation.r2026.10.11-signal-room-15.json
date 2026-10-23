@@ -1,0 +1,52 @@
+{
+  "recordedAt": "2026-10-11T08:09:55.947264Z",
+  "release": "r2026.10.11-signal-room-15",
+  "systemd": 219,
+  "host": "demo host",
+  "phases": {
+    "verify": [
+      "PASS: systemd-analyze verify reports nothing about /tmp/recart-validate/recart.service",
+      "PASS: no file-style output targets in the unit"
+    ],
+    "installed": [
+      "PASS: StandardOutput=journal",
+      "PASS: StandardError=journal",
+      "PASS: SyslogIdentifier=recart",
+      "PASS: KillSignal=SIGTERM",
+      "PASS: Environment has LOG_PRIORITY_PREFIX=true",
+      "PASS: unit loaded from /etc/systemd/system/recart.service",
+      "PASS: no drop-in overrides",
+      "PASS: no unit parse warnings logged since 2026-10-11 15:51:29",
+      "PASS: systemd-analyze verify reports nothing about the installed unit",
+      "PASS: TimeoutStopSec 45s leaves room for the app's 25 s shutdown bound",
+      "PASS: no stale /var/log/recart.log"
+    ],
+    "running": [
+      "PASS: recart active, MainPID 13482, started Sun Oct 11 16:06:22 2026",
+      "PASS: startup line of PID 13482 in the journal: [recart] listening on 127.0.0.1:4060 (paypal=sandbox, preset=judge, workers=core+language, language=codex+hosted)",
+      "PASS: journal entries carry SYSLOG_IDENTIFIER=recart",
+      "PASS: stdout line reached the journal",
+      "PASS: stderr line reached the journal at priority err",
+      "PASS: stdout line filed below err",
+      "PASS: priority prefixes stripped by journald",
+      "PASS: stdout line copied to /var/log/messages",
+      "PASS: stderr line copied to /var/log/messages"
+    ]
+  },
+  "logLines": [
+    "--- journalctl -u recart -p err (this process) ---",
+    "-- Logs begin at Sat 2026-10-10 00:07:19 CST, end at Sun 2026-10-11 16:09:44 CST. --",
+    "2026-10-11T16:09:44+0800 vm118035 recart[13482]: [recart] log check: stderr line 2026-10-11T08:09:44.176Z pid 13482",
+    "--- journal priority fields of the two check lines ---",
+    "    PRIORITY=6",
+    "    MESSAGE=[recart] log check: stdout line 2026-10-11T08:09:44.176Z pid 13482",
+    "    PRIORITY=3",
+    "    MESSAGE=[recart] log check: stderr line 2026-10-11T08:09:44.176Z pid 13482",
+    "--- /var/log/messages ---",
+    "Oct 11 16:06:23 VM118035 recart: [recart] shutdown complete in 1013 ms",
+    "Oct 11 16:06:25 VM118035 recart: [recart] listening on 127.0.0.1:4060 (paypal=sandbox, preset=judge, workers=core+language, language=codex+hosted)",
+    "Oct 11 16:09:44 VM118035 recart: [recart] log check: stdout line 2026-10-11T08:09:44.176Z pid 13482",
+    "Oct 11 16:09:44 VM118035 recart: [recart] log check: stderr line 2026-10-11T08:09:44.176Z pid 13482"
+  ],
+  "ok": true
+}

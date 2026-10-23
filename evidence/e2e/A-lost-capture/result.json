@@ -1,0 +1,41 @@
+{
+  "ok": true,
+  "at": "2026-10-10T02:49:23.057Z",
+  "base": "http://127.0.0.1:4060",
+  "scenario": "A",
+  "faultInjected": "captureAuthorization response discarded",
+  "attempts": [
+    {
+      "state": "VOIDED",
+      "order": "5DT64562HL228244S",
+      "authorization": "4XY6411502006453G",
+      "capture": null,
+      "refund": null
+    },
+    {
+      "state": "PAID",
+      "order": "3EC56906LD284143P",
+      "authorization": "4VT46538MR833102N",
+      "capture": "9VG767246L088333H",
+      "refund": null
+    }
+  ],
+  "caseStatus": "RESOLVED_RECOVERED",
+  "log": [
+    "2026-10-10T02:47:57.625Z open http://127.0.0.1:4060",
+    "2026-10-10T02:48:13.305Z extraction shown: AI draft (claude-haiku-4-5)",
+    "2026-10-10T02:48:22.636Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-10T02:48:31.632Z PayPal login submitted",
+    "2026-10-10T02:48:43.675Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-10T02:48:48.186Z PayPal popup closed (approved)",
+    "2026-10-10T02:48:48.189Z attempt 1 authorized",
+    "2026-10-10T02:48:49.198Z discrepancy reported",
+    "2026-10-10T02:48:55.823Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-10T02:49:00.518Z PayPal session already signed in",
+    "2026-10-10T02:49:01.435Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-10T02:49:10.461Z PayPal popup closed (approved)",
+    "2026-10-10T02:49:10.466Z attempt 2 authorized",
+    "2026-10-10T02:49:10.502Z armed: next capture response will be discarded",
+    "2026-10-10T02:49:19.733Z handed over"
+  ]
+}

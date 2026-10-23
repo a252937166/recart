@@ -1,0 +1,19 @@
+[Unit]
+Description=ReCart Shopify reference sync (read-only example; reads catalog and stock, sends them to the ReCart API)
+After=network-online.target recart.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=recart
+Group=recart
+WorkingDirectory=/opt/recart/shopify-sync
+EnvironmentFile=/opt/recart/shopify-sync.env
+ExecStart=/usr/local/bin/node cli.mjs watch --include-drafts --interval 60
+Restart=always
+RestartSec=30
+MemoryLimit=96M
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

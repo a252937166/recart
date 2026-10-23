@@ -1,0 +1,25 @@
+{
+  "frozenAt": "2026-10-09T18:03:36+00:00",
+  "run": "v3, the second rerun after examining v1 and v2. Not an untouched holdout.",
+  "changesSinceV2": [
+    "Prompt reverted to lang-prompts-v1 text: v2's date examples made plain weekdays resolve a week late (C04, C13).",
+    "New deterministic date reading (src/server/language/dates.ts, postprocess-v2) applied after span grounding: bare weekdays, today and tomorrow are recomputed from the reference date in the buyer timezone; 'next <weekday>', weekends and unnamed next-week phrases become an unknown with a question; explicit dates must agree with a named weekday.",
+    "The rules fallback uses the same date reading.",
+    "Unit tests for the date reading use a different reference date and phrases from the evaluation set.",
+    "Runner records the post-processing version (reporting only; scoring unchanged)."
+  ],
+  "unchanged": [
+    "evaluation/cases-v1.json (labels and expectations)",
+    "evaluation/SCORING-v1.md",
+    "the language model and the hosted endpoint"
+  ],
+  "sha256": {
+    "evaluation/cases-v1.json": "4e54c9fcbcc1577aaea55523f01b3e5d163ba977b70fd2cf6dfb18a23f1e77c6",
+    "evaluation/SCORING-v1.md": "414407a367457f35eb1f2ac984888726e46dcbe978746ad06f48f191e5549bc9",
+    "tools/run-benchmark.ts": "69e95a795323677a18839b1e6e6854a850244096ce5f8a7a93a75c432f066e8c",
+    "src/server/language/prompts.ts": "85706a823972ba35c275d4e4ad256da53b4daac91504cc0718a5aa66e0c70fd0",
+    "src/server/language/dates.ts": "2ebea15ca589f4338123c7d5e1787a8dff7172413772235f16e7e30251ba7e97",
+    "src/server/language/adapter.ts": "c157e1f54b8193f4973107f08bbd377dd4f654e4a78468a0d49bd1072d3c483d",
+    "src/server/language/rules.ts": "1c71fe70e5df5272bac1faba9217a2a653d1e39bb263fd974c95981165afb94d"
+  }
+}

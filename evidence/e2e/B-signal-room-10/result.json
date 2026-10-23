@@ -1,0 +1,43 @@
+{
+  "ok": true,
+  "at": "2026-10-10T16:39:11.867Z",
+  "base": "https://recart.axiqo.xyz",
+  "scenario": "B",
+  "release": "r2026.10.10-signal-room-10",
+  "attempts": [
+    {
+      "state": "VOIDED",
+      "order": "12816646TG024634N",
+      "authorization": "0GC33542WK895351M",
+      "capture": null,
+      "refund": null
+    },
+    {
+      "state": "PAID",
+      "order": "0DX66991NN3862619",
+      "authorization": "1L733963C77448825",
+      "capture": "0GR54405KX287920U",
+      "refund": null
+    }
+  ],
+  "caseStatus": "RESOLVED_RECOVERED",
+  "log": [
+    "2026-10-10T16:37:23.379Z open https://recart.axiqo.xyz",
+    "2026-10-10T16:37:26.155Z release r2026.10.10-signal-room-10",
+    "2026-10-10T16:37:52.230Z extraction shown: AI draft (gpt-6-luna)",
+    "2026-10-10T16:38:06.953Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-10T16:38:14.838Z PayPal login submitted",
+    "2026-10-10T16:38:17.150Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-10T16:38:22.172Z PayPal popup closed (approved)",
+    "2026-10-10T16:38:24.478Z attempt 1 authorized",
+    "2026-10-10T16:38:26.642Z discrepancy reported",
+    "2026-10-10T16:38:31.255Z decision needed: No complete setup fits your limit\nThe closest one costs $422.28, above your $400.00 limit. ReCart will not change your limit for you.",
+    "2026-10-10T16:38:34.573Z budget raised to $425; rebuilt setup offered",
+    "2026-10-10T16:38:41.101Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-10T16:38:45.223Z PayPal session already signed in",
+    "2026-10-10T16:38:46.141Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-10T16:38:50.659Z PayPal popup closed (approved)",
+    "2026-10-10T16:38:51.988Z attempt 2 authorized",
+    "2026-10-10T16:38:59.933Z handed over"
+  ]
+}

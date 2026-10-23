@@ -1,0 +1,20 @@
+{
+  "frozenAt": "2026-10-09T18:00:04+00:00",
+  "run": "v2, a rerun after the v1 results were examined. Not an untouched holdout.",
+  "changesSinceV1": [
+    "Prompt lang-prompts-v1 -> lang-prompts-v2: ambiguous relative dates must be left null and asked about. Motivated by v1 failures C05 ('next Friday') and C19 ('this weekend'); the prompt's examples deliberately use other phrases.",
+    "Product adapter keeps the model's raw reply when a draft falls back to rules (diagnosis only; no behaviour change).",
+    "Runner records the prompt and schema versions in the summary (reporting only; scoring unchanged)."
+  ],
+  "unchanged": [
+    "evaluation/cases-v1.json (labels and expectations)",
+    "evaluation/SCORING-v1.md",
+    "the language model and the hosted endpoint"
+  ],
+  "sha256": {
+    "evaluation/cases-v1.json": "4e54c9fcbcc1577aaea55523f01b3e5d163ba977b70fd2cf6dfb18a23f1e77c6",
+    "evaluation/SCORING-v1.md": "414407a367457f35eb1f2ac984888726e46dcbe978746ad06f48f191e5549bc9",
+    "tools/run-benchmark.ts": "330f65f6d2f6effcb8bf6888a1ce77cda3d20c6fee0346bf9fe7761caccda9c9",
+    "src/server/language/prompts.ts": "7681de9b8093b6de809632b8d3068fbbd17e48f62ea818472741b6793722960f"
+  }
+}

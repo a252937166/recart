@@ -1,0 +1,66 @@
+{
+  "ok": true,
+  "at": "2026-10-11T07:57:17.686Z",
+  "base": "https://recart.axiqo.xyz",
+  "scenario": "A",
+  "release": "r2026.10.11-signal-room-14",
+  "sessionFault": "a simulated 120 s delay scoped to this session's AI explanation, with a service restart while it ran",
+  "extraction": {
+    "status": "OK",
+    "model": "gpt-6-luna",
+    "provider": "codex",
+    "fallbackFrom": null,
+    "durationMs": 17184
+  },
+  "statePollGaps": 5,
+  "explanation": {
+    "source": "model",
+    "model": "gpt-6-luna",
+    "pending": false,
+    "error": null,
+    "waitedMs": 178583
+  },
+  "attempts": [
+    {
+      "state": "VOIDED",
+      "order": "12W610927J682113Y",
+      "authorization": "7TR8151902243641B",
+      "capture": null,
+      "refund": null
+    },
+    {
+      "state": "PAID",
+      "order": "85K84430R7219144H",
+      "authorization": "8YM59219JG184432J",
+      "capture": "1T656449HK912214N",
+      "refund": null
+    }
+  ],
+  "caseStatus": "RESOLVED_RECOVERED",
+  "log": [
+    "2026-10-11T07:52:29.284Z open https://recart.axiqo.xyz",
+    "2026-10-11T07:52:32.157Z release r2026.10.11-signal-room-14",
+    "2026-10-11T07:52:40.279Z demo session 26a69695-e98d-4435-b981-58bdb226ceb5",
+    "2026-10-11T07:52:49.234Z ON_SESSION_CMD: {\"scope\":\"session:26a69695-e98d-4435-b981-58bdb226ceb5\",\"fault\":{\"task\":\"explain_change\",\"primary\":{\"delay_ms\":120000}},\"expires_at\":\"2026-10-11T08:12:50.442Z\"}",
+    "2026-10-11T07:53:07.315Z extraction shown: AI draft (gpt-6-luna)",
+    "2026-10-11T07:53:08.704Z draft by codex (gpt-6-luna) in 17184 ms",
+    "2026-10-11T07:53:22.914Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-11T07:53:30.676Z PayPal login submitted",
+    "2026-10-11T07:53:32.994Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-11T07:53:37.013Z PayPal popup closed (approved)",
+    "2026-10-11T07:53:38.827Z attempt 1 authorized",
+    "2026-10-11T07:53:41.032Z discrepancy reported",
+    "2026-10-11T07:53:51.523Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-11T07:53:55.657Z PayPal session already signed in",
+    "2026-10-11T07:53:56.588Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-11T07:54:01.106Z PayPal popup closed (approved)",
+    "2026-10-11T07:54:02.932Z attempt 2 authorized",
+    "2026-10-11T07:54:10.383Z handed over",
+    "2026-10-11T07:54:47.605Z state poll failed (page.evaluate: Error: HTTP 502\n    at eval (eval at evaluate); retrying",
+    "2026-10-11T07:54:50.080Z state poll failed (page.evaluate: Error: HTTP 502\n    at eval (eval at evaluate); retrying",
+    "2026-10-11T07:54:52.544Z state poll failed (page.evaluate: Error: HTTP 502\n    at eval (eval at evaluate); retrying",
+    "2026-10-11T07:54:55.012Z state poll failed (page.evaluate: Error: HTTP 502\n    at eval (eval at evaluate); retrying",
+    "2026-10-11T07:54:57.477Z state poll failed (page.evaluate: Error: HTTP 502\n    at eval (eval at evaluate); retrying",
+    "2026-10-11T07:57:16.891Z explanation model (gpt-6-luna) after 178583 ms of waiting at the end"
+  ]
+}

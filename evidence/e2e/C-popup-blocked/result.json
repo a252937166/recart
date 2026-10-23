@@ -1,0 +1,46 @@
+{
+  "ok": true,
+  "at": "2026-10-09T17:34:19.984Z",
+  "base": "http://127.0.0.1:4060",
+  "scenario": "C",
+  "attempts": [
+    {
+      "state": "VOIDED",
+      "order": "5YC58580AT1913916",
+      "authorization": "57M271868A0515907",
+      "capture": null,
+      "refund": null
+    }
+  ],
+  "caseStatus": "CLOSED_NO_SOLUTION",
+  "log": [
+    "2026-10-09T17:33:38.485Z open http://127.0.0.1:4060",
+    "2026-10-09T17:33:48.895Z extraction shown: AI draft (claude-haiku-4-5)",
+    "2026-10-09T17:33:56.436Z first PayPal window will be blocked",
+    "2026-10-09T17:34:02.190Z PayPal overlay opened: www.sandbox.paypal.com",
+    "2026-10-09T17:34:03.509Z PayPal login submitted",
+    "2026-10-09T17:34:06.477Z console.warning: A preload for 'https://www.paypalobjects.com/pa/js/min/pa.js' is found, but is not used because the request credentials mode does not match. Consider taking a look at crossorigin attribute.",
+    "2026-10-09T17:34:06.492Z console.error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: \"script-src 'nonce-Nn8e5ZiNzKNl5vuuyrDq82kSTpzg8AEs",
+    "2026-10-09T17:34:06.492Z console.error: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: \"script-src 'nonce-Nn8e5ZiNzKNl5vuuyrDq82kSTpzg8AEs",
+    "2026-10-09T17:34:07.171Z console.warning: Datadog Browser SDK: service value doesn't meet tag requirements and will be sanitized. More details: https://docs.datadoghq.com/getting_started/tagging/#defining-tags",
+    "2026-10-09T17:34:07.172Z console.warning: Datadog Browser SDK: No storage available for session. We will not send any data.",
+    "2026-10-09T17:34:07.236Z console.warning: A preload for 'https://c.paypal.com/da/r/fb_fp.js' is found, but is not used because the request credentials mode does not match. Consider taking a look at crossorigin attribute.",
+    "2026-10-09T17:34:07.319Z console.warning: A preload for 'https://www.paypalobjects.com/checkoutweb/release/dumbledore/css/@/components/BillingAgreement.fc74364a.css' is found, but is not used because the request credentials mode does not matc",
+    "2026-10-09T17:34:07.319Z console.warning: A preload for 'https://www.paypalobjects.com/checkoutweb/release/dumbledore/css/@/components/CancelLink.e1a0e5fa.css' is found, but is not used because the request credentials mode does not match. Con",
+    "2026-10-09T17:34:07.319Z console.warning: A preload for 'https://www.paypalobjects.com/checkoutweb/release/dumbledore/css/Interstitials.32d18035.css' is found, but is not used because the request credentials mode does not match. Consider taki",
+    "2026-10-09T17:34:07.538Z console.warning: A preload for 'https://www.paypalobjects.com/checkoutweb/release/dumbledore/css/HeaderWithProfilePhoto.4dd51d00.css' is found, but is not used because the request credentials mode does not match. Cons",
+    "2026-10-09T17:34:07.539Z console.warning: A preload for 'https://www.paypalobjects.com/checkoutweb/release/dumbledore/css/CreditNSFAlert.c40c78a9.css' is found, but is not used because the request credentials mode does not match. Consider tak",
+    "2026-10-09T17:34:07.551Z console.warning: A preload for 'https://www.paypalobjects.com/checkoutweb/release/dumbledore/css/@/components/Rewards/PayWithRewards.940cd235.css' is found, but is not used because the request credentials mode does no",
+    "2026-10-09T17:34:07.551Z console.warning: A preload for 'https://www.paypalobjects.com/checkoutweb/release/dumbledore/css/@/components/Installments/PayInInstallments.f7798d38.css' is found, but is not used because the request credentials mode",
+    "2026-10-09T17:34:07.912Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-09T17:34:10.396Z console.error: Access to XMLHttpRequest at 'https://c.paypal.com/v1/r/d/b/p1' from origin 'https://www.sandbox.paypal.com' has been blocked by CORS policy: Response to preflight request doesn't pass access control c",
+    "2026-10-09T17:34:10.396Z console.error: Failed to load resource: net::ERR_FAILED",
+    "2026-10-09T17:34:10.403Z console.error: Access to XMLHttpRequest at 'https://c.paypal.com/v1/r/d/b/p2' from origin 'https://www.sandbox.paypal.com' has been blocked by CORS policy: Response to preflight request doesn't pass access control c",
+    "2026-10-09T17:34:10.404Z console.error: Failed to load resource: net::ERR_FAILED",
+    "2026-10-09T17:34:10.413Z console.error: Access to XMLHttpRequest at 'https://c.paypal.com/v1/r/d/b/w' from origin 'https://www.sandbox.paypal.com' has been blocked by CORS policy: Response to preflight request doesn't pass access control ch",
+    "2026-10-09T17:34:10.413Z console.error: Failed to load resource: net::ERR_FAILED",
+    "2026-10-09T17:34:12.950Z PayPal overlay closed (approved)",
+    "2026-10-09T17:34:12.954Z attempt 1 authorized",
+    "2026-10-09T17:34:13.976Z discrepancy reported"
+  ]
+}

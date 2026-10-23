@@ -1,0 +1,8 @@
+{
+  "name": "recart-mcp-client-example",
+  "private": true,
+  "type": "module",
+  "description": "Connects to ReCart's remote MCP server with the official MCP TypeScript SDK.",
+  "scripts": { "start": "node client.mjs" },
+  "dependencies": { "@modelcontextprotocol/sdk": "1.32.1" }
+}

@@ -1,0 +1,94 @@
+{
+  "recordedAt": "2026-10-11T08:04:33.567Z",
+  "base": "https://recart.axiqo.xyz",
+  "checks": [
+    {
+      "label": "explanation job is running in the old process before the restart",
+      "ok": true,
+      "job": 2420,
+      "owner": "vm118035:12481:language"
+    },
+    {
+      "label": "event stream open through the proxy",
+      "ok": true
+    },
+    {
+      "label": "systemctl restart completed well inside TimeoutStopSec (45 s)",
+      "ok": true,
+      "ms": 1044
+    },
+    {
+      "label": "the site was unreachable for under 5 s (SIGTERM to the new process listening)",
+      "ok": true,
+      "ms": 2273
+    },
+    {
+      "label": "old process logged its own clean shutdown",
+      "ok": true,
+      "shutdownMs": 1013
+    },
+    {
+      "label": "old process handed explain_case#2420 back",
+      "ok": true
+    },
+    {
+      "label": "systemd did not escalate to SIGKILL",
+      "ok": true,
+      "unitLog": [
+        "Stopping ReCart demo (PayPal AI Hackathon 2026) - whole-bundle purchase recovery on PayPal Sandbox...",
+        "Stopped ReCart demo (PayPal AI Hackathon 2026) - whole-bundle purchase recovery on PayPal Sandbox.",
+        "Started ReCart demo (PayPal AI Hackathon 2026) - whole-bundle purchase recovery on PayPal Sandbox."
+      ]
+    },
+    {
+      "label": "the event stream ended with a shutdown event",
+      "ok": true,
+      "endedAfterMs": 982,
+      "restartRoundTripMs": 2019
+    },
+    {
+      "label": "the new process took the job over at once (claim within 3 s of its start)",
+      "ok": true,
+      "owner": "vm118035:13482:language",
+      "claimedAt": "2026-10-11T08:06:25.145Z",
+      "afterProcessStartMs": 388
+    },
+    {
+      "label": "the explanation job finished and the case stopped waiting",
+      "ok": true,
+      "attempts": 2,
+      "source": "model",
+      "afterRestartMs": 141524
+    },
+    {
+      "label": "health after the restart",
+      "ok": true,
+      "release": "r2026.10.11-signal-room-15",
+      "pid": 13482
+    }
+  ],
+  "release": "r2026.10.11-signal-room-15",
+  "restart": {
+    "since": "2026-10-11 16:06:21",
+    "restartCmdMs": 1044,
+    "oldPid": 12481,
+    "newPid": 13482,
+    "sigterm": "2026-10-11T08:06:22.866Z",
+    "languageStopped": "2026-10-11T08:06:23.873Z",
+    "newListening": "2026-10-11T08:06:25.139Z",
+    "unreachableMs": 2273
+  },
+  "oldProcessLog": [
+    "[recart] listening on 127.0.0.1:4060 (paypal=sandbox, preset=judge, workers=core+language, language=codex+hosted)",
+    "[recart] SIGTERM: shutting down (HTTP drain 15000 ms, job grace 10000 ms, language job grace 1000 ms, exit by 25000 ms)",
+    "[worker:core] stopped",
+    "[worker:language] stopped (a job was still running after 1000 ms); handed back explain_case#2420 for the next process",
+    "[recart] shutdown complete in 1013 ms"
+  ],
+  "unitLog": [
+    "Stopping ReCart demo (PayPal AI Hackathon 2026) - whole-bundle purchase recovery on PayPal Sandbox...",
+    "Stopped ReCart demo (PayPal AI Hackathon 2026) - whole-bundle purchase recovery on PayPal Sandbox.",
+    "Started ReCart demo (PayPal AI Hackathon 2026) - whole-bundle purchase recovery on PayPal Sandbox."
+  ],
+  "ok": true
+}

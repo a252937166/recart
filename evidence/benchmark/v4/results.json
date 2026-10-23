@@ -1,0 +1,2962 @@
+{
+  "summary": {
+    "version": "eval-cases-v1",
+    "casesFile": "cases-v1.json",
+    "casesSha256": "4e54c9fcbcc1577aaea55523f01b3e5d163ba977b70fd2cf6dfb18a23f1e77c6",
+    "rulesSha256": "414407a367457f35eb1f2ac984888726e46dcbe978746ad06f48f191e5549bc9",
+    "runnerSha256": "69e95a795323677a18839b1e6e6854a850244096ce5f8a7a93a75c432f066e8c",
+    "ranAt": "2026-10-09T18:06:21.642Z",
+    "nature": "Team-authored engineering fixtures on brand-free simulated products. Not an independent or real-user study.",
+    "promptVersion": "lang-prompts-v3",
+    "schemaVersion": "lang-schema-v1",
+    "postprocessVersion": "postprocess-v3",
+    "solver": {
+      "classificationCorrect": "20/20",
+      "feasibleSolved": "14/14",
+      "infeasibleCorrect": "3/3",
+      "evidenceIncompleteCorrect": "2/2",
+      "unsupportedCorrect": "1/1",
+      "invalidPayableBundles": 0,
+      "searchComplete": "20/20",
+      "durationMs": {
+        "median": 2.81,
+        "max": 16.72
+      }
+    },
+    "baseline": {
+      "recoveryCases": 19,
+      "baselineSucceeded": 8,
+      "recartFeasible": 14,
+      "recartOnly": [
+        "C01",
+        "C02",
+        "C05",
+        "C06",
+        "C10",
+        "C12"
+      ],
+      "bothSucceeded": [
+        "C03",
+        "C04",
+        "C07",
+        "C08",
+        "C09",
+        "C11",
+        "C13",
+        "C14"
+      ],
+      "baselineOnly": [],
+      "matchesHandDerivedExpectation": "19/19"
+    },
+    "extraction": {
+      "model": "claude-haiku-4-5",
+      "cases": 20,
+      "calls": {
+        "ok": 20,
+        "failed": 0
+      },
+      "precision": {
+        "truePositives": 149,
+        "assertions": 149,
+        "percent": 100
+      },
+      "recall": {
+        "truePositives": 149,
+        "statedFacts": 149,
+        "percent": 100.0
+      },
+      "wrongValues": 0,
+      "unsupportedAssertions": 0,
+      "unknownsPreserved": "8/8",
+      "unknownsListedOrAsked": "8/8",
+      "conflictsFlagged": "2/2",
+      "silentlyResolvedConflicts": 0,
+      "wholeCaseCorrect": "20/20",
+      "latencyMs": {
+        "median": 2081,
+        "p95": 2778
+      },
+      "tokens": {
+        "input": 15536,
+        "output": 6628
+      },
+      "estimatedCostUsd": 0.0487
+    },
+    "corrections": [
+      {
+        "field": "extraction.recall",
+        "published": {
+          "truePositives": 149,
+          "statedFacts": 147,
+          "percent": 101.4
+        },
+        "corrected": {
+          "truePositives": 149,
+          "statedFacts": 149,
+          "percent": 100.0
+        },
+        "reason": "Runner bug: conflict fields were subtracted from the stated-fact count although stated labels never include them. Recomputed from the stored per-case results; no model output changed.",
+        "at": "2026-10-09"
+      }
+    ]
+  },
+  "solver": [
+    {
+      "id": "C01",
+      "expectedStatus": "FEASIBLE",
+      "status": "FEASIBLE",
+      "statusCorrect": true,
+      "durationMs": 16.72,
+      "combinationsChecked": 480,
+      "searchComplete": true,
+      "top": {
+        "recipeId": "R-LOCAL2-REMOTE1",
+        "lines": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2B-LB",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-BA-1",
+            "qty": 1
+          },
+          {
+            "sku": "ADP-AC",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "totalCents": 39636,
+        "disruption": 5
+      },
+      "validatorOk": true,
+      "independentTotalCents": 39636,
+      "bestMatches": true,
+      "totalCorrect": true,
+      "solved": true,
+      "invalidPayable": false,
+      "baseline": {
+        "success": false,
+        "best": null,
+        "tries": [
+          {
+            "sku": "IF-2B-LB",
+            "ok": false,
+            "totalCents": 38340,
+            "notPassed": [
+              "HOST_CONNECTION:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-LB",
+            "ok": false,
+            "totalCents": 35100,
+            "notPassed": [
+              "AVAILABILITY:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-NL",
+            "ok": false,
+            "totalCents": 31860,
+            "notPassed": [
+              "REMOTE_ROUTING:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-UK",
+            "ok": false,
+            "totalCents": 34020,
+            "notPassed": [
+              "REMOTE_ROUTING:unknown",
+              "AVAILABILITY:fail"
+            ]
+          },
+          {
+            "sku": "IF-4C-LB",
+            "ok": false,
+            "totalCents": 48060,
+            "notPassed": [
+              "BUDGET:fail"
+            ]
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C02",
+      "expectedStatus": "FEASIBLE",
+      "status": "FEASIBLE",
+      "statusCorrect": true,
+      "durationMs": 5.15,
+      "combinationsChecked": 484,
+      "searchComplete": true,
+      "top": {
+        "recipeId": "R-LOCAL2-REMOTE1",
+        "lines": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 1
+          },
+          {
+            "sku": "IF-2C-LB",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 1
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 1
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 1
+          }
+        ],
+        "totalCents": 26352,
+        "disruption": 5
+      },
+      "validatorOk": true,
+      "independentTotalCents": 26352,
+      "bestMatches": true,
+      "totalCorrect": true,
+      "solved": true,
+      "invalidPayable": false,
+      "baseline": {
+        "success": false,
+        "best": null,
+        "tries": [
+          {
+            "sku": "MIC-USB-D",
+            "ok": false,
+            "totalCents": 13284,
+            "notPassed": [
+              "AVAILABILITY:fail"
+            ]
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C03",
+      "expectedStatus": "FEASIBLE",
+      "status": "FEASIBLE",
+      "statusCorrect": true,
+      "durationMs": 0.87,
+      "combinationsChecked": 120,
+      "searchComplete": true,
+      "top": {
+        "recipeId": "R-LOCAL2-REMOTE1",
+        "lines": [
+          {
+            "sku": "MIC-CX-C",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2B-LB",
+            "qty": 1
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-BA-1",
+            "qty": 1
+          }
+        ],
+        "totalCents": 33588,
+        "disruption": 2
+      },
+      "validatorOk": true,
+      "independentTotalCents": 33588,
+      "bestMatches": true,
+      "totalCorrect": true,
+      "solved": true,
+      "invalidPayable": false,
+      "baseline": {
+        "success": true,
+        "best": {
+          "sku": "MIC-CX-C",
+          "ok": true,
+          "totalCents": 33588,
+          "notPassed": []
+        },
+        "tries": [
+          {
+            "sku": "MIC-CX-C",
+            "ok": true,
+            "totalCents": 33588,
+            "notPassed": []
+          },
+          {
+            "sku": "MIC-DX-A",
+            "ok": false,
+            "totalCents": 31428,
+            "notPassed": [
+              "AVAILABILITY:fail"
+            ]
+          },
+          {
+            "sku": "MIC-DX-B",
+            "ok": true,
+            "totalCents": 35748,
+            "notPassed": []
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C04",
+      "expectedStatus": "FEASIBLE",
+      "status": "FEASIBLE",
+      "statusCorrect": true,
+      "durationMs": 4.12,
+      "combinationsChecked": 480,
+      "searchComplete": true,
+      "top": {
+        "recipeId": "R-LOCAL-2",
+        "lines": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2C-NL",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "totalCents": 34452,
+        "disruption": 2
+      },
+      "validatorOk": true,
+      "independentTotalCents": 34452,
+      "bestMatches": true,
+      "totalCorrect": true,
+      "solved": true,
+      "invalidPayable": false,
+      "baseline": {
+        "success": true,
+        "best": {
+          "sku": "HP-CB-A",
+          "ok": true,
+          "totalCents": 34452,
+          "notPassed": []
+        },
+        "tries": [
+          {
+            "sku": "HP-CB-A",
+            "ok": true,
+            "totalCents": 34452,
+            "notPassed": []
+          },
+          {
+            "sku": "HP-OB-B",
+            "ok": false,
+            "totalCents": 37908,
+            "notPassed": [
+              "AVAILABILITY:fail"
+            ]
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C05",
+      "expectedStatus": "FEASIBLE",
+      "status": "FEASIBLE",
+      "statusCorrect": true,
+      "durationMs": 4.83,
+      "combinationsChecked": 480,
+      "searchComplete": true,
+      "top": {
+        "recipeId": "R-LOCAL2-REMOTE1",
+        "lines": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2B-LB",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-BA-1",
+            "qty": 1
+          },
+          {
+            "sku": "ADP-AC",
+            "qty": 1
+          },
+          {
+            "sku": "STD-BM-B",
+            "qty": 2
+          }
+        ],
+        "totalCents": 44388,
+        "disruption": 5
+      },
+      "validatorOk": true,
+      "independentTotalCents": 44388,
+      "bestMatches": true,
+      "totalCorrect": true,
+      "solved": true,
+      "invalidPayable": false,
+      "baseline": {
+        "success": false,
+        "best": null,
+        "tries": [
+          {
+            "sku": "CBL-BA-1",
+            "ok": false,
+            "totalCents": 39852,
+            "notPassed": [
+              "HOST_CONNECTION:fail"
+            ]
+          },
+          {
+            "sku": "CBL-CC-1",
+            "ok": false,
+            "totalCents": 39852,
+            "notPassed": [
+              "AVAILABILITY:fail"
+            ]
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C06",
+      "expectedStatus": "FEASIBLE",
+      "status": "FEASIBLE",
+      "statusCorrect": true,
+      "durationMs": 3.38,
+      "combinationsChecked": 480,
+      "searchComplete": true,
+      "top": {
+        "recipeId": "R-LOCAL-2",
+        "lines": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2C-LB",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "totalCents": 37692,
+        "disruption": 4
+      },
+      "validatorOk": true,
+      "independentTotalCents": 37692,
+      "bestMatches": true,
+      "totalCorrect": true,
+      "solved": true,
+      "invalidPayable": false,
+      "baseline": {
+        "success": false,
+        "best": null,
+        "tries": [
+          {
+            "sku": "IF-2B-LB",
+            "ok": false,
+            "totalCents": 43092,
+            "notPassed": [
+              "HOST_CONNECTION:fail",
+              "BUDGET:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-LB",
+            "ok": false,
+            "totalCents": 39852,
+            "notPassed": [
+              "BUDGET:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-NL",
+            "ok": false,
+            "totalCents": 36612,
+            "notPassed": [
+              "AVAILABILITY:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-UK",
+            "ok": false,
+            "totalCents": 38772,
+            "notPassed": [
+              "AVAILABILITY:fail",
+              "BUDGET:fail"
+            ]
+          },
+          {
+            "sku": "IF-4C-LB",
+            "ok": false,
+            "totalCents": 52812,
+            "notPassed": [
+              "BUDGET:fail"
+            ]
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C07",
+      "expectedStatus": "FEASIBLE",
+      "status": "FEASIBLE",
+      "statusCorrect": true,
+      "durationMs": 2.98,
+      "combinationsChecked": 480,
+      "searchComplete": true,
+      "top": {
+        "recipeId": "R-LOCAL-2",
+        "lines": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 1
+          },
+          {
+            "sku": "IF-2B-LB",
+            "qty": 1
+          },
+          {
+            "sku": "HP-OB-B",
+            "qty": 1
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 1
+          },
+          {
+            "sku": "CBL-BA-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 1
+          }
+        ],
+        "totalCents": 31320,
+        "disruption": 2
+      },
+      "validatorOk": true,
+      "independentTotalCents": 31320,
+      "bestMatches": true,
+      "totalCorrect": true,
+      "solved": true,
+      "invalidPayable": false,
+      "baseline": {
+        "success": true,
+        "best": {
+          "sku": "HP-OB-B",
+          "ok": true,
+          "totalCents": 31320,
+          "notPassed": []
+        },
+        "tries": [
+          {
+            "sku": "HP-CB-A",
+            "ok": false,
+            "totalCents": 29592,
+            "notPassed": [
+              "AVAILABILITY:fail"
+            ]
+          },
+          {
+            "sku": "HP-OB-B",
+            "ok": true,
+            "totalCents": 31320,
+            "notPassed": []
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C08",
+      "expectedStatus": "FEASIBLE",
+      "status": "FEASIBLE",
+      "statusCorrect": true,
+      "durationMs": 1.41,
+      "combinationsChecked": 242,
+      "searchComplete": true,
+      "top": {
+        "recipeId": "R-SOLO-REMOTE",
+        "lines": [
+          {
+            "sku": "MIC-USB-D",
+            "qty": 1
+          },
+          {
+            "sku": "STD-BM-B",
+            "qty": 1
+          }
+        ],
+        "totalCents": 11232,
+        "disruption": 2
+      },
+      "validatorOk": true,
+      "independentTotalCents": 11232,
+      "bestMatches": true,
+      "totalCorrect": true,
+      "solved": true,
+      "invalidPayable": false,
+      "baseline": {
+        "success": true,
+        "best": {
+          "sku": "STD-BM-B",
+          "ok": true,
+          "totalCents": 11232,
+          "notPassed": []
+        },
+        "tries": [
+          {
+            "sku": "STD-BM-B",
+            "ok": true,
+            "totalCents": 11232,
+            "notPassed": []
+          },
+          {
+            "sku": "STD-DK-A",
+            "ok": false,
+            "totalCents": 10152,
+            "notPassed": [
+              "AVAILABILITY:fail"
+            ]
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C09",
+      "expectedStatus": "FEASIBLE",
+      "status": "FEASIBLE",
+      "statusCorrect": true,
+      "durationMs": 2.83,
+      "combinationsChecked": 480,
+      "searchComplete": true,
+      "top": {
+        "recipeId": "R-LOCAL-2",
+        "lines": [
+          {
+            "sku": "MIC-CX-C",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2C-NL",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "totalCents": 36612,
+        "disruption": 2
+      },
+      "validatorOk": true,
+      "independentTotalCents": 36612,
+      "bestMatches": true,
+      "totalCorrect": true,
+      "solved": true,
+      "invalidPayable": false,
+      "baseline": {
+        "success": true,
+        "best": {
+          "sku": "MIC-CX-C",
+          "ok": true,
+          "totalCents": 36612,
+          "notPassed": []
+        },
+        "tries": [
+          {
+            "sku": "MIC-CX-C",
+            "ok": true,
+            "totalCents": 36612,
+            "notPassed": []
+          },
+          {
+            "sku": "MIC-DX-A",
+            "ok": false,
+            "totalCents": 34452,
+            "notPassed": [
+              "AVAILABILITY:fail"
+            ]
+          },
+          {
+            "sku": "MIC-DX-B",
+            "ok": true,
+            "totalCents": 38772,
+            "notPassed": []
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C10",
+      "expectedStatus": "FEASIBLE",
+      "status": "FEASIBLE",
+      "statusCorrect": true,
+      "durationMs": 2.9,
+      "combinationsChecked": 480,
+      "searchComplete": true,
+      "top": {
+        "recipeId": "R-LOCAL2-REMOTE1",
+        "lines": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2B-LB",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 1
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-BA-1",
+            "qty": 1
+          },
+          {
+            "sku": "ADP-AC",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "totalCents": 39096,
+        "disruption": 5
+      },
+      "validatorOk": true,
+      "independentTotalCents": 39096,
+      "bestMatches": true,
+      "totalCorrect": true,
+      "solved": true,
+      "invalidPayable": false,
+      "baseline": {
+        "success": false,
+        "best": null,
+        "tries": [
+          {
+            "sku": "IF-2B-LB",
+            "ok": false,
+            "totalCents": 37800,
+            "notPassed": [
+              "HOST_CONNECTION:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-LB",
+            "ok": false,
+            "totalCents": 34560,
+            "notPassed": [
+              "AVAILABILITY:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-NL",
+            "ok": false,
+            "totalCents": 31320,
+            "notPassed": [
+              "REMOTE_ROUTING:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-UK",
+            "ok": false,
+            "totalCents": 33480,
+            "notPassed": [
+              "REMOTE_ROUTING:unknown",
+              "AVAILABILITY:fail"
+            ]
+          },
+          {
+            "sku": "IF-4C-LB",
+            "ok": false,
+            "totalCents": 47520,
+            "notPassed": [
+              "BUDGET:fail"
+            ]
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C11",
+      "expectedStatus": "FEASIBLE",
+      "status": "FEASIBLE",
+      "statusCorrect": true,
+      "durationMs": 2.31,
+      "combinationsChecked": 480,
+      "searchComplete": true,
+      "top": {
+        "recipeId": "R-LOCAL2-REMOTE1",
+        "lines": [
+          {
+            "sku": "MIC-CX-C",
+            "qty": 1
+          },
+          {
+            "sku": "IF-2B-LB",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 1
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 1
+          },
+          {
+            "sku": "CBL-BA-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 1
+          }
+        ],
+        "totalCents": 30672,
+        "disruption": 2
+      },
+      "validatorOk": true,
+      "independentTotalCents": 30672,
+      "bestMatches": true,
+      "totalCorrect": true,
+      "solved": true,
+      "invalidPayable": false,
+      "baseline": {
+        "success": true,
+        "best": {
+          "sku": "MIC-CX-C",
+          "ok": true,
+          "totalCents": 30672,
+          "notPassed": []
+        },
+        "tries": [
+          {
+            "sku": "MIC-CX-C",
+            "ok": true,
+            "totalCents": 30672,
+            "notPassed": []
+          },
+          {
+            "sku": "MIC-DX-A",
+            "ok": false,
+            "totalCents": 29592,
+            "notPassed": [
+              "AVAILABILITY:fail"
+            ]
+          },
+          {
+            "sku": "MIC-DX-B",
+            "ok": true,
+            "totalCents": 31752,
+            "notPassed": []
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C12",
+      "expectedStatus": "FEASIBLE",
+      "status": "FEASIBLE",
+      "statusCorrect": true,
+      "durationMs": 2.71,
+      "combinationsChecked": 480,
+      "searchComplete": true,
+      "top": {
+        "recipeId": "R-LOCAL-2",
+        "lines": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2B-LB",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-BA-1",
+            "qty": 1
+          },
+          {
+            "sku": "ADP-AC",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "totalCents": 42228,
+        "disruption": 5
+      },
+      "validatorOk": true,
+      "independentTotalCents": 42228,
+      "bestMatches": true,
+      "totalCorrect": true,
+      "solved": true,
+      "invalidPayable": false,
+      "baseline": {
+        "success": false,
+        "best": null,
+        "tries": [
+          {
+            "sku": "CBL-BA-1",
+            "ok": false,
+            "totalCents": 34452,
+            "notPassed": [
+              "HOST_CONNECTION:fail"
+            ]
+          },
+          {
+            "sku": "CBL-CC-1",
+            "ok": false,
+            "totalCents": 34452,
+            "notPassed": [
+              "AVAILABILITY:fail"
+            ]
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C13",
+      "expectedStatus": "FEASIBLE",
+      "status": "FEASIBLE",
+      "statusCorrect": true,
+      "durationMs": 3.25,
+      "combinationsChecked": 480,
+      "searchComplete": true,
+      "top": {
+        "recipeId": "R-LOCAL-2",
+        "lines": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2C-NL",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "totalCents": 34452,
+        "disruption": 0
+      },
+      "validatorOk": true,
+      "independentTotalCents": 34452,
+      "bestMatches": true,
+      "totalCorrect": true,
+      "solved": true,
+      "invalidPayable": false,
+      "baseline": {
+        "success": true,
+        "best": {
+          "sku": "HP-CB-A",
+          "ok": true,
+          "totalCents": 34452,
+          "notPassed": []
+        },
+        "tries": [
+          {
+            "sku": "HP-CB-A",
+            "ok": true,
+            "totalCents": 34452,
+            "notPassed": []
+          },
+          {
+            "sku": "HP-OB-B",
+            "ok": true,
+            "totalCents": 37908,
+            "notPassed": []
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C14",
+      "expectedStatus": "FEASIBLE",
+      "status": "FEASIBLE",
+      "statusCorrect": true,
+      "durationMs": 1.38,
+      "combinationsChecked": 240,
+      "searchComplete": true,
+      "top": {
+        "recipeId": "R-LOCAL2-REMOTE1",
+        "lines": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-4C-LB",
+            "qty": 1
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "totalCents": 44388,
+        "disruption": 2
+      },
+      "validatorOk": true,
+      "independentTotalCents": 44388,
+      "bestMatches": true,
+      "totalCorrect": true,
+      "solved": true,
+      "invalidPayable": false,
+      "baseline": {
+        "success": true,
+        "best": {
+          "sku": "IF-4C-LB",
+          "ok": true,
+          "totalCents": 44388,
+          "notPassed": []
+        },
+        "tries": [
+          {
+            "sku": "IF-2B-LB",
+            "ok": false,
+            "totalCents": 34668,
+            "notPassed": [
+              "HOST_CONNECTION:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-LB",
+            "ok": false,
+            "totalCents": 31428,
+            "notPassed": [
+              "AVAILABILITY:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-NL",
+            "ok": false,
+            "totalCents": 28188,
+            "notPassed": [
+              "REMOTE_ROUTING:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-UK",
+            "ok": false,
+            "totalCents": 30348,
+            "notPassed": [
+              "REMOTE_ROUTING:unknown",
+              "AVAILABILITY:fail"
+            ]
+          },
+          {
+            "sku": "IF-4C-LB",
+            "ok": true,
+            "totalCents": 44388,
+            "notPassed": []
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C15",
+      "expectedStatus": "NO_FEASIBLE_SUPPORTED_BUNDLE",
+      "status": "NO_FEASIBLE_SUPPORTED_BUNDLE",
+      "statusCorrect": true,
+      "durationMs": 3.29,
+      "combinationsChecked": 480,
+      "searchComplete": true,
+      "invalidPayable": false,
+      "baseline": {
+        "success": false,
+        "best": null,
+        "tries": [
+          {
+            "sku": "IF-2B-LB",
+            "ok": false,
+            "totalCents": 29592,
+            "notPassed": [
+              "AVAILABILITY:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-LB",
+            "ok": false,
+            "totalCents": 26352,
+            "notPassed": [
+              "HOST_CONNECTION:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-NL",
+            "ok": false,
+            "totalCents": 23112,
+            "notPassed": [
+              "HOST_CONNECTION:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-UK",
+            "ok": false,
+            "totalCents": 25272,
+            "notPassed": [
+              "HOST_CONNECTION:fail",
+              "AVAILABILITY:fail"
+            ]
+          },
+          {
+            "sku": "IF-4C-LB",
+            "ok": false,
+            "totalCents": 39312,
+            "notPassed": [
+              "HOST_CONNECTION:fail",
+              "BUDGET:fail"
+            ]
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C16",
+      "expectedStatus": "NO_FEASIBLE_SUPPORTED_BUNDLE",
+      "status": "NO_FEASIBLE_SUPPORTED_BUNDLE",
+      "statusCorrect": true,
+      "durationMs": 1.9,
+      "combinationsChecked": 240,
+      "searchComplete": true,
+      "invalidPayable": false,
+      "nearMiss": {
+        "totalCents": 38988,
+        "requires": {
+          "budgetCents": 38988
+        }
+      },
+      "baseline": {
+        "success": false,
+        "best": null,
+        "tries": [
+          {
+            "sku": "IF-2B-LB",
+            "ok": false,
+            "totalCents": 37692,
+            "notPassed": [
+              "HOST_CONNECTION:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-LB",
+            "ok": false,
+            "totalCents": 34452,
+            "notPassed": [
+              "AVAILABILITY:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-NL",
+            "ok": false,
+            "totalCents": 31212,
+            "notPassed": [
+              "REMOTE_ROUTING:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-UK",
+            "ok": false,
+            "totalCents": 33372,
+            "notPassed": [
+              "REMOTE_ROUTING:unknown",
+              "AVAILABILITY:fail"
+            ]
+          },
+          {
+            "sku": "IF-4C-LB",
+            "ok": false,
+            "totalCents": 47412,
+            "notPassed": [
+              "BUDGET:fail"
+            ]
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C17",
+      "expectedStatus": "NO_FEASIBLE_SUPPORTED_BUNDLE",
+      "status": "NO_FEASIBLE_SUPPORTED_BUNDLE",
+      "statusCorrect": true,
+      "durationMs": 2.48,
+      "combinationsChecked": 480,
+      "searchComplete": true,
+      "invalidPayable": false,
+      "nearMiss": {
+        "totalCents": 36612,
+        "requires": {
+          "pickupBy": "2026-10-12T23:00:00.000Z"
+        }
+      },
+      "baseline": {
+        "success": false,
+        "best": null,
+        "tries": [
+          {
+            "sku": "MIC-CX-C",
+            "ok": false,
+            "totalCents": 36612,
+            "notPassed": [
+              "PICKUP_DEADLINE:fail"
+            ]
+          },
+          {
+            "sku": "MIC-DX-A",
+            "ok": false,
+            "totalCents": 34452,
+            "notPassed": [
+              "AVAILABILITY:fail",
+              "PICKUP_DEADLINE:fail"
+            ]
+          },
+          {
+            "sku": "MIC-DX-B",
+            "ok": false,
+            "totalCents": 38772,
+            "notPassed": [
+              "PICKUP_DEADLINE:fail"
+            ]
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C18",
+      "expectedStatus": "EVIDENCE_INCOMPLETE",
+      "status": "EVIDENCE_INCOMPLETE",
+      "statusCorrect": true,
+      "durationMs": 2.63,
+      "combinationsChecked": 480,
+      "searchComplete": true,
+      "invalidPayable": false,
+      "unknownFacts": [
+        {
+          "sku": "IF-2C-UK",
+          "fact": "loopback",
+          "check": "REMOTE_ROUTING"
+        }
+      ],
+      "baseline": {
+        "success": false,
+        "best": null,
+        "tries": [
+          {
+            "sku": "IF-2B-LB",
+            "ok": false,
+            "totalCents": 40932,
+            "notPassed": [
+              "HOST_CONNECTION:fail",
+              "AVAILABILITY:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-LB",
+            "ok": false,
+            "totalCents": 37692,
+            "notPassed": [
+              "AVAILABILITY:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-NL",
+            "ok": false,
+            "totalCents": 34452,
+            "notPassed": [
+              "REMOTE_ROUTING:fail"
+            ]
+          },
+          {
+            "sku": "IF-2C-UK",
+            "ok": false,
+            "totalCents": 36612,
+            "notPassed": [
+              "REMOTE_ROUTING:unknown"
+            ]
+          },
+          {
+            "sku": "IF-4C-LB",
+            "ok": false,
+            "totalCents": 50652,
+            "notPassed": [
+              "AVAILABILITY:fail",
+              "BUDGET:fail"
+            ]
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C19",
+      "expectedStatus": "EVIDENCE_INCOMPLETE",
+      "status": "EVIDENCE_INCOMPLETE",
+      "statusCorrect": true,
+      "durationMs": 2.81,
+      "combinationsChecked": 484,
+      "searchComplete": true,
+      "invalidPayable": false,
+      "nearMiss": {
+        "totalCents": 26352,
+        "requires": {
+          "budgetCents": 26352
+        }
+      },
+      "unknownFacts": [
+        {
+          "sku": "IF-2C-UK",
+          "fact": "loopback",
+          "check": "REMOTE_ROUTING"
+        }
+      ],
+      "baseline": {
+        "success": false,
+        "best": null,
+        "tries": [
+          {
+            "sku": "MIC-USB-D",
+            "ok": false,
+            "totalCents": 13284,
+            "notPassed": [
+              "AVAILABILITY:fail"
+            ]
+          }
+        ],
+        "matchesExpectation": true
+      }
+    },
+    {
+      "id": "C20",
+      "expectedStatus": "UNSUPPORTED_GOAL",
+      "status": "UNSUPPORTED_GOAL",
+      "statusCorrect": true,
+      "durationMs": 0.01,
+      "combinationsChecked": 0,
+      "searchComplete": true,
+      "invalidPayable": false
+    }
+  ],
+  "extraction": [
+    {
+      "id": "C01",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 8718,
+      "usage": {
+        "completion_tokens": 375,
+        "prompt_tokens": 796,
+        "total_tokens": 1171
+      },
+      "error": null,
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 9,
+      "stated": 9,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [],
+      "unknownsPreserved": [],
+      "unknownsListed": [],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 2,
+          "span": "My co-host and I record in my spare room"
+        },
+        "remoteGuests": {
+          "value": 1,
+          "span": "one remote guest over Zoom"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "Windows laptop with USB-C"
+        },
+        "os": {
+          "value": "windows",
+          "span": "Windows laptop"
+        },
+        "callApp": {
+          "value": "zoom",
+          "span": "over Zoom"
+        },
+        "budgetCents": {
+          "value": 40000,
+          "span": "under $400 before tax",
+          "allIn": false
+        },
+        "recordingDate": {
+          "value": "2026-10-16",
+          "span": "Friday"
+        },
+        "recordingTime": {
+          "value": "19:00",
+          "span": "7 pm"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 2,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [
+          "headphones",
+          "stands"
+        ],
+        "conflicts": [],
+        "questions": [
+          "Do you already own headphones for monitoring?",
+          "Do you have microphone stands, or do you need those included?"
+        ]
+      }
+    },
+    {
+      "id": "C02",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2136,
+      "usage": {
+        "completion_tokens": 332,
+        "prompt_tokens": 795,
+        "total_tokens": 1127
+      },
+      "error": null,
+      "tp": 8,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 8,
+      "stated": 8,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [],
+      "unknownsPreserved": [],
+      "unknownsListed": [],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 1,
+          "span": "I'm in the room alone"
+        },
+        "remoteGuests": {
+          "value": 1,
+          "span": "my guest calls in on Google Meet"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "MacBook Pro with USB-C ports"
+        },
+        "os": {
+          "value": "macos",
+          "span": "running macOS"
+        },
+        "callApp": {
+          "value": "google-meet",
+          "span": "Google Meet"
+        },
+        "budgetCents": {
+          "value": 30000,
+          "span": "$300 total including tax",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-15",
+          "span": "Thursday"
+        },
+        "recordingTime": {
+          "value": "09:30",
+          "span": "9:30 in the morning"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [],
+        "conflicts": [],
+        "questions": []
+      }
+    },
+    {
+      "id": "C03",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2704,
+      "usage": {
+        "completion_tokens": 361,
+        "prompt_tokens": 794,
+        "total_tokens": 1155
+      },
+      "error": null,
+      "tp": 10,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 10,
+      "stated": 10,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [],
+      "unknownsPreserved": [],
+      "unknownsListed": [],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 2,
+          "span": "Two of us in the studio"
+        },
+        "remoteGuests": {
+          "value": 1,
+          "span": "one remote guest on Zoom"
+        },
+        "hostPort": {
+          "value": "usb-a",
+          "span": "only has USB-A ports"
+        },
+        "os": {
+          "value": "windows",
+          "span": "recording PC runs Windows"
+        },
+        "callApp": {
+          "value": "zoom",
+          "span": "on Zoom"
+        },
+        "budgetCents": {
+          "value": 52000,
+          "span": "$520 all-in",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-17",
+          "span": "Saturday"
+        },
+        "recordingTime": {
+          "value": "14:00",
+          "span": "Saturday afternoons at 2"
+        },
+        "owned": {
+          "headphones": 2,
+          "micCables": 0,
+          "stands": 2
+        },
+        "negations": [],
+        "unknowns": [
+          "micCables"
+        ],
+        "conflicts": [],
+        "questions": [
+          "Do you already own any microphone cables, or do you need us to include them?"
+        ]
+      }
+    },
+    {
+      "id": "C04",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 1867,
+      "usage": {
+        "completion_tokens": 305,
+        "prompt_tokens": 777,
+        "total_tokens": 1082
+      },
+      "error": null,
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 7,
+      "stated": 7,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [],
+      "unknownsPreserved": [],
+      "unknownsListed": [],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 2,
+          "span": "Me and a friend recording in my living room"
+        },
+        "remoteGuests": {
+          "value": 0,
+          "span": "no remote guests"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "USB-C MacBook Air"
+        },
+        "os": {
+          "value": "macos",
+          "span": "USB-C MacBook Air on macOS"
+        },
+        "callApp": null,
+        "budgetCents": {
+          "value": 40000,
+          "span": "$400",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-13",
+          "span": "Tuesday"
+        },
+        "recordingTime": {
+          "value": "20:00",
+          "span": "8pm"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [],
+        "conflicts": [],
+        "questions": []
+      }
+    },
+    {
+      "id": "C05",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2081,
+      "usage": {
+        "completion_tokens": 327,
+        "prompt_tokens": 786,
+        "total_tokens": 1113
+      },
+      "error": null,
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 7,
+      "stated": 7,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [
+        "recordingDate"
+      ],
+      "unknownsPreserved": [
+        "recordingDate"
+      ],
+      "unknownsListed": [
+        "recordingDate"
+      ],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 2,
+          "span": "Two hosts in the room"
+        },
+        "remoteGuests": {
+          "value": 1,
+          "span": "a remote guest joining through Zoom"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "USB-C iMac"
+        },
+        "os": {
+          "value": "macos",
+          "span": "macOS"
+        },
+        "callApp": {
+          "value": "zoom",
+          "span": "through Zoom"
+        },
+        "budgetCents": {
+          "value": 50000,
+          "span": "Max $500 including tax",
+          "allIn": true
+        },
+        "recordingDate": null,
+        "recordingTime": {
+          "value": "18:00",
+          "span": "at 6 pm"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [
+          "recordingDate"
+        ],
+        "conflicts": [],
+        "questions": [
+          "Which day do you mean: Fri, Oct 16 or Fri, Oct 23?"
+        ]
+      }
+    },
+    {
+      "id": "C06",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2681,
+      "usage": {
+        "completion_tokens": 375,
+        "prompt_tokens": 786,
+        "total_tokens": 1161
+      },
+      "error": null,
+      "tp": 6,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 6,
+      "stated": 6,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [],
+      "unknownsPreserved": [],
+      "unknownsListed": [],
+      "conflicts": [
+        "budgetCents"
+      ],
+      "conflictsFlagged": [
+        "budgetCents"
+      ],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 2,
+          "span": "My co-host and I record in person"
+        },
+        "remoteGuests": {
+          "value": 0,
+          "span": "nobody calls in"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "USB-C"
+        },
+        "os": {
+          "value": "windows",
+          "span": "Windows laptop"
+        },
+        "callApp": null,
+        "budgetCents": null,
+        "recordingDate": {
+          "value": "2026-10-14",
+          "span": "Wednesday"
+        },
+        "recordingTime": {
+          "value": "12:00",
+          "span": "noon"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [],
+        "conflicts": [
+          {
+            "field": "budgetCents",
+            "detail": "Two budgets stated: \"$380\" and \"we can't spend more than $350\""
+          }
+        ],
+        "questions": [
+          "Which budget applies: $380 all-in or $350 maximum?",
+          "Do you already own any headphones, mic cables, or stands?",
+          "Are you looking for a specific condenser mic model, or do you need recommendations?"
+        ]
+      }
+    },
+    {
+      "id": "C07",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2006,
+      "usage": {
+        "completion_tokens": 296,
+        "prompt_tokens": 775,
+        "total_tokens": 1071
+      },
+      "error": null,
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 7,
+      "stated": 7,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [],
+      "unknownsPreserved": [],
+      "unknownsListed": [],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 1,
+          "span": "Just me"
+        },
+        "remoteGuests": {
+          "value": 0,
+          "span": "Nobody else joins"
+        },
+        "hostPort": {
+          "value": "usb-a",
+          "span": "It only has USB-A ports"
+        },
+        "os": {
+          "value": "windows",
+          "span": "Windows desktop"
+        },
+        "callApp": null,
+        "budgetCents": {
+          "value": 32000,
+          "span": "$320 total",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-13",
+          "span": "tomorrow"
+        },
+        "recordingTime": {
+          "value": "10:00",
+          "span": "at 10 am"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [],
+        "conflicts": [],
+        "questions": []
+      }
+    },
+    {
+      "id": "C08",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2778,
+      "usage": {
+        "completion_tokens": 372,
+        "prompt_tokens": 779,
+        "total_tokens": 1151
+      },
+      "error": null,
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 9,
+      "stated": 9,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [],
+      "unknownsPreserved": [],
+      "unknownsListed": [],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 1,
+          "span": "solo host"
+        },
+        "remoteGuests": {
+          "value": 1,
+          "span": "one guest over Google Meet"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "USB-C MacBook"
+        },
+        "os": {
+          "value": "macos",
+          "span": "MacBook running macOS"
+        },
+        "callApp": {
+          "value": "google-meet",
+          "span": "Google Meet"
+        },
+        "budgetCents": {
+          "value": 15000,
+          "span": "under $150",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-15",
+          "span": "Thursday"
+        },
+        "recordingTime": {
+          "value": "16:30",
+          "span": "4:30 pm"
+        },
+        "owned": {
+          "headphones": 1,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [
+          "micCables",
+          "stands"
+        ],
+        "conflicts": [],
+        "questions": [
+          "Do you already own any microphone cables?",
+          "Do you have a microphone stand or boom arm, or do you need one?"
+        ]
+      }
+    },
+    {
+      "id": "C09",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2057,
+      "usage": {
+        "completion_tokens": 309,
+        "prompt_tokens": 766,
+        "total_tokens": 1075
+      },
+      "error": null,
+      "tp": 6,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 6,
+      "stated": 6,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [
+        "os"
+      ],
+      "unknownsPreserved": [
+        "os"
+      ],
+      "unknownsListed": [
+        "os"
+      ],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 2,
+          "span": "Two of us recording in the same room"
+        },
+        "remoteGuests": {
+          "value": 0,
+          "span": "no one remote"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "USB-C laptop"
+        },
+        "os": null,
+        "callApp": null,
+        "budgetCents": {
+          "value": 40000,
+          "span": "$400 all in",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-12",
+          "span": "today"
+        },
+        "recordingTime": {
+          "value": "15:00",
+          "span": "at 3pm"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [
+          "os"
+        ],
+        "conflicts": [],
+        "questions": [
+          "Does your USB-C laptop run macOS, Windows, or Linux?"
+        ]
+      }
+    },
+    {
+      "id": "C10",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2669,
+      "usage": {
+        "completion_tokens": 357,
+        "prompt_tokens": 785,
+        "total_tokens": 1142
+      },
+      "error": null,
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 7,
+      "stated": 7,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [
+        "callApp"
+      ],
+      "unknownsPreserved": [
+        "callApp"
+      ],
+      "unknownsListed": [
+        "callApp"
+      ],
+      "conflicts": [
+        "localPeople"
+      ],
+      "conflictsFlagged": [
+        "localPeople"
+      ],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": null,
+        "remoteGuests": {
+          "value": 1,
+          "span": "one remote guest"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "USB-C"
+        },
+        "os": {
+          "value": "windows",
+          "span": "Windows laptop"
+        },
+        "callApp": null,
+        "budgetCents": {
+          "value": 46000,
+          "span": "$460",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-16",
+          "span": "Friday"
+        },
+        "recordingTime": {
+          "value": "13:00",
+          "span": "1 pm"
+        },
+        "owned": {
+          "headphones": 1,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [
+          "callApp"
+        ],
+        "conflicts": [
+          {
+            "field": "localPeople",
+            "detail": "\"Two people in the room\" vs \"some weeks there are three of us in the room\""
+          }
+        ],
+        "questions": [
+          "Is it typically two people or three people recording together?",
+          "Which video call app will you use for the remote guest?"
+        ]
+      }
+    },
+    {
+      "id": "C11",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2464,
+      "usage": {
+        "completion_tokens": 356,
+        "prompt_tokens": 773,
+        "total_tokens": 1129
+      },
+      "error": null,
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 7,
+      "stated": 7,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [
+        "budgetCents"
+      ],
+      "unknownsPreserved": [
+        "budgetCents"
+      ],
+      "unknownsListed": [
+        "budgetCents"
+      ],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 1,
+          "span": "I record by myself"
+        },
+        "remoteGuests": {
+          "value": 1,
+          "span": "one remote guest on Zoom"
+        },
+        "hostPort": {
+          "value": "usb-a",
+          "span": "only USB-A ports"
+        },
+        "os": {
+          "value": "macos",
+          "span": "running macOS"
+        },
+        "callApp": {
+          "value": "zoom",
+          "span": "on Zoom"
+        },
+        "budgetCents": null,
+        "recordingDate": {
+          "value": "2026-10-14",
+          "span": "Wednesday"
+        },
+        "recordingTime": {
+          "value": "11:00",
+          "span": "at 11 am"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [
+          "budgetCents"
+        ],
+        "conflicts": [],
+        "questions": [
+          "What is your total budget for the podcast equipment?",
+          "Do you already own any headphones, microphone cables, or mic stands?",
+          "What type of microphone or audio interface are you considering?"
+        ]
+      }
+    },
+    {
+      "id": "C12",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2264,
+      "usage": {
+        "completion_tokens": 326,
+        "prompt_tokens": 764,
+        "total_tokens": 1090
+      },
+      "error": null,
+      "tp": 6,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 6,
+      "stated": 6,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [
+        "recordingTime"
+      ],
+      "unknownsPreserved": [
+        "recordingTime"
+      ],
+      "unknownsListed": [
+        "recordingTime"
+      ],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 2,
+          "span": "Two of us"
+        },
+        "remoteGuests": {
+          "value": 0,
+          "span": "no remote guests"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "USB-C MacBook"
+        },
+        "os": {
+          "value": "macos",
+          "span": "macOS"
+        },
+        "callApp": null,
+        "budgetCents": {
+          "value": 43000,
+          "span": "Up to $430 total",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-18",
+          "span": "Sunday"
+        },
+        "recordingTime": null,
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [
+          "recordingTime",
+          "owned"
+        ],
+        "conflicts": [],
+        "questions": [
+          "What time on Sunday would you like to record?",
+          "Do you already own any headphones, microphone cables, or mic stands?"
+        ]
+      }
+    },
+    {
+      "id": "C13",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2063,
+      "usage": {
+        "completion_tokens": 308,
+        "prompt_tokens": 766,
+        "total_tokens": 1074
+      },
+      "error": null,
+      "tp": 6,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 6,
+      "stated": 6,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [
+        "os"
+      ],
+      "unknownsPreserved": [
+        "os"
+      ],
+      "unknownsListed": [
+        "os"
+      ],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 2,
+          "span": "Me and my sister"
+        },
+        "remoteGuests": {
+          "value": 0,
+          "span": "nobody remote"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "My laptop has USB-C"
+        },
+        "os": null,
+        "callApp": null,
+        "budgetCents": {
+          "value": 40000,
+          "span": "$400 all-in",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-13",
+          "span": "Tuesday"
+        },
+        "recordingTime": {
+          "value": "18:30",
+          "span": "Tuesday at 6:30 pm"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [
+          "os"
+        ],
+        "conflicts": [],
+        "questions": [
+          "Does your laptop run macOS, Windows, or Linux?"
+        ]
+      }
+    },
+    {
+      "id": "C14",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2070,
+      "usage": {
+        "completion_tokens": 329,
+        "prompt_tokens": 782,
+        "total_tokens": 1111
+      },
+      "error": null,
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 9,
+      "stated": 9,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [],
+      "unknownsPreserved": [],
+      "unknownsListed": [],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 2,
+          "span": "Me plus my co-host in the room"
+        },
+        "remoteGuests": {
+          "value": 1,
+          "span": "a remote guest on Google Meet"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "USB-C port"
+        },
+        "os": {
+          "value": "windows",
+          "span": "Windows laptop"
+        },
+        "callApp": {
+          "value": "google-meet",
+          "span": "Google Meet"
+        },
+        "budgetCents": {
+          "value": 48000,
+          "span": "$480 total budget",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-19",
+          "span": "Monday the 19th"
+        },
+        "recordingTime": {
+          "value": "09:00",
+          "span": "at 9 am"
+        },
+        "owned": {
+          "headphones": 2,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [],
+        "conflicts": [],
+        "questions": []
+      }
+    },
+    {
+      "id": "C15",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 1909,
+      "usage": {
+        "completion_tokens": 294,
+        "prompt_tokens": 764,
+        "total_tokens": 1058
+      },
+      "error": null,
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 7,
+      "stated": 7,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [],
+      "unknownsPreserved": [],
+      "unknownsListed": [],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 1,
+          "span": "Solo show, just me"
+        },
+        "remoteGuests": {
+          "value": 0,
+          "span": "no remote guests"
+        },
+        "hostPort": {
+          "value": "usb-a",
+          "span": "USB-A only"
+        },
+        "os": {
+          "value": "windows",
+          "span": "Windows desktop"
+        },
+        "callApp": null,
+        "budgetCents": {
+          "value": 30000,
+          "span": "$300 total",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-15",
+          "span": "Thursday"
+        },
+        "recordingTime": {
+          "value": "19:00",
+          "span": "7 pm"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [],
+        "conflicts": [],
+        "questions": []
+      }
+    },
+    {
+      "id": "C16",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2054,
+      "usage": {
+        "completion_tokens": 325,
+        "prompt_tokens": 775,
+        "total_tokens": 1100
+      },
+      "error": null,
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 9,
+      "stated": 9,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [],
+      "unknownsPreserved": [],
+      "unknownsListed": [],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 2,
+          "span": "Two hosts in the studio"
+        },
+        "remoteGuests": {
+          "value": 1,
+          "span": "one remote guest on Google Meet"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "USB-C Windows laptop"
+        },
+        "os": {
+          "value": "windows",
+          "span": "USB-C Windows laptop"
+        },
+        "callApp": {
+          "value": "google-meet",
+          "span": "Google Meet"
+        },
+        "budgetCents": {
+          "value": 38500,
+          "span": "$385 including tax",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-17",
+          "span": "Saturday"
+        },
+        "recordingTime": {
+          "value": "11:00",
+          "span": "at 11 am"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 2
+        },
+        "negations": [],
+        "unknowns": [],
+        "conflicts": [],
+        "questions": []
+      }
+    },
+    {
+      "id": "C17",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2009,
+      "usage": {
+        "completion_tokens": 303,
+        "prompt_tokens": 768,
+        "total_tokens": 1071
+      },
+      "error": null,
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 7,
+      "stated": 7,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [],
+      "unknownsPreserved": [],
+      "unknownsListed": [],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 2,
+          "span": "Two of us recording in my studio"
+        },
+        "remoteGuests": {
+          "value": 0,
+          "span": "no remote guests"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "USB-C MacBook"
+        },
+        "os": {
+          "value": "macos",
+          "span": "macOS"
+        },
+        "callApp": null,
+        "budgetCents": {
+          "value": 40000,
+          "span": "$400 all in",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-12",
+          "span": "today"
+        },
+        "recordingTime": {
+          "value": "13:30",
+          "span": "at 1:30 pm"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [],
+        "conflicts": [],
+        "questions": []
+      }
+    },
+    {
+      "id": "C18",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2359,
+      "usage": {
+        "completion_tokens": 329,
+        "prompt_tokens": 765,
+        "total_tokens": 1094
+      },
+      "error": null,
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 7,
+      "stated": 7,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [
+        "os"
+      ],
+      "unknownsPreserved": [
+        "os"
+      ],
+      "unknownsListed": [
+        "os"
+      ],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 2,
+          "span": "My co-host and I"
+        },
+        "remoteGuests": {
+          "value": 1,
+          "span": "one remote guest via Zoom"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "Laptop with USB-C"
+        },
+        "os": null,
+        "callApp": {
+          "value": "zoom",
+          "span": "via Zoom"
+        },
+        "budgetCents": {
+          "value": 48000,
+          "span": "$480 total",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-16",
+          "span": "Friday"
+        },
+        "recordingTime": {
+          "value": "10:00",
+          "span": "at 10 am"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [
+          "os"
+        ],
+        "conflicts": [],
+        "questions": [
+          "Does your laptop run macOS, Windows, or Linux?"
+        ]
+      }
+    },
+    {
+      "id": "C19",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2082,
+      "usage": {
+        "completion_tokens": 325,
+        "prompt_tokens": 770,
+        "total_tokens": 1095
+      },
+      "error": null,
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 7,
+      "stated": 7,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [
+        "recordingDate"
+      ],
+      "unknownsPreserved": [
+        "recordingDate"
+      ],
+      "unknownsListed": [
+        "recordingDate"
+      ],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 1,
+          "span": "Just me in the room"
+        },
+        "remoteGuests": {
+          "value": 1,
+          "span": "interviewing a guest over Google Meet"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "MacBook with USB-C"
+        },
+        "os": {
+          "value": "macos",
+          "span": "on macOS"
+        },
+        "callApp": {
+          "value": "google-meet",
+          "span": "over Google Meet"
+        },
+        "budgetCents": {
+          "value": 26000,
+          "span": "$260",
+          "allIn": true
+        },
+        "recordingDate": null,
+        "recordingTime": {
+          "value": "14:00",
+          "span": "at 2 pm"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [
+          "recordingDate"
+        ],
+        "conflicts": [],
+        "questions": [
+          "Which day do you mean: Sat, Oct 17 or Sun, Oct 18?"
+        ]
+      }
+    },
+    {
+      "id": "C20",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 1937,
+      "usage": {
+        "completion_tokens": 324,
+        "prompt_tokens": 770,
+        "total_tokens": 1094
+      },
+      "error": null,
+      "tp": 8,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 8,
+      "stated": 8,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [],
+      "unknownsPreserved": [],
+      "unknownsListed": [],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 3,
+          "span": "Three of us in the studio"
+        },
+        "remoteGuests": {
+          "value": 1,
+          "span": "one remote guest on Zoom"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "USB-C MacBook"
+        },
+        "os": {
+          "value": "macos",
+          "span": "macOS"
+        },
+        "callApp": {
+          "value": "zoom",
+          "span": "on Zoom"
+        },
+        "budgetCents": {
+          "value": 60000,
+          "span": "$600 all-in",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-16",
+          "span": "Friday"
+        },
+        "recordingTime": {
+          "value": "14:00",
+          "span": "at 2 pm"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [],
+        "conflicts": [],
+        "questions": []
+      }
+    }
+  ]
+}

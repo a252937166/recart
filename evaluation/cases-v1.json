@@ -1,0 +1,2519 @@
+{
+  "name": "ReCart frozen fixture evaluation",
+  "version": "eval-cases-v1",
+  "authoredBy": "The ReCart builder (Claude Code acting for the team), from the declared catalog and recipe rules. Expected results were derived by hand; neither the solver nor the language model was run on these cases before freezing.",
+  "nature": "Team-authored engineering fixtures on brand-free simulated products. Not an independent or real-user study.",
+  "versions": {
+    "catalog": "fixture-catalog-v1",
+    "recipes": "fixture-recipes-v1",
+    "pickupPolicy": "pickup-policy-v1",
+    "taxRule": "8% fixture tax, rounded half up to the cent"
+  },
+  "referenceTimes": {
+    "R1": "2026-10-12T15:00:00Z (Monday 08:00 PDT)",
+    "R2": "2026-10-12T17:30:00Z (Monday 10:30 PDT)"
+  },
+  "counts": {
+    "feasible": 14,
+    "infeasible": 3,
+    "evidenceIncomplete": 2,
+    "unsupported": 1
+  },
+  "cases": [
+    {
+      "id": "C01",
+      "category": [
+        "dependent accessories",
+        "before-tax budget wording",
+        "owned equipment",
+        "more than one changed item"
+      ],
+      "text": "My co-host and I record in my spare room, and we bring in one remote guest over Zoom each week. I work on a Windows laptop with USB-C. We already have two XLR cables. Keep it under $400 before tax. First session is Friday at 7 pm.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 2,
+          "remoteGuests": 1,
+          "callApp": "zoom",
+          "os": "windows",
+          "hostPort": "usb-c",
+          "budgetCents": {
+            "value": 40000,
+            "allIn": false
+          },
+          "recordingDate": "2026-10-16",
+          "recordingTime": "19:00",
+          "owned.micCables": 2
+        },
+        "unknown": [],
+        "conflicts": []
+      },
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 2,
+        "remoteGuests": 1,
+        "hostPort": "usb-c",
+        "os": "windows",
+        "callApp": "zoom",
+        "owned": {
+          "headphones": 0,
+          "micCables": 2,
+          "stands": 0
+        },
+        "budgetCents": 43200,
+        "pickupBy": "2026-10-17T02:00:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "referenceGoalNote": "The buyer confirmed $432.00 all-in, which is $400 before the fixture's 8% tax.",
+      "recovery": {
+        "recipeId": "R-LOCAL2-REMOTE1",
+        "original": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2C-LB",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "originalTotalCents": 35100,
+        "missingSku": "IF-2C-LB"
+      },
+      "availability": {
+        "MIC-DX-A": 4,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 0,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "FEASIBLE",
+        "best": {
+          "recipeId": "R-LOCAL2-REMOTE1",
+          "lines": [
+            {
+              "sku": "MIC-DX-A",
+              "qty": 2
+            },
+            {
+              "sku": "IF-2B-LB",
+              "qty": 1
+            },
+            {
+              "sku": "HP-CB-A",
+              "qty": 2
+            },
+            {
+              "sku": "CBL-BA-1",
+              "qty": 1
+            },
+            {
+              "sku": "ADP-AC",
+              "qty": 1
+            },
+            {
+              "sku": "STD-DK-A",
+              "qty": 2
+            }
+          ],
+          "subtotalCents": 36700,
+          "taxCents": 2936,
+          "totalCents": 39636,
+          "disruption": 5
+        },
+        "argument": "The only in-stock loopback interfaces are IF-2B-LB and IF-4C-LB. IF-4C-LB makes the cheapest bundle $480.60, over $432. IF-2B-LB has a USB-B port, so it needs the USB-B to USB-A cable plus the USB-A to USB-C adapter: $396.36.",
+        "baseline": {
+          "success": false,
+          "reason": "Swapping only the interface keeps the USB-C cable: IF-2B-LB cannot connect, IF-4C-LB exceeds the budget, IF-2C-NL has no loopback, IF-2C-UK is out of stock."
+        }
+      }
+    },
+    {
+      "id": "C02",
+      "category": [
+        "recipe switch",
+        "dependent accessories",
+        "more than one changed item"
+      ],
+      "text": "I host a one-person interview show. I'm in the room alone and my guest calls in on Google Meet. I use a MacBook Pro with USB-C ports, running macOS. My budget is $300 total including tax. We record Thursday at 9:30 in the morning.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 1,
+          "remoteGuests": 1,
+          "callApp": "google-meet",
+          "hostPort": "usb-c",
+          "os": "macos",
+          "budgetCents": {
+            "value": 30000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-15",
+          "recordingTime": "09:30"
+        },
+        "unknown": [],
+        "conflicts": []
+      },
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 1,
+        "remoteGuests": 1,
+        "hostPort": "usb-c",
+        "os": "macos",
+        "callApp": "google-meet",
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 30000,
+        "pickupBy": "2026-10-15T16:30:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "recovery": {
+        "recipeId": "R-SOLO-REMOTE",
+        "original": [
+          {
+            "sku": "MIC-USB-D",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 1
+          }
+        ],
+        "originalTotalCents": 13284,
+        "missingSku": "MIC-USB-D"
+      },
+      "availability": {
+        "MIC-DX-A": 4,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 0,
+        "IF-2C-LB": 1,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "FEASIBLE",
+        "best": {
+          "recipeId": "R-LOCAL2-REMOTE1",
+          "lines": [
+            {
+              "sku": "MIC-DX-A",
+              "qty": 1
+            },
+            {
+              "sku": "IF-2C-LB",
+              "qty": 1
+            },
+            {
+              "sku": "HP-CB-A",
+              "qty": 1
+            },
+            {
+              "sku": "CBL-XLR-3",
+              "qty": 1
+            },
+            {
+              "sku": "CBL-CC-1",
+              "qty": 1
+            },
+            {
+              "sku": "STD-DK-A",
+              "qty": 1
+            }
+          ],
+          "subtotalCents": 24400,
+          "taxCents": 1952,
+          "totalCents": 26352,
+          "disruption": 5
+        },
+        "argument": "The solo recipe only allows the USB mic, which is gone. The XLR remote recipe covers one person: the cheapest XLR mic, the USB-C loopback interface, an XLR cable and a USB-C cable, keeping the headphones and stand: $263.52. The USB-B route costs $308.88, over budget.",
+        "baseline": {
+          "success": false,
+          "reason": "The solo recipe's mic role allows only MIC-USB-D, so there is no item-only substitute."
+        }
+      }
+    },
+    {
+      "id": "C03",
+      "category": [
+        "quantity shortfall",
+        "owned equipment",
+        "USB-A host"
+      ],
+      "text": "Two of us in the studio, plus one remote guest on Zoom. Our recording PC runs Windows and only has USB-A ports. We already have headphones and mic stands for both of us. Spend no more than $520 all-in. Sessions are Saturday afternoons at 2.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 2,
+          "remoteGuests": 1,
+          "callApp": "zoom",
+          "hostPort": "usb-a",
+          "os": "windows",
+          "budgetCents": {
+            "value": 52000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-17",
+          "recordingTime": "14:00",
+          "owned.headphones": 2,
+          "owned.stands": 2
+        },
+        "unknown": [],
+        "conflicts": []
+      },
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 2,
+        "remoteGuests": 1,
+        "hostPort": "usb-a",
+        "os": "windows",
+        "callApp": "zoom",
+        "owned": {
+          "headphones": 2,
+          "micCables": 0,
+          "stands": 2
+        },
+        "budgetCents": 52000,
+        "pickupBy": "2026-10-17T21:00:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "recovery": {
+        "recipeId": "R-LOCAL2-REMOTE1",
+        "original": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2B-LB",
+            "qty": 1
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-BA-1",
+            "qty": 1
+          }
+        ],
+        "originalTotalCents": 31428,
+        "missingSku": "MIC-DX-A"
+      },
+      "availability": {
+        "MIC-DX-A": 1,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 1,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "FEASIBLE",
+        "best": {
+          "recipeId": "R-LOCAL2-REMOTE1",
+          "lines": [
+            {
+              "sku": "MIC-CX-C",
+              "qty": 2
+            },
+            {
+              "sku": "IF-2B-LB",
+              "qty": 1
+            },
+            {
+              "sku": "CBL-XLR-3",
+              "qty": 2
+            },
+            {
+              "sku": "CBL-BA-1",
+              "qty": 1
+            }
+          ],
+          "subtotalCents": 31100,
+          "taxCents": 2488,
+          "totalCents": 33588,
+          "disruption": 2
+        },
+        "argument": "Only one MIC-DX-A remains and both people need the same mic. MIC-CX-C (phantom power is supplied by IF-2B-LB) and MIC-DX-B both work; MIC-CX-C is cheaper at the same disruption: $335.88.",
+        "baseline": {
+          "success": true,
+          "reason": "Swapping both mics to MIC-CX-C or MIC-DX-B passes every check."
+        }
+      }
+    },
+    {
+      "id": "C04",
+      "category": [
+        "negation",
+        "soft preference",
+        "simple swap"
+      ],
+      "text": "Me and a friend recording in my living room, no remote guests. USB-C MacBook Air on macOS. We'd prefer open-back headphones. Total budget $400. Recording Tuesday at 8pm.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 2,
+          "remoteGuests": 0,
+          "hostPort": "usb-c",
+          "os": "macos",
+          "budgetCents": {
+            "value": 40000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-13",
+          "recordingTime": "20:00"
+        },
+        "unknown": [],
+        "conflicts": []
+      },
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 2,
+        "remoteGuests": 0,
+        "hostPort": "usb-c",
+        "os": "macos",
+        "callApp": null,
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 40000,
+        "pickupBy": "2026-10-14T03:00:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {
+          "headphoneType": "open"
+        }
+      },
+      "recovery": {
+        "recipeId": "R-LOCAL-2",
+        "original": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2C-NL",
+            "qty": 1
+          },
+          {
+            "sku": "HP-OB-B",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "originalTotalCents": 37908,
+        "missingSku": "HP-OB-B"
+      },
+      "availability": {
+        "MIC-DX-A": 4,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 1,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 6,
+        "HP-OB-B": 0,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "FEASIBLE",
+        "best": {
+          "recipeId": "R-LOCAL-2",
+          "lines": [
+            {
+              "sku": "MIC-DX-A",
+              "qty": 2
+            },
+            {
+              "sku": "IF-2C-NL",
+              "qty": 1
+            },
+            {
+              "sku": "HP-CB-A",
+              "qty": 2
+            },
+            {
+              "sku": "CBL-XLR-3",
+              "qty": 2
+            },
+            {
+              "sku": "CBL-CC-1",
+              "qty": 1
+            },
+            {
+              "sku": "STD-DK-A",
+              "qty": 2
+            }
+          ],
+          "subtotalCents": 31900,
+          "taxCents": 2552,
+          "totalCents": 34452,
+          "disruption": 2
+        },
+        "argument": "No open-back headphones remain, so every bundle misses the soft preference. Closed-back headphones are a hard-valid swap: $344.52.",
+        "baseline": {
+          "success": true,
+          "reason": "Swapping the headphones to HP-CB-A passes every hard check; preferences are not hard checks."
+        }
+      }
+    },
+    {
+      "id": "C05",
+      "category": [
+        "dependent accessories",
+        "ambiguous date",
+        "soft preference",
+        "more than one changed item"
+      ],
+      "text": "Two hosts in the room plus a remote guest joining through Zoom. We use a USB-C iMac with macOS. We'd like boom arms rather than desk stands. Max $500 including tax. We record next Friday at 6 pm.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 2,
+          "remoteGuests": 1,
+          "callApp": "zoom",
+          "hostPort": "usb-c",
+          "os": "macos",
+          "budgetCents": {
+            "value": 50000,
+            "allIn": true
+          },
+          "recordingTime": "18:00"
+        },
+        "unknown": [
+          "recordingDate"
+        ],
+        "conflicts": []
+      },
+      "labelNote": "Said on Monday Oct 12, \"next Friday\" can mean Oct 16 or Oct 23, so the date needs clarification.",
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 2,
+        "remoteGuests": 1,
+        "hostPort": "usb-c",
+        "os": "macos",
+        "callApp": "zoom",
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 50000,
+        "pickupBy": "2026-10-24T01:00:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {
+          "stand": "boom"
+        }
+      },
+      "referenceGoalNote": "The buyer clarified Friday, October 23.",
+      "recovery": {
+        "recipeId": "R-LOCAL2-REMOTE1",
+        "original": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2C-LB",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-BM-B",
+            "qty": 2
+          }
+        ],
+        "originalTotalCents": 39852,
+        "missingSku": "CBL-CC-1"
+      },
+      "availability": {
+        "MIC-DX-A": 4,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 1,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 0,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "FEASIBLE",
+        "best": {
+          "recipeId": "R-LOCAL2-REMOTE1",
+          "lines": [
+            {
+              "sku": "MIC-DX-A",
+              "qty": 2
+            },
+            {
+              "sku": "IF-2B-LB",
+              "qty": 1
+            },
+            {
+              "sku": "HP-CB-A",
+              "qty": 2
+            },
+            {
+              "sku": "CBL-XLR-3",
+              "qty": 2
+            },
+            {
+              "sku": "CBL-BA-1",
+              "qty": 1
+            },
+            {
+              "sku": "ADP-AC",
+              "qty": 1
+            },
+            {
+              "sku": "STD-BM-B",
+              "qty": 2
+            }
+          ],
+          "subtotalCents": 41100,
+          "taxCents": 3288,
+          "totalCents": 44388,
+          "disruption": 5
+        },
+        "argument": "Without a USB-C to USB-C cable no USB-C interface can reach the computer. The USB-B loopback interface with the USB-B to USB-A cable and the USB-C adapter works, keeping the boom arms: $443.88.",
+        "baseline": {
+          "success": false,
+          "reason": "Swapping only the cable to USB-B to USB-A cannot connect the USB-C interface."
+        }
+      }
+    },
+    {
+      "id": "C06",
+      "category": [
+        "budget conflict in wording",
+        "more than one changed item",
+        "phantom power"
+      ],
+      "text": "My co-host and I record in person; nobody calls in. Windows laptop, USB-C. We were planning on condenser mics. All-in budget is $380, but honestly we can't spend more than $350. Recording Wednesday at noon.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 2,
+          "remoteGuests": 0,
+          "hostPort": "usb-c",
+          "os": "windows",
+          "recordingDate": "2026-10-14",
+          "recordingTime": "12:00"
+        },
+        "unknown": [],
+        "conflicts": [
+          "budgetCents"
+        ]
+      },
+      "labelNote": "Two incompatible budget ceilings ($380 and $350) must be flagged, not silently resolved.",
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 2,
+        "remoteGuests": 0,
+        "hostPort": "usb-c",
+        "os": "windows",
+        "callApp": null,
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 38000,
+        "pickupBy": "2026-10-14T19:00:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "referenceGoalNote": "The buyer confirmed $380 all-in.",
+      "recovery": {
+        "recipeId": "R-LOCAL-2",
+        "original": [
+          {
+            "sku": "MIC-CX-C",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2C-NL",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "originalTotalCents": 36612,
+        "missingSku": "IF-2C-NL"
+      },
+      "availability": {
+        "MIC-DX-A": 4,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 1,
+        "IF-2C-NL": 0,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "FEASIBLE",
+        "best": {
+          "recipeId": "R-LOCAL-2",
+          "lines": [
+            {
+              "sku": "MIC-DX-A",
+              "qty": 2
+            },
+            {
+              "sku": "IF-2C-LB",
+              "qty": 1
+            },
+            {
+              "sku": "HP-CB-A",
+              "qty": 2
+            },
+            {
+              "sku": "CBL-XLR-3",
+              "qty": 2
+            },
+            {
+              "sku": "CBL-CC-1",
+              "qty": 1
+            },
+            {
+              "sku": "STD-DK-A",
+              "qty": 2
+            }
+          ],
+          "subtotalCents": 34900,
+          "taxCents": 2792,
+          "totalCents": 37692,
+          "disruption": 4
+        },
+        "argument": "Keeping the condenser mics with the next interface (IF-2C-LB) costs $398.52, over $380. Only switching the mics to MIC-DX-A as well fits: $376.92. Every other combination is over budget or cannot connect.",
+        "baseline": {
+          "success": false,
+          "reason": "Swapping only the interface keeps the condenser mics: IF-2C-LB is over budget, IF-2B-LB cannot connect with the USB-C cable, IF-4C-LB is over budget, IF-2C-UK is out of stock."
+        }
+      }
+    },
+    {
+      "id": "C07",
+      "category": [
+        "negation",
+        "USB-A host",
+        "simple swap"
+      ],
+      "text": "Just me, recording a solo show on my Windows desktop. It only has USB-A ports. Nobody else joins. I can spend $320 total. I want to start tomorrow at 10 am.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 1,
+          "remoteGuests": 0,
+          "hostPort": "usb-a",
+          "os": "windows",
+          "budgetCents": {
+            "value": 32000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-13",
+          "recordingTime": "10:00"
+        },
+        "unknown": [],
+        "conflicts": []
+      },
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 1,
+        "remoteGuests": 0,
+        "hostPort": "usb-a",
+        "os": "windows",
+        "callApp": null,
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 32000,
+        "pickupBy": "2026-10-13T17:00:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "recovery": {
+        "recipeId": "R-LOCAL-2",
+        "original": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 1
+          },
+          {
+            "sku": "IF-2B-LB",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 1
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 1
+          },
+          {
+            "sku": "CBL-BA-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 1
+          }
+        ],
+        "originalTotalCents": 29592,
+        "missingSku": "HP-CB-A"
+      },
+      "availability": {
+        "MIC-DX-A": 4,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 1,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 0,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "FEASIBLE",
+        "best": {
+          "recipeId": "R-LOCAL-2",
+          "lines": [
+            {
+              "sku": "MIC-DX-A",
+              "qty": 1
+            },
+            {
+              "sku": "IF-2B-LB",
+              "qty": 1
+            },
+            {
+              "sku": "HP-OB-B",
+              "qty": 1
+            },
+            {
+              "sku": "CBL-XLR-3",
+              "qty": 1
+            },
+            {
+              "sku": "CBL-BA-1",
+              "qty": 1
+            },
+            {
+              "sku": "STD-DK-A",
+              "qty": 1
+            }
+          ],
+          "subtotalCents": 29000,
+          "taxCents": 2320,
+          "totalCents": 31320,
+          "disruption": 2
+        },
+        "argument": "Open-back headphones replace the missing closed-back pair: $313.20, within $320.",
+        "baseline": {
+          "success": true,
+          "reason": "Swapping the headphones to HP-OB-B passes every check."
+        }
+      }
+    },
+    {
+      "id": "C08",
+      "category": [
+        "owned equipment",
+        "buyer timezone differs from store",
+        "simple swap"
+      ],
+      "text": "I'm a solo host interviewing one guest over Google Meet from my USB-C MacBook running macOS. I already have good headphones. Keep the total under $150. Recording Thursday at 4:30 pm.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/New_York"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 1,
+          "remoteGuests": 1,
+          "callApp": "google-meet",
+          "hostPort": "usb-c",
+          "os": "macos",
+          "budgetCents": {
+            "value": 15000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-15",
+          "recordingTime": "16:30",
+          "owned.headphones": 1
+        },
+        "unknown": [],
+        "conflicts": []
+      },
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 1,
+        "remoteGuests": 1,
+        "hostPort": "usb-c",
+        "os": "macos",
+        "callApp": "google-meet",
+        "owned": {
+          "headphones": 1,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 15000,
+        "pickupBy": "2026-10-15T20:30:00Z",
+        "timezone": "America/New_York",
+        "preferences": {}
+      },
+      "recovery": {
+        "recipeId": "R-SOLO-REMOTE",
+        "original": [
+          {
+            "sku": "MIC-USB-D",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 1
+          }
+        ],
+        "originalTotalCents": 10152,
+        "missingSku": "STD-DK-A"
+      },
+      "availability": {
+        "MIC-DX-A": 4,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 1,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 0,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "FEASIBLE",
+        "best": {
+          "recipeId": "R-SOLO-REMOTE",
+          "lines": [
+            {
+              "sku": "MIC-USB-D",
+              "qty": 1
+            },
+            {
+              "sku": "STD-BM-B",
+              "qty": 1
+            }
+          ],
+          "subtotalCents": 10400,
+          "taxCents": 832,
+          "totalCents": 11232,
+          "disruption": 2
+        },
+        "argument": "The boom arm replaces the missing desk stand: $112.32. Every XLR bundle costs more than $150.",
+        "baseline": {
+          "success": true,
+          "reason": "Swapping the stand to STD-BM-B passes every check."
+        }
+      }
+    },
+    {
+      "id": "C09",
+      "category": [
+        "unspecified OS",
+        "same-day pickup",
+        "simple swap"
+      ],
+      "text": "Two of us recording in the same room today at 3pm, no one remote. We have a USB-C laptop. Budget is $400 all in.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 2,
+          "remoteGuests": 0,
+          "hostPort": "usb-c",
+          "budgetCents": {
+            "value": 40000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-12",
+          "recordingTime": "15:00"
+        },
+        "unknown": [
+          "os"
+        ],
+        "conflicts": []
+      },
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 2,
+        "remoteGuests": 0,
+        "hostPort": "usb-c",
+        "os": "macos",
+        "callApp": null,
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 40000,
+        "pickupBy": "2026-10-12T22:00:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "referenceGoalNote": "The buyer confirmed macOS. The first pickup window (10 am to 12 pm) ends before 3 pm.",
+      "recovery": {
+        "recipeId": "R-LOCAL-2",
+        "original": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2C-NL",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "originalTotalCents": 34452,
+        "missingSku": "MIC-DX-A"
+      },
+      "availability": {
+        "MIC-DX-A": 0,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 1,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "FEASIBLE",
+        "best": {
+          "recipeId": "R-LOCAL-2",
+          "lines": [
+            {
+              "sku": "MIC-CX-C",
+              "qty": 2
+            },
+            {
+              "sku": "IF-2C-NL",
+              "qty": 1
+            },
+            {
+              "sku": "HP-CB-A",
+              "qty": 2
+            },
+            {
+              "sku": "CBL-XLR-3",
+              "qty": 2
+            },
+            {
+              "sku": "CBL-CC-1",
+              "qty": 1
+            },
+            {
+              "sku": "STD-DK-A",
+              "qty": 2
+            }
+          ],
+          "subtotalCents": 33900,
+          "taxCents": 2712,
+          "totalCents": 36612,
+          "disruption": 2
+        },
+        "argument": "MIC-CX-C (phantom power from IF-2C-NL) and MIC-DX-B both fit; MIC-CX-C is cheaper: $366.12.",
+        "baseline": {
+          "success": true,
+          "reason": "Swapping both mics to MIC-CX-C passes every check."
+        }
+      }
+    },
+    {
+      "id": "C10",
+      "category": [
+        "quantity conflict in wording",
+        "call app unnamed",
+        "owned equipment",
+        "dependent accessories",
+        "more than one changed item"
+      ],
+      "text": "Two people in the room and one remote guest. Windows laptop with USB-C. One of us already has headphones. All-in budget $460. We record Friday at 1 pm. Actually some weeks there are three of us in the room.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "remoteGuests": 1,
+          "hostPort": "usb-c",
+          "os": "windows",
+          "budgetCents": {
+            "value": 46000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-16",
+          "recordingTime": "13:00",
+          "owned.headphones": 1
+        },
+        "unknown": [
+          "callApp"
+        ],
+        "conflicts": [
+          "localPeople"
+        ]
+      },
+      "labelNote": "Two and three people in the room conflict; the call app is never named.",
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 2,
+        "remoteGuests": 1,
+        "hostPort": "usb-c",
+        "os": "windows",
+        "callApp": "google-meet",
+        "owned": {
+          "headphones": 1,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 46000,
+        "pickupBy": "2026-10-16T20:00:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "referenceGoalNote": "The buyer confirmed two people and Google Meet.",
+      "recovery": {
+        "recipeId": "R-LOCAL2-REMOTE1",
+        "original": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2C-LB",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 1
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "originalTotalCents": 34560,
+        "missingSku": "IF-2C-LB"
+      },
+      "availability": {
+        "MIC-DX-A": 4,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 0,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "FEASIBLE",
+        "best": {
+          "recipeId": "R-LOCAL2-REMOTE1",
+          "lines": [
+            {
+              "sku": "MIC-DX-A",
+              "qty": 2
+            },
+            {
+              "sku": "IF-2B-LB",
+              "qty": 1
+            },
+            {
+              "sku": "HP-CB-A",
+              "qty": 1
+            },
+            {
+              "sku": "CBL-XLR-3",
+              "qty": 2
+            },
+            {
+              "sku": "CBL-BA-1",
+              "qty": 1
+            },
+            {
+              "sku": "ADP-AC",
+              "qty": 1
+            },
+            {
+              "sku": "STD-DK-A",
+              "qty": 2
+            }
+          ],
+          "subtotalCents": 36200,
+          "taxCents": 2896,
+          "totalCents": 39096,
+          "disruption": 5
+        },
+        "argument": "IF-4C-LB would cost $475.20, over $460. The USB-B loopback interface with its cable and adapter fits: $390.96.",
+        "baseline": {
+          "success": false,
+          "reason": "Interface-only swaps: IF-2B-LB cannot connect with the USB-C cable, IF-4C-LB is over budget, IF-2C-NL has no loopback, IF-2C-UK is out of stock."
+        }
+      }
+    },
+    {
+      "id": "C11",
+      "category": [
+        "budget unstated",
+        "USB-A host",
+        "simple swap"
+      ],
+      "text": "I record by myself in my office with one remote guest on Zoom. It's an older Mac with only USB-A ports, running macOS. First recording is Wednesday at 11 am.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 1,
+          "remoteGuests": 1,
+          "callApp": "zoom",
+          "hostPort": "usb-a",
+          "os": "macos",
+          "recordingDate": "2026-10-14",
+          "recordingTime": "11:00"
+        },
+        "unknown": [
+          "budgetCents"
+        ],
+        "conflicts": []
+      },
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 1,
+        "remoteGuests": 1,
+        "hostPort": "usb-a",
+        "os": "macos",
+        "callApp": "zoom",
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 35000,
+        "pickupBy": "2026-10-14T18:00:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "referenceGoalNote": "The buyer confirmed $350 all-in.",
+      "recovery": {
+        "recipeId": "R-LOCAL2-REMOTE1",
+        "original": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 1
+          },
+          {
+            "sku": "IF-2B-LB",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 1
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 1
+          },
+          {
+            "sku": "CBL-BA-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 1
+          }
+        ],
+        "originalTotalCents": 29592,
+        "missingSku": "MIC-DX-A"
+      },
+      "availability": {
+        "MIC-DX-A": 0,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 1,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "FEASIBLE",
+        "best": {
+          "recipeId": "R-LOCAL2-REMOTE1",
+          "lines": [
+            {
+              "sku": "MIC-CX-C",
+              "qty": 1
+            },
+            {
+              "sku": "IF-2B-LB",
+              "qty": 1
+            },
+            {
+              "sku": "HP-CB-A",
+              "qty": 1
+            },
+            {
+              "sku": "CBL-XLR-3",
+              "qty": 1
+            },
+            {
+              "sku": "CBL-BA-1",
+              "qty": 1
+            },
+            {
+              "sku": "STD-DK-A",
+              "qty": 1
+            }
+          ],
+          "subtotalCents": 28400,
+          "taxCents": 2272,
+          "totalCents": 30672,
+          "disruption": 2
+        },
+        "argument": "The solo recipe needs a USB-C computer, so it does not apply. MIC-CX-C replaces the mic: $306.72.",
+        "baseline": {
+          "success": true,
+          "reason": "Swapping the mic to MIC-CX-C passes every check."
+        }
+      }
+    },
+    {
+      "id": "C12",
+      "category": [
+        "time unstated",
+        "negation",
+        "dependent accessories",
+        "more than one changed item"
+      ],
+      "text": "Two of us, in-person only, no remote guests. USB-C MacBook on macOS. Up to $430 total. Recording Sunday.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 2,
+          "remoteGuests": 0,
+          "hostPort": "usb-c",
+          "os": "macos",
+          "budgetCents": {
+            "value": 43000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-18"
+        },
+        "unknown": [
+          "recordingTime"
+        ],
+        "conflicts": []
+      },
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 2,
+        "remoteGuests": 0,
+        "hostPort": "usb-c",
+        "os": "macos",
+        "callApp": null,
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 43000,
+        "pickupBy": "2026-10-19T00:00:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "referenceGoalNote": "The buyer confirmed 5 pm.",
+      "recovery": {
+        "recipeId": "R-LOCAL-2",
+        "original": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2C-NL",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "originalTotalCents": 34452,
+        "missingSku": "CBL-CC-1"
+      },
+      "availability": {
+        "MIC-DX-A": 4,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 1,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 0,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "FEASIBLE",
+        "best": {
+          "recipeId": "R-LOCAL-2",
+          "lines": [
+            {
+              "sku": "MIC-DX-A",
+              "qty": 2
+            },
+            {
+              "sku": "IF-2B-LB",
+              "qty": 1
+            },
+            {
+              "sku": "HP-CB-A",
+              "qty": 2
+            },
+            {
+              "sku": "CBL-XLR-3",
+              "qty": 2
+            },
+            {
+              "sku": "CBL-BA-1",
+              "qty": 1
+            },
+            {
+              "sku": "ADP-AC",
+              "qty": 1
+            },
+            {
+              "sku": "STD-DK-A",
+              "qty": 2
+            }
+          ],
+          "subtotalCents": 39100,
+          "taxCents": 3128,
+          "totalCents": 42228,
+          "disruption": 5
+        },
+        "argument": "Without a USB-C to USB-C cable only the USB-B interface can connect, through the USB-B to USB-A cable and the USB-C adapter: $422.28. Any costlier part pushes it over $430.",
+        "baseline": {
+          "success": false,
+          "reason": "Swapping only the cable cannot connect the USB-C interface."
+        }
+      }
+    },
+    {
+      "id": "C13",
+      "category": [
+        "unspecified OS",
+        "same product and price"
+      ],
+      "text": "Me and my sister recording at home, nobody remote. My laptop has USB-C. $400 all-in. Tuesday at 6:30 pm.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 2,
+          "remoteGuests": 0,
+          "hostPort": "usb-c",
+          "budgetCents": {
+            "value": 40000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-13",
+          "recordingTime": "18:30"
+        },
+        "unknown": [
+          "os"
+        ],
+        "conflicts": []
+      },
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 2,
+        "remoteGuests": 0,
+        "hostPort": "usb-c",
+        "os": "windows",
+        "callApp": null,
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 40000,
+        "pickupBy": "2026-10-14T01:30:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "referenceGoalNote": "The buyer confirmed Windows. One reserved headphone unit is missing but five others are on the shelf.",
+      "recovery": {
+        "recipeId": "R-LOCAL-2",
+        "original": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2C-NL",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "originalTotalCents": 34452,
+        "missingSku": "HP-CB-A"
+      },
+      "availability": {
+        "MIC-DX-A": 4,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 1,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 5,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "FEASIBLE",
+        "best": {
+          "recipeId": "R-LOCAL-2",
+          "lines": [
+            {
+              "sku": "MIC-DX-A",
+              "qty": 2
+            },
+            {
+              "sku": "IF-2C-NL",
+              "qty": 1
+            },
+            {
+              "sku": "HP-CB-A",
+              "qty": 2
+            },
+            {
+              "sku": "CBL-XLR-3",
+              "qty": 2
+            },
+            {
+              "sku": "CBL-CC-1",
+              "qty": 1
+            },
+            {
+              "sku": "STD-DK-A",
+              "qty": 2
+            }
+          ],
+          "subtotalCents": 31900,
+          "taxCents": 2552,
+          "totalCents": 34452,
+          "disruption": 0
+        },
+        "argument": "Other units of the same headphones are in stock, so the original bundle stands unchanged: $344.52.",
+        "baseline": {
+          "success": true,
+          "reason": "Another unit of HP-CB-A is available."
+        }
+      }
+    },
+    {
+      "id": "C14",
+      "category": [
+        "owned equipment",
+        "fewest changes outranks cheaper",
+        "simple swap"
+      ],
+      "text": "Me plus my co-host in the room and a remote guest on Google Meet. Windows laptop, USB-C port. We both already have headphones. $480 total budget. Recording Monday the 19th at 9 am.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 2,
+          "remoteGuests": 1,
+          "callApp": "google-meet",
+          "hostPort": "usb-c",
+          "os": "windows",
+          "budgetCents": {
+            "value": 48000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-19",
+          "recordingTime": "09:00",
+          "owned.headphones": 2
+        },
+        "unknown": [],
+        "conflicts": []
+      },
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 2,
+        "remoteGuests": 1,
+        "hostPort": "usb-c",
+        "os": "windows",
+        "callApp": "google-meet",
+        "owned": {
+          "headphones": 2,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 48000,
+        "pickupBy": "2026-10-19T16:00:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "recovery": {
+        "recipeId": "R-LOCAL2-REMOTE1",
+        "original": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2C-LB",
+            "qty": 1
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "originalTotalCents": 31428,
+        "missingSku": "IF-2C-LB"
+      },
+      "availability": {
+        "MIC-DX-A": 4,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 0,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "FEASIBLE",
+        "best": {
+          "recipeId": "R-LOCAL2-REMOTE1",
+          "lines": [
+            {
+              "sku": "MIC-DX-A",
+              "qty": 2
+            },
+            {
+              "sku": "IF-4C-LB",
+              "qty": 1
+            },
+            {
+              "sku": "CBL-XLR-3",
+              "qty": 2
+            },
+            {
+              "sku": "CBL-CC-1",
+              "qty": 1
+            },
+            {
+              "sku": "STD-DK-A",
+              "qty": 2
+            }
+          ],
+          "subtotalCents": 41100,
+          "taxCents": 3288,
+          "totalCents": 44388,
+          "disruption": 2
+        },
+        "argument": "Both IF-4C-LB ($443.88, one changed part) and the USB-B route ($359.64, three new parts and two removed) fit. The declared ranking puts fewest changes before price, so IF-4C-LB ranks first.",
+        "baseline": {
+          "success": true,
+          "reason": "Swapping only the interface to IF-4C-LB passes every check."
+        }
+      }
+    },
+    {
+      "id": "C15",
+      "category": [
+        "no supported connection",
+        "negation",
+        "USB-A host"
+      ],
+      "text": "Solo show, just me, no remote guests. Windows desktop with USB-A only. Budget $300 total. Recording Thursday at 7 pm.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 1,
+          "remoteGuests": 0,
+          "hostPort": "usb-a",
+          "os": "windows",
+          "budgetCents": {
+            "value": 30000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-15",
+          "recordingTime": "19:00"
+        },
+        "unknown": [],
+        "conflicts": []
+      },
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 1,
+        "remoteGuests": 0,
+        "hostPort": "usb-a",
+        "os": "windows",
+        "callApp": null,
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 30000,
+        "pickupBy": "2026-10-16T02:00:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "recovery": {
+        "recipeId": "R-LOCAL-2",
+        "original": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 1
+          },
+          {
+            "sku": "IF-2B-LB",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 1
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 1
+          },
+          {
+            "sku": "CBL-BA-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 1
+          }
+        ],
+        "originalTotalCents": 29592,
+        "missingSku": "IF-2B-LB"
+      },
+      "availability": {
+        "MIC-DX-A": 4,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 1,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 0,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "NO_FEASIBLE_SUPPORTED_BUNDLE",
+        "argument": "Only R-LOCAL-2 covers one person with no remote guest (the solo recipe needs a USB-C computer). A USB-A computer is reachable only through CBL-BA-1, whose device end is USB-B; the adapter only outputs USB-C. The only USB-B interface, IF-2B-LB, has none available. Every USB-C interface needs CBL-CC-1, which ends in USB-C. So every combination fails the connection or availability check.",
+        "baseline": {
+          "success": false,
+          "reason": "No other interface connects to a USB-A computer."
+        }
+      }
+    },
+    {
+      "id": "C16",
+      "category": [
+        "budget conflict with stock",
+        "owned equipment"
+      ],
+      "text": "Two hosts in the studio and one remote guest on Google Meet. USB-C Windows laptop. We already own two mic stands. Absolute max $385 including tax. Recording Saturday at 11 am.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 2,
+          "remoteGuests": 1,
+          "callApp": "google-meet",
+          "hostPort": "usb-c",
+          "os": "windows",
+          "budgetCents": {
+            "value": 38500,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-17",
+          "recordingTime": "11:00",
+          "owned.stands": 2
+        },
+        "unknown": [],
+        "conflicts": []
+      },
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 2,
+        "remoteGuests": 1,
+        "hostPort": "usb-c",
+        "os": "windows",
+        "callApp": "google-meet",
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 2
+        },
+        "budgetCents": 38500,
+        "pickupBy": "2026-10-17T18:00:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "recovery": {
+        "recipeId": "R-LOCAL2-REMOTE1",
+        "original": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2C-LB",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          }
+        ],
+        "originalTotalCents": 34452,
+        "missingSku": "IF-2C-LB"
+      },
+      "availability": {
+        "MIC-DX-A": 4,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 0,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "NO_FEASIBLE_SUPPORTED_BUNDLE",
+        "nearMissBudgetCents": 38988,
+        "argument": "Remote routing needs loopback; the in-stock loopback interfaces are IF-2B-LB and IF-4C-LB (IF-2C-LB missing, IF-2C-UK none in stock, IF-2C-NL has no loopback). With the cheapest part in every other role, IF-2B-LB with its cable and adapter totals $389.88 and IF-4C-LB totals $474.12, both over $385. The solo recipe does not cover two people.",
+        "baseline": {
+          "success": false,
+          "reason": "Every interface-only swap fails connection, routing, availability or budget."
+        }
+      }
+    },
+    {
+      "id": "C17",
+      "category": [
+        "pickup deadline conflict",
+        "same-day",
+        "negation"
+      ],
+      "text": "Two of us recording in my studio today at 1:30 pm, no remote guests. USB-C MacBook, macOS. Budget $400 all in.",
+      "context": {
+        "referenceTime": "2026-10-12T17:30:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 2,
+          "remoteGuests": 0,
+          "hostPort": "usb-c",
+          "os": "macos",
+          "budgetCents": {
+            "value": 40000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-12",
+          "recordingTime": "13:30"
+        },
+        "unknown": [],
+        "conflicts": []
+      },
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 2,
+        "remoteGuests": 0,
+        "hostPort": "usb-c",
+        "os": "macos",
+        "callApp": null,
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 40000,
+        "pickupBy": "2026-10-12T20:30:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "recovery": {
+        "recipeId": "R-LOCAL-2",
+        "original": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2C-NL",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "originalTotalCents": 34452,
+        "missingSku": "MIC-DX-A"
+      },
+      "availability": {
+        "MIC-DX-A": 0,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 1,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "NO_FEASIBLE_SUPPORTED_BUNDLE",
+        "argument": "At 10:30 am PDT the pickup policy (2-hour lead, slots at 10, 12, 2, 4 and 6) offers 2 to 4 pm first. Every bundle shares that window, which ends after the 1:30 pm deadline, so every combination fails the pickup check.",
+        "baseline": {
+          "success": false,
+          "reason": "The same pickup window applies to any swap."
+        }
+      }
+    },
+    {
+      "id": "C18",
+      "category": [
+        "undocumented routing evidence",
+        "unspecified OS"
+      ],
+      "text": "My co-host and I plus one remote guest via Zoom. Laptop with USB-C. $480 total. Friday at 10 am.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 2,
+          "remoteGuests": 1,
+          "callApp": "zoom",
+          "hostPort": "usb-c",
+          "budgetCents": {
+            "value": 48000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-16",
+          "recordingTime": "10:00"
+        },
+        "unknown": [
+          "os"
+        ],
+        "conflicts": []
+      },
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 2,
+        "remoteGuests": 1,
+        "hostPort": "usb-c",
+        "os": "windows",
+        "callApp": "zoom",
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 48000,
+        "pickupBy": "2026-10-16T17:00:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "referenceGoalNote": "The buyer confirmed Windows.",
+      "recovery": {
+        "recipeId": "R-LOCAL2-REMOTE1",
+        "original": [
+          {
+            "sku": "MIC-DX-A",
+            "qty": 2
+          },
+          {
+            "sku": "IF-2C-LB",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-XLR-3",
+            "qty": 2
+          },
+          {
+            "sku": "CBL-CC-1",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 2
+          }
+        ],
+        "originalTotalCents": 37692,
+        "missingSku": "IF-2C-LB"
+      },
+      "availability": {
+        "MIC-DX-A": 4,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 0,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 0,
+        "IF-4C-LB": 0,
+        "IF-2C-UK": 2,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "EVIDENCE_INCOMPLETE",
+        "argument": "The documented loopback interfaces are all unavailable. IF-2C-UK is in stock and fits the budget ($366.12 with the cheapest parts), but its loopback is undocumented, so remote routing cannot be confirmed. ReCart must stop for evidence review rather than claim a fit.",
+        "baseline": {
+          "success": false,
+          "reason": "The IF-2C-UK swap has an unconfirmed routing check; the others fail."
+        }
+      }
+    },
+    {
+      "id": "C19",
+      "category": [
+        "undocumented routing evidence",
+        "ambiguous date",
+        "recipe switch"
+      ],
+      "text": "Just me in the room, interviewing a guest over Google Meet. MacBook with USB-C on macOS. Total budget $260. Recording this weekend at 2 pm.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 1,
+          "remoteGuests": 1,
+          "callApp": "google-meet",
+          "hostPort": "usb-c",
+          "os": "macos",
+          "budgetCents": {
+            "value": 26000,
+            "allIn": true
+          },
+          "recordingTime": "14:00"
+        },
+        "unknown": [
+          "recordingDate"
+        ],
+        "conflicts": []
+      },
+      "labelNote": "\"This weekend\" can mean Saturday or Sunday.",
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 1,
+        "remoteGuests": 1,
+        "hostPort": "usb-c",
+        "os": "macos",
+        "callApp": "google-meet",
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 26000,
+        "pickupBy": "2026-10-17T21:00:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "referenceGoalNote": "The buyer confirmed Saturday, October 17.",
+      "recovery": {
+        "recipeId": "R-SOLO-REMOTE",
+        "original": [
+          {
+            "sku": "MIC-USB-D",
+            "qty": 1
+          },
+          {
+            "sku": "HP-CB-A",
+            "qty": 1
+          },
+          {
+            "sku": "STD-DK-A",
+            "qty": 1
+          }
+        ],
+        "originalTotalCents": 13284,
+        "missingSku": "MIC-USB-D"
+      },
+      "availability": {
+        "MIC-DX-A": 4,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 0,
+        "IF-2C-LB": 1,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 1,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "EVIDENCE_INCOMPLETE",
+        "argument": "The USB mic is gone, so only the XLR remote recipe applies. Its documented loopback options cost at least $263.52 (IF-2C-LB), over $260. The only bundle within budget whose known checks pass uses IF-2C-UK ($252.72), whose loopback is undocumented. ReCart must stop for evidence review.",
+        "baseline": {
+          "success": false,
+          "reason": "The solo recipe's mic role has no substitute."
+        }
+      }
+    },
+    {
+      "id": "C20",
+      "category": [
+        "unsupported goal"
+      ],
+      "text": "Three of us in the studio and one remote guest on Zoom. USB-C MacBook, macOS. $600 all-in. Recording Friday at 2 pm.",
+      "context": {
+        "referenceTime": "2026-10-12T15:00:00Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "labels": {
+        "stated": {
+          "localPeople": 3,
+          "remoteGuests": 1,
+          "callApp": "zoom",
+          "hostPort": "usb-c",
+          "os": "macos",
+          "budgetCents": {
+            "value": 60000,
+            "allIn": true
+          },
+          "recordingDate": "2026-10-16",
+          "recordingTime": "14:00"
+        },
+        "unknown": [],
+        "conflicts": []
+      },
+      "referenceGoal": {
+        "task": "podcast",
+        "localPeople": 3,
+        "remoteGuests": 1,
+        "hostPort": "usb-c",
+        "os": "macos",
+        "callApp": "zoom",
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "budgetCents": 60000,
+        "pickupBy": "2026-10-16T21:00:00Z",
+        "timezone": "America/Los_Angeles",
+        "preferences": {}
+      },
+      "recovery": null,
+      "availability": {
+        "MIC-DX-A": 4,
+        "MIC-DX-B": 3,
+        "MIC-CX-C": 3,
+        "MIC-USB-D": 2,
+        "IF-2C-LB": 1,
+        "IF-2C-NL": 3,
+        "IF-2B-LB": 2,
+        "IF-4C-LB": 1,
+        "IF-2C-UK": 0,
+        "HP-CB-A": 6,
+        "HP-OB-B": 2,
+        "CBL-XLR-3": 10,
+        "CBL-CC-1": 5,
+        "CBL-BA-1": 5,
+        "ADP-AC": 4,
+        "STD-DK-A": 6,
+        "STD-BM-B": 2,
+        "SPL-HP-2": 3
+      },
+      "expected": {
+        "status": "UNSUPPORTED_GOAL",
+        "argument": "No declared recipe covers more than two people in the room.",
+        "baseline": null
+      }
+    }
+  ]
+}

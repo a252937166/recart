@@ -1,0 +1,26 @@
+{
+  "ok": true,
+  "at": "2026-10-10T08:48:53.565Z",
+  "base": "https://recart.axiqo.xyz",
+  "scenario": "C",
+  "attempts": [
+    {
+      "state": "VOIDED",
+      "order": "4JS89671ND4466351",
+      "authorization": "2UU04074GY004394V",
+      "capture": null,
+      "refund": null
+    }
+  ],
+  "caseStatus": "CLOSED_NO_SOLUTION",
+  "log": [
+    "2026-10-10T08:47:58.651Z open https://recart.axiqo.xyz",
+    "2026-10-10T08:48:14.631Z extraction shown: AI draft (claude-haiku-4-5)",
+    "2026-10-10T08:48:27.685Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-10T08:48:35.524Z PayPal login submitted",
+    "2026-10-10T08:48:38.608Z PayPal: clicked button:has-text('Complete Purchase')",
+    "2026-10-10T08:48:43.619Z PayPal popup closed (approved)",
+    "2026-10-10T08:48:43.625Z attempt 1 authorized",
+    "2026-10-10T08:48:44.761Z discrepancy reported"
+  ]
+}

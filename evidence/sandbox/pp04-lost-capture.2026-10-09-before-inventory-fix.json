@@ -1,0 +1,165 @@
+{
+  "test": "PP04 capture response lost after PayPal executed it",
+  "at": "2026-10-09T17:12:25.588Z",
+  "method": "Local ReCart server against the real PayPal Sandbox with PAYPAL_FAULT_INJECTION=1. The capture request reached PayPal; its reply was discarded before ReCart saw it.",
+  "recart": {
+    "checkout": {
+      "id": "518a924d-1805-418f-a32d-94b58486b92b",
+      "intent_id": "e006988f-261b-4dd9-993c-613c860a4959",
+      "payment_state": "PAID",
+      "authorization_id": "4FH14458GE785542N",
+      "capture_id": "2JF18309PH9864531"
+    },
+    "operations": [
+      {
+        "kind": "CREATE_ORDER",
+        "status": "SUCCEEDED",
+        "request_id": "ea3e309c-6c16-44ad-82fa-a8e7be18e7ca",
+        "attempts": 1,
+        "http_status": 200,
+        "provider_ref": "78M91677GD927643W",
+        "provider_status": "PAYER_ACTION_REQUIRED",
+        "error": null,
+        "created_at": "2026-10-09T17:11:33.308Z",
+        "updated_at": "2026-10-09T17:11:35.317Z"
+      },
+      {
+        "kind": "AUTHORIZE",
+        "status": "SUCCEEDED",
+        "request_id": "5bdab2a1-21d4-42f2-aaa6-74ce763ca4a2",
+        "attempts": 1,
+        "http_status": 201,
+        "provider_ref": "4FH14458GE785542N",
+        "provider_status": "CREATED",
+        "error": null,
+        "created_at": "2026-10-09T17:11:40.068Z",
+        "updated_at": "2026-10-09T17:11:42.568Z"
+      },
+      {
+        "kind": "CAPTURE",
+        "status": "SUCCEEDED",
+        "request_id": "18e8d7a9-1606-483f-9826-aedb493878f7",
+        "attempts": 2,
+        "http_status": 200,
+        "provider_ref": "2JF18309PH9864531",
+        "provider_status": "COMPLETED",
+        "error": null,
+        "created_at": "2026-10-09T17:11:42.688Z",
+        "updated_at": "2026-10-09T17:11:49.131Z"
+      }
+    ],
+    "audit": [
+      {
+        "at": "2026-10-09T17:11:09.844Z",
+        "actor": "buyer",
+        "action": "checkout.started",
+        "detail": {
+          "quote": "9620b502-d691-49a3-b0ff-b36c14b9f0a1",
+          "total": 37692,
+          "approvalDeadline": "2026-10-09T17:26:09.840Z"
+        }
+      },
+      {
+        "at": "2026-10-09T17:11:12.390Z",
+        "actor": "paypal",
+        "action": "create_order.response",
+        "detail": {
+          "http": 200,
+          "state": "READY_FOR_APPROVAL",
+          "debugId": "f7401476f5a25"
+        }
+      },
+      {
+        "at": "2026-10-09T17:11:26.196Z",
+        "actor": "paypal",
+        "action": "authorize.response",
+        "detail": {
+          "http": 201,
+          "state": "AUTHORIZED",
+          "debugId": "ca47f0122dd15"
+        }
+      },
+      {
+        "at": "2026-10-09T17:11:27.496Z",
+        "actor": "paypal",
+        "action": "void.response",
+        "detail": {
+          "http": 200,
+          "state": "VOIDED",
+          "debugId": "ca47f012e494c"
+        }
+      },
+      {
+        "at": "2026-10-09T17:11:33.309Z",
+        "actor": "buyer",
+        "action": "checkout.started",
+        "detail": {
+          "quote": "7559eda4-e8a0-4aed-a1ed-7e99e34596ce",
+          "total": 42228,
+          "approvalDeadline": "2026-10-09T17:26:33.305Z"
+        }
+      },
+      {
+        "at": "2026-10-09T17:11:35.317Z",
+        "actor": "paypal",
+        "action": "create_order.response",
+        "detail": {
+          "http": 200,
+          "state": "READY_FOR_APPROVAL",
+          "debugId": "f92311686d2c0"
+        }
+      },
+      {
+        "at": "2026-10-09T17:11:42.570Z",
+        "actor": "paypal",
+        "action": "authorize.response",
+        "detail": {
+          "http": 201,
+          "state": "AUTHORIZED",
+          "debugId": "f2466621f8efa"
+        }
+      },
+      {
+        "at": "2026-10-09T17:11:44.823Z",
+        "actor": "paypal",
+        "action": "capture.unknown",
+        "detail": {
+          "reason": "injected: captureAuthorization response discarded after provider status 201"
+        }
+      },
+      {
+        "at": "2026-10-09T17:11:49.136Z",
+        "actor": "paypal",
+        "action": "capture.response",
+        "detail": {
+          "http": 200,
+          "state": "PAID",
+          "debugId": "f435445a6b2f1"
+        }
+      }
+    ]
+  },
+  "paypal": {
+    "orderId": "78M91677GD927643W",
+    "orderStatus": "COMPLETED",
+    "authorization": {
+      "id": "4FH14458GE785542N",
+      "status": "CAPTURED"
+    },
+    "captures": [
+      {
+        "id": "2JF18309PH9864531",
+        "status": "COMPLETED",
+        "amount": {
+          "currency_code": "USD",
+          "value": "422.28"
+        }
+      }
+    ]
+  },
+  "result": {
+    "captureCountAtPayPal": 1,
+    "recartCaptureMatchesPayPal": true,
+    "finalPaymentState": "PAID"
+  }
+}

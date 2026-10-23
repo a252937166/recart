@@ -1,0 +1,147 @@
+{
+  "recordedAt": "2026-10-11T08:26:17.357Z",
+  "total": 229,
+  "passed": 229,
+  "groups": [
+    {
+      "name": "Restart recovery, timing presets, language fallbacks, returning to a purchase (integration)",
+      "total": 11,
+      "passed": 11
+    },
+    {
+      "name": "Signal Room review: evidence counts a capture only once PayPal completes it (integration)",
+      "total": 2,
+      "passed": 2
+    },
+    {
+      "name": "Payments, recovery, webhooks and sessions (integration: simulated PayPal client, real PostgreSQL, controlled clock)",
+      "total": 21,
+      "passed": 21
+    },
+    {
+      "name": "Readiness-review regressions: pending polls, settlement deadline, inventory at handoff (integration)",
+      "total": 6,
+      "passed": 6
+    },
+    {
+      "name": "Guided demo stage model derived from server state (integration)",
+      "total": 2,
+      "passed": 2
+    },
+    {
+      "name": "Published examples against an unmodified server: independent Python store, Shopify sync, quickstart",
+      "total": 3,
+      "passed": 3
+    },
+    {
+      "name": "Deployment guards (unit)",
+      "total": 3,
+      "passed": 3
+    },
+    {
+      "name": "Deterministic date reading and budget-conflict check (unit)",
+      "total": 11,
+      "passed": 11
+    },
+    {
+      "name": "Service units: only directives and log targets systemd 219 supports, journal logging with priorities, stop timeout above the app's shutdown bound (unit)",
+      "total": 5,
+      "passed": 5
+    },
+    {
+      "name": "Solver, money and time (unit)",
+      "total": 21,
+      "passed": 21
+    },
+    {
+      "name": "Job lanes: payment jobs run while an explanation waits; atomic pending state; restart takeover; a last failure and its cleanup commit together, only by the lease owner, never on a requested rerun, including a process killed mid-transaction (integration)",
+      "total": 12,
+      "passed": 12
+    },
+    {
+      "name": "SIGTERM on a real server process with an open event stream and a running explanation: clean exit in time, lease handed back, immediate takeover (process-level)",
+      "total": 1,
+      "passed": 1
+    },
+    {
+      "name": "stop-grace.test.ts",
+      "total": 2,
+      "passed": 2
+    },
+    {
+      "name": "Language providers: the Codex gateway and the hosted endpoint (unit, fake fetch)",
+      "total": 5,
+      "passed": 5
+    },
+    {
+      "name": "Language holds under concurrency: stale probes, answers and failures cannot lift, weaken or shorten a newer hold; one status probe at a time across failure generations, bounded and spaced by the interval (deterministic interleavings)",
+      "total": 10,
+      "passed": 10
+    },
+    {
+      "name": "Language failover: Codex first, hosted backup only while Codex is down; refusals keep their cooldown, one shared probe (integration)",
+      "total": 9,
+      "passed": 9
+    },
+    {
+      "name": "Scoped fault simulation: a delayed or failing provider for one session or merchant only, cooldown untouched (integration)",
+      "total": 7,
+      "passed": 7
+    },
+    {
+      "name": "Proxy timeouts: every drafting route covers the worst-case primary-plus-backup call (config check and timed requests)",
+      "total": 5,
+      "passed": 5
+    },
+    {
+      "name": "Merchant API: outcomes, stock-change revisions, isolation, scopes, idempotency, approval, execution, webhooks, OpenAPI (integration)",
+      "total": 31,
+      "passed": 31
+    },
+    {
+      "name": "Remote MCP server through the official SDK client: tools, REST equality, scopes (integration)",
+      "total": 5,
+      "passed": 5
+    },
+    {
+      "name": "Rate limits: proxy-trusted client address, per-address quotas, Retry-After (integration)",
+      "total": 5,
+      "passed": 5
+    },
+    {
+      "name": "Acceptance-review regressions: expired approvals, cursor pagination, stale-count refresh (integration)",
+      "total": 8,
+      "passed": 8
+    },
+    {
+      "name": "Bounded HTTP shutdown: open event streams are ended with their listeners and timers, and a hung request cannot hold the close (integration)",
+      "total": 2,
+      "passed": 2
+    },
+    {
+      "name": "Signal Room review: a new release reaches returning visitors (HTML revalidated, hashed assets immutable)",
+      "total": 2,
+      "passed": 2
+    },
+    {
+      "name": "Review follow-up: unconfirmed requirement drafts survive reloads and role switches (unit)",
+      "total": 7,
+      "passed": 7
+    },
+    {
+      "name": "Rate limits: retry wording after a 429 (unit)",
+      "total": 1,
+      "passed": 1
+    },
+    {
+      "name": "Developers page: trial key copy text and expiry wording (unit)",
+      "total": 3,
+      "passed": 3
+    },
+    {
+      "name": "Hosted Astropods agent: language endpoint and PayPal webhook relay (mocked upstreams)",
+      "total": 29,
+      "passed": 29
+    }
+  ]
+}

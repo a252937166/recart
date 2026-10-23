@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.data/
+.env
+.env.*
+!.env.example
+*.log
+evidence/sandbox/*.png
+tmp/
+__pycache__/
+*.pyc
+evidence/e2e/*/*.png

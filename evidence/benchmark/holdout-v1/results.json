@@ -1,0 +1,652 @@
+{
+  "summary": {
+    "version": "holdout-v1",
+    "casesFile": "holdout-v1.json",
+    "casesSha256": "1296d4e589fe963396f949805b1425f6bf17491bc2682043a2e0c6c96acea96b",
+    "rulesSha256": "414407a367457f35eb1f2ac984888726e46dcbe978746ad06f48f191e5549bc9",
+    "runnerSha256": "4d2506d83ab111452eee79d96538961ab3d8e03e8c9eda31929f21b867577b30",
+    "ranAt": "2026-10-09T18:08:10.809Z",
+    "nature": "Team-authored engineering fixtures for first-pass extraction only (no solver expectations). Not an independent or real-user study.",
+    "promptVersion": "lang-prompts-v3",
+    "schemaVersion": "lang-schema-v1",
+    "postprocessVersion": "postprocess-v3",
+    "solver": null,
+    "baseline": null,
+    "extraction": {
+      "model": "claude-haiku-4-5",
+      "cases": 8,
+      "calls": {
+        "ok": 8,
+        "failed": 0
+      },
+      "precision": {
+        "truePositives": 55,
+        "assertions": 55,
+        "percent": 100
+      },
+      "recall": {
+        "truePositives": 55,
+        "statedFacts": 55,
+        "percent": 100
+      },
+      "wrongValues": 0,
+      "unsupportedAssertions": 0,
+      "unknownsPreserved": "6/6",
+      "unknownsListedOrAsked": "6/6",
+      "conflictsFlagged": "2/2",
+      "silentlyResolvedConflicts": 0,
+      "wholeCaseCorrect": "8/8",
+      "latencyMs": {
+        "median": 2106,
+        "p95": 3905
+      },
+      "tokens": {
+        "input": 6205,
+        "output": 2592
+      },
+      "estimatedCostUsd": 0.0192
+    }
+  },
+  "solver": [],
+  "extraction": [
+    {
+      "id": "H01",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 3325,
+      "usage": {
+        "completion_tokens": 339,
+        "prompt_tokens": 789,
+        "total_tokens": 1128
+      },
+      "error": null,
+      "tp": 8,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 8,
+      "stated": 8,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [],
+      "unknownsPreserved": [],
+      "unknownsListed": [],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 2,
+          "span": "two-person show records in my garage"
+        },
+        "remoteGuests": {
+          "value": 1,
+          "span": "a third co-host dials in on Riverside"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "Mac mini with USB-C"
+        },
+        "os": {
+          "value": "macos",
+          "span": "running macOS"
+        },
+        "callApp": {
+          "value": "riverside",
+          "span": "dials in on Riverside"
+        },
+        "budgetCents": {
+          "value": 50000,
+          "span": "up to $500 with tax",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-24",
+          "span": "this Saturday"
+        },
+        "recordingTime": {
+          "value": "15:30",
+          "span": "3:30 pm"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [],
+        "conflicts": [],
+        "questions": []
+      }
+    },
+    {
+      "id": "H02",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 3905,
+      "usage": {
+        "completion_tokens": 376,
+        "prompt_tokens": 776,
+        "total_tokens": 1152
+      },
+      "error": null,
+      "tp": 5,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 5,
+      "stated": 5,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [
+        "callApp",
+        "recordingTime"
+      ],
+      "unknownsPreserved": [
+        "callApp",
+        "recordingTime"
+      ],
+      "unknownsListed": [
+        "callApp",
+        "recordingTime"
+      ],
+      "conflicts": [
+        "budgetCents"
+      ],
+      "conflictsFlagged": [
+        "budgetCents"
+      ],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 1,
+          "span": "Just me"
+        },
+        "remoteGuests": {
+          "value": 1,
+          "span": "a guest calling in"
+        },
+        "hostPort": {
+          "value": "usb-a",
+          "span": "USB-A"
+        },
+        "os": {
+          "value": "windows",
+          "span": "Windows PC"
+        },
+        "callApp": null,
+        "budgetCents": null,
+        "recordingDate": {
+          "value": "2026-10-26",
+          "span": "Monday"
+        },
+        "recordingTime": null,
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [
+          "callApp",
+          "recordingTime"
+        ],
+        "conflicts": [
+          {
+            "field": "budgetCents",
+            "detail": "Buyer stated \"below $250\" and \"$275 at most\" — unclear if the hard limit is $250 or $275"
+          }
+        ],
+        "questions": [
+          "Which call app will you use: Zoom, Google Meet, Riverside, or something else?",
+          "Is your budget a hard cap at $250, or can you go up to $275?",
+          "What time Monday morning do you plan to record?"
+        ]
+      }
+    },
+    {
+      "id": "H03",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2017,
+      "usage": {
+        "completion_tokens": 297,
+        "prompt_tokens": 768,
+        "total_tokens": 1065
+      },
+      "error": null,
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 7,
+      "stated": 7,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [],
+      "unknownsPreserved": [],
+      "unknownsListed": [],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 3,
+          "span": "Three hosts around one table"
+        },
+        "remoteGuests": {
+          "value": 0,
+          "span": "nobody remote"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "USB-C laptop"
+        },
+        "os": {
+          "value": "linux",
+          "span": "running Linux"
+        },
+        "callApp": null,
+        "budgetCents": {
+          "value": 70000,
+          "span": "$700 all in",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-30",
+          "span": "the 30th"
+        },
+        "recordingTime": {
+          "value": "19:00",
+          "span": "7 pm"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [],
+        "conflicts": [],
+        "questions": []
+      }
+    },
+    {
+      "id": "H04",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2476,
+      "usage": {
+        "completion_tokens": 342,
+        "prompt_tokens": 783,
+        "total_tokens": 1125
+      },
+      "error": null,
+      "tp": 8,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 8,
+      "stated": 8,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [
+        "recordingDate",
+        "recordingTime"
+      ],
+      "unknownsPreserved": [
+        "recordingDate",
+        "recordingTime"
+      ],
+      "unknownsListed": [
+        "recordingDate",
+        "recordingTime"
+      ],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 2,
+          "span": "Two of us record in the same room"
+        },
+        "remoteGuests": {
+          "value": 1,
+          "span": "one guest joins on Google Meet"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "USB-C"
+        },
+        "os": {
+          "value": "windows",
+          "span": "Windows"
+        },
+        "callApp": {
+          "value": "google-meet",
+          "span": "Google Meet"
+        },
+        "budgetCents": {
+          "value": 42000,
+          "span": "Under $420 before tax",
+          "allIn": false
+        },
+        "recordingDate": null,
+        "recordingTime": null,
+        "owned": {
+          "headphones": 2,
+          "micCables": 0,
+          "stands": 2
+        },
+        "negations": [],
+        "unknowns": [
+          "recordingDate",
+          "recordingTime"
+        ],
+        "conflicts": [],
+        "questions": [
+          "Which day next week works best—Monday, Tuesday, or Wednesday?",
+          "What time in the evening—around 6 PM, 7 PM, or 8 PM Pacific?"
+        ]
+      }
+    },
+    {
+      "id": "H05",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2106,
+      "usage": {
+        "completion_tokens": 298,
+        "prompt_tokens": 767,
+        "total_tokens": 1065
+      },
+      "error": null,
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 7,
+      "stated": 7,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [],
+      "unknownsPreserved": [],
+      "unknownsListed": [],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 2,
+          "span": "my brother, just the two of us"
+        },
+        "remoteGuests": {
+          "value": 0,
+          "span": "no call-in guests"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "USB-C MacBook"
+        },
+        "os": {
+          "value": "macos",
+          "span": "MacBook"
+        },
+        "callApp": null,
+        "budgetCents": {
+          "value": 39000,
+          "span": "$390",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-23",
+          "span": "tomorrow"
+        },
+        "recordingTime": {
+          "value": "12:00",
+          "span": "at noon"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [],
+        "conflicts": [],
+        "questions": []
+      }
+    },
+    {
+      "id": "H06",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 1987,
+      "usage": {
+        "completion_tokens": 316,
+        "prompt_tokens": 772,
+        "total_tokens": 1088
+      },
+      "error": null,
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 7,
+      "stated": 7,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [],
+      "unknownsPreserved": [],
+      "unknownsListed": [],
+      "conflicts": [
+        "budgetCents"
+      ],
+      "conflictsFlagged": [
+        "budgetCents"
+      ],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 2,
+          "span": "Two people in the room"
+        },
+        "remoteGuests": {
+          "value": 1,
+          "span": "one remote guest on Zoom"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "USB-C"
+        },
+        "os": {
+          "value": "windows",
+          "span": "Windows laptop"
+        },
+        "callApp": {
+          "value": "zoom",
+          "span": "Zoom"
+        },
+        "budgetCents": null,
+        "recordingDate": {
+          "value": "2026-10-23",
+          "span": "Friday"
+        },
+        "recordingTime": {
+          "value": "10:00",
+          "span": "10 am"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [],
+        "conflicts": [
+          {
+            "field": "budgetCents",
+            "detail": "The request names several amounts: $300, $350."
+          }
+        ],
+        "questions": [
+          "Which budget applies: $300 or $350?"
+        ]
+      }
+    },
+    {
+      "id": "H07",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 2115,
+      "usage": {
+        "completion_tokens": 310,
+        "prompt_tokens": 775,
+        "total_tokens": 1085
+      },
+      "error": null,
+      "tp": 5,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 5,
+      "stated": 5,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [
+        "hostPort",
+        "recordingDate"
+      ],
+      "unknownsPreserved": [
+        "hostPort",
+        "recordingDate"
+      ],
+      "unknownsListed": [
+        "hostPort",
+        "recordingDate"
+      ],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 1,
+          "span": "I'm the only one recording"
+        },
+        "remoteGuests": {
+          "value": 0,
+          "span": "no remote people at all"
+        },
+        "hostPort": null,
+        "os": {
+          "value": "windows",
+          "span": "My computer is a Windows desktop"
+        },
+        "callApp": null,
+        "budgetCents": {
+          "value": 20000,
+          "span": "$200",
+          "allIn": true
+        },
+        "recordingDate": null,
+        "recordingTime": {
+          "value": "20:00",
+          "span": "8 pm"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [
+          "hostPort",
+          "recordingDate"
+        ],
+        "conflicts": [],
+        "questions": [
+          "Which day do you mean: Tue, Oct 27 or Tue, Nov 3?",
+          "What ports does your Windows desktop have—USB-A, USB-C, or both?"
+        ]
+      }
+    },
+    {
+      "id": "H08",
+      "status": "OK",
+      "model": "claude-haiku-4-5",
+      "durationMs": 1920,
+      "usage": {
+        "completion_tokens": 314,
+        "prompt_tokens": 775,
+        "total_tokens": 1089
+      },
+      "error": null,
+      "tp": 8,
+      "fp": 0,
+      "fn": 0,
+      "asserted": 8,
+      "stated": 8,
+      "wrong": [],
+      "missing": [],
+      "unsupported": [],
+      "unknown": [],
+      "unknownsPreserved": [],
+      "unknownsListed": [],
+      "conflicts": [],
+      "conflictsFlagged": [],
+      "silentlyResolved": [],
+      "wholeCase": true,
+      "draft": {
+        "localPeople": {
+          "value": 2,
+          "span": "two hosts"
+        },
+        "remoteGuests": {
+          "value": 1,
+          "span": "one remote guest"
+        },
+        "hostPort": {
+          "value": "usb-c",
+          "span": "USB-C"
+        },
+        "os": {
+          "value": "macos",
+          "span": "macOS"
+        },
+        "callApp": {
+          "value": "google-meet",
+          "span": "Google Meet"
+        },
+        "budgetCents": {
+          "value": 48000,
+          "span": "$480",
+          "allIn": true
+        },
+        "recordingDate": {
+          "value": "2026-10-29",
+          "span": "October 29"
+        },
+        "recordingTime": {
+          "value": "09:15",
+          "span": "9:15 am"
+        },
+        "owned": {
+          "headphones": 0,
+          "micCables": 0,
+          "stands": 0
+        },
+        "negations": [],
+        "unknowns": [],
+        "conflicts": [],
+        "questions": []
+      }
+    }
+  ]
+}

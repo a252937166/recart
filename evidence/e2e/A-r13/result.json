@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "at": "2026-10-10T22:55:13.804Z",
+  "base": "https://recart.axiqo.xyz",
+  "scenario": "A",
+  "release": "r2026.10.10-signal-room-13",
+  "sessionFault": "a simulated 60 s delay scoped to this session's AI explanation (payment jobs ran on their own lane meanwhile)",
+  "extraction": {
+    "status": "OK",
+    "model": "gpt-6-luna",
+    "provider": "codex",
+    "fallbackFrom": null,
+    "durationMs": 16220
+  },
+  "explanation": {
+    "source": "model",
+    "model": "gpt-6-luna",
+    "pending": false,
+    "error": null,
+    "waitedMs": 35299
+  },
+  "attempts": [
+    {
+      "state": "VOIDED",
+      "order": "872150568L230930F",
+      "authorization": "7J5128331M3436144",
+      "capture": null,
+      "refund": null
+    },
+    {
+      "state": "PAID",
+      "order": "3MW33107FV644831L",
+      "authorization": "4JT683846H717632J",
+      "capture": "0GG204371K624960J",
+      "refund": null
+    }
+  ],
+  "caseStatus": "RESOLVED_RECOVERED",
+  "log": [
+    "2026-10-10T22:52:48.068Z open https://recart.axiqo.xyz",
+    "2026-10-10T22:52:50.809Z release r2026.10.10-signal-room-13",
+    "2026-10-10T22:52:58.606Z demo session 770169a4-1733-4a12-a6ef-abfe69016f30",
+    "2026-10-10T22:53:09.130Z ON_SESSION_CMD: {\"scope\":\"session:770169a4-1733-4a12-a6ef-abfe69016f30\",\"fault\":{\"task\":\"explain_change\",\"primary\":{\"delay_ms\":60000}},\"expires_at\":\"2026-10-10T23:08:10.302Z\"}",
+    "2026-10-10T22:53:26.229Z extraction shown: AI draft (gpt-6-luna)",
+    "2026-10-10T22:53:27.419Z draft by codex (gpt-6-luna) in 16220 ms",
+    "2026-10-10T22:53:41.128Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-10T22:53:48.414Z PayPal login submitted",
+    "2026-10-10T22:53:50.864Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-10T22:53:54.886Z PayPal popup closed (approved)",
+    "2026-10-10T22:53:56.706Z attempt 1 authorized",
+    "2026-10-10T22:53:58.900Z discrepancy reported",
+    "2026-10-10T22:54:11.306Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-10T22:54:15.827Z PayPal session already signed in",
+    "2026-10-10T22:54:16.760Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-10T22:54:21.277Z PayPal popup closed (approved)",
+    "2026-10-10T22:54:23.589Z attempt 2 authorized",
+    "2026-10-10T22:54:31.036Z handed over",
+    "2026-10-10T22:55:13.121Z explanation model (gpt-6-luna) after 35299 ms of waiting at the end"
+  ]
+}

@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://astropods.com/schema/package.json
+spec: blueprint/v1
+name: recart-gateway-probe
+
+agent:
+  build:
+    context: .
+    dockerfile: Dockerfile
+  interfaces:
+    frontend: true
+    messaging: false
+  healthcheck:
+    path: /health
+  inputs:
+    - name: RECART_PROBE_API_KEY
+      datatype: string
+      secret: true
+      description: Bearer credential for the bounded ReCart probe endpoints.
+    - name: RECART_PROBE_REQUEST_LIMIT
+      datatype: number
+      default: "20"
+      description: Persistent maximum accepted probe requests for this deployment.
+    - name: RECART_LANGUAGE_REQUEST_LIMIT
+      datatype: number
+      default: "2500"
+      description: Persistent lifetime cap on /v1/language model requests (protects the signup credit).
+    - name: RECART_WEBHOOK_FORWARD_URL
+      datatype: string
+      default: "https://recart.axiqo.xyz/api/webhooks/paypal"
+      description: ReCart server route that receives relayed PayPal webhooks (raw body and PayPal headers, verified by ReCart with PayPal).
+
+models:
+  # Astro AI Gateway — managed model access (injects ASTRO_GATEWAY_URL +
+  # ASTRO_GATEWAY_API_KEY at deploy). List selectable models below; the deployer
+  # picks one and it is injected as MODEL_DEFAULT.
+  default:
+    provider: gateway
+    models: [claude-haiku-4-5]
+
+dev:
+  interfaces:
+    frontend:
+      port: 8080
+  command: env PORT=8080 python -m agent.main

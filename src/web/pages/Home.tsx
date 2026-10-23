@@ -90,7 +90,7 @@ function RecoveryPreview({ data }: { data: Showcase }) {
 const LOG = [
   "store › packing check: 2-in USB-C interface not on the shelf",
   "paypal › void authorization: hold released, buyer not charged",
-  "solver › 480 combinations checked against 10 rules · 3 complete",
+  "solver › 480 combinations checked against 11 rules · 3 complete",
   "recart › new setup: USB-B interface + USB-B→USB-A cable + adapter · +$45.36",
   "buyer › approves version 2 in PayPal · store confirms · captured once",
 ];

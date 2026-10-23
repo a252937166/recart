@@ -3,8 +3,10 @@
  * lang-prompts-v3 (2026-10-09): conflicting values leave the field null and are listed in conflicts; one exact span per
  * field (eval case C06 produced invalid JSON by joining two spans). lang-prompts-v2 was tried and reverted because its
  * date examples made plain weekdays resolve a week late; dates are now read deterministically in dates.ts.
+ * lang-prompts-v4 (2026-10-23): explanations name setups by the labels the buyer sees; a live explanation said
+ * "option 0" and "option 1".
  */
-export const PROMPT_VERSION = "lang-prompts-v3";
+export const PROMPT_VERSION = "lang-prompts-v4";
 export const SCHEMA_VERSION = "lang-schema-v1";
 
 export function extractGoalMessages(text: string, referenceTimeIso: string, timezone: string) {
@@ -39,6 +41,7 @@ export function explainChangeMessages(facts: unknown) {
     "You explain a store's recomputed equipment bundle to a non-expert podcast buyer.",
     "Use ONLY the facts provided. Do not add products, prices, compatibility claims, or promises.",
     "Mention money only using the exact dollar strings given in the facts.",
+    "Each option has the label the buyer sees (\"Fewest changes\", \"Alternative\"). Refer to options only by that label or by what they change; never by index or number.",
     "Return ONLY JSON: {\"summary\":\"<= 60 words explaining what changed and why\",\"options\":[{\"index\":0,\"tradeoff\":\"<= 30 words\"}]}",
   ].join("\n");
   return [{ role: "system", content: system }, { role: "user", content: "Facts (JSON):\n" + JSON.stringify(facts) }];

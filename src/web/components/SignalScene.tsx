@@ -58,10 +58,10 @@ export function SignalScene({ fig }: { fig: SceneFigures }) {
   ];
   // Each phase's readout; all of them share one grid cell, so the console never changes size.
   const readouts = [
-    { tone: "", big: "10 / 10 checks pass", lines: [`total ${usd(fig.originalCents)} · hold only`] },
+    { tone: "", big: "11 / 11 checks pass", lines: [`total ${usd(fig.originalCents)} · hold only`] },
     { tone: "bad", big: "4 paths broken", lines: ["mics · computer · guest · phones"] },
     { tone: "bad", big: "single swaps: 0 / 4 work", lines: ["cable mismatch · no loopback · budget", "whole-setup search running"] },
-    { tone: "good", big: `${usd(fig.differenceCents).replace("$", "+$")} vs original`, lines: [`${usd(fig.underLimitCents)} under the limit`, "3 parts change · 10 / 10 checks pass"] },
+    { tone: "good", big: `${usd(fig.differenceCents).replace("$", "+$")} vs original`, lines: [`${usd(fig.underLimitCents)} under the limit`, "3 parts change · 11 / 11 checks pass"] },
   ];
   const readout = Math.min(phase, 3);
   // A part's status tag sits on its top edge, clear of both text lines.

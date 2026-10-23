@@ -16,7 +16,7 @@ A podcaster orders a recording setup: two mics, an audio interface, headphones, 
 
 ## What ReCart does
 
-1. **Confirms the need.** An AI drafts requirements from the buyer's own words and quotes the words behind each value. The buyer corrects and confirms; nothing is guessed.
+1. **Confirms the need.** An AI drafts requirements from the buyer's own words and quotes the words behind each value; a value counts only when those words name it, and anything else becomes a question. The buyer corrects and confirms.
 2. **Checks every combination.** A deterministic solver tests every in-stock bundle a declared recipe allows against mic inputs, phantom power, headphone feeds, the remote guest's routing, the computer port, stock, deadline and the all-in budget.
 3. **Explains the change.** Changed parts with a reason per role, why a like-for-like swap fails, every passed check with its evidence, and the exact price difference.
 4. **Asks for approval of one exact version.** Proposals are versioned and hashed. A stock or price change produces a new version to review; ReCart never relaxes a limit or assumes an undocumented fact.
@@ -44,8 +44,8 @@ The boundary is the same everywhere: ReCart plans recoveries and records the buy
 
 The AI does two bounded jobs. The primary provider is a self-hosted Codex API gateway (OpenAI-compatible, GPT-6 Luna); the endpoint hosted on Astropods (`hosted-agent/`, Claude Haiku 4.5 via the platform gateway) is the backup, used only while the Codex gateway cannot answer. `/api/health` shows which one is active:
 
-- **`extract_goal`** drafts requirements from the buyer's words. Each value must quote its span from the text, and unstated facts stay unknown. Code then recomputes relative dates and refuses to guess ambiguous ones such as "next Friday". Conflicting budgets become a question.
-- **`explain_change`** explains a recomputed bundle. It may mention only the amounts and product names in the checked facts; otherwise ReCart shows a deterministic template.
+- **`extract_goal`** drafts requirements from the buyer's words. Each value must quote words from the text that support it (a quote about the computer's port cannot set its operating system); unstated or unsupported values stay unknown and become questions. Code then recomputes relative dates and refuses to guess ambiguous ones such as "next Friday". Conflicting budgets become a question.
+- **`explain_change`** explains a recomputed bundle. It may mention only the amounts and product names in the checked facts, and must call setups by the names the buyer sees ("Fewest changes", "Alternative"); otherwise ReCart shows a deterministic template.
 
 The AI never chooses products, declares that no solution exists, or touches payment state. If the service is unavailable, the rules extractor and the explanation template take over.
 
@@ -86,7 +86,7 @@ Set `PAYPAL_MODE=fake` to click through without PayPal; an in-process simulator 
 
 | Command | What it does |
 |---|---|
-| `npm test` | 221 checks: solver and money units; payment, recovery and stage-model integration (simulated PayPal client, real PostgreSQL, controlled clock), including immediate refund restart recovery with the original request ID; merchant API, isolation, idempotency, webhooks and OpenAPI; MCP through the official SDK client; language failover, cooldown and probe sharing with deterministic concurrency interleavings, proxy-timeout budgets, job lanes with atomic terminal failures (including a process killed mid-transaction), bounded SIGTERM shutdown of a real server process with an open event stream, the service unit against systemd 219 and effective shutdown settings, and scoped fault simulation; the web app's cache policy, draft persistence and trial-key helpers; and the published examples run against an unmodified server |
+| `npm test` | 232 checks: solver and money units; the language layer's quote-support and explanation-wording rules; payment, recovery and stage-model integration (simulated PayPal client, real PostgreSQL, controlled clock), including immediate refund restart recovery with the original request ID; merchant API, isolation, idempotency, webhooks and OpenAPI; MCP through the official SDK client; language failover, cooldown and probe sharing with deterministic concurrency interleavings, proxy-timeout budgets, job lanes with atomic terminal failures (including a process killed mid-transaction), bounded SIGTERM shutdown of a real server process with an open event stream, the service unit against systemd 219 and effective shutdown settings, and scoped fault simulation; the web app's cache policy, draft persistence and trial-key helpers; and the published examples run against an unmodified server |
 | `cd examples/sample-store-python && python3 -m unittest -v` | The independent sample store's capability tests (needs a running server, `RECART_BASE_URL`) |
 | `cd examples/shopify-sync && npm test` | The Shopify example's capability tests (mock Shopify, real ReCart server) |
 | `cd hosted-agent && python3 -m unittest discover -s tests` | 29 checks for the hosted agent (language endpoint and webhook relay) |

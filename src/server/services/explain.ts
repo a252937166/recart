@@ -29,6 +29,9 @@ export const FAILURE_PHRASE: Record<string, string> = {
 };
 const UNKNOWN_PHRASE: Record<string, string> = { REMOTE_ROUTING: "loopback support not documented" };
 
+/** The names the buyer sees on the recovery page for the first and any further setup. */
+export const OPTION_LABEL = (i: number) => (i === 0 ? "Fewest changes" : "Alternative");
+
 function listParts(items: { name: string; qty: number }[]): string {
   const parts = items.map((l) => (l.qty > 1 ? `${l.qty}× ${l.name}` : `the ${l.name}`));
   return parts.length <= 1 ? parts.join("") : `${parts.slice(0, -1).join(", ")} and ${parts[parts.length - 1]}`;
@@ -61,7 +64,7 @@ export function buildChangeExplanation(args: { goal: ConfirmedGoal; original: Qu
     stillRequired: capabilities,
     itemOnlySwapsTried: swaps.map((s) => ({ item: s.name, works: s.ok, why: s.reasons })),
     outcome: result.status,
-    options: result.candidates.map((b, i) => ({ index: i, total: formatUSD(b.totalCents), changeVsOriginal: formatUSD(b.totalCents - original.totalCents), added: diffs[i]!.added.map((l) => `${l.qty}x ${l.name}`), removed: diffs[i]!.removed.map((l) => `${l.qty}x ${l.name}`) })),
+    options: result.candidates.map((b, i) => ({ index: i, label: OPTION_LABEL(i), total: formatUSD(b.totalCents), changeVsOriginal: formatUSD(b.totalCents - original.totalCents), added: diffs[i]!.added.map((l) => `${l.qty}x ${l.name}`), removed: diffs[i]!.removed.map((l) => `${l.qty}x ${l.name}`) })),
     nearMisses: result.nearMisses.map((n) => ({ total: formatUSD(n.bundle.totalCents), needs: n.requires.budgetCents ? `budget of at least ${formatUSD(n.requires.budgetCents)}` : "a later pickup deadline" })),
     originalTotal: formatUSD(original.totalCents),
     budget: goal.budgetCents != null ? formatUSD(goal.budgetCents) : null,

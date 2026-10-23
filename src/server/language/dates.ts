@@ -6,8 +6,9 @@ import type { Extraction } from "./adapter.js";
  * The evaluation showed the model's relative-date arithmetic is unreliable, and that it resolves ambiguous phrases
  * such as "next Friday" or "this weekend" instead of asking. Only phrases with a single reading resolve here.
  * postprocess-v1: span grounding only. postprocess-v2: plus this date reading. postprocess-v3: plus the budget conflict check.
+ * postprocess-v4: plus the support check in spans.ts (a quote must name its value; a budget quote must state its amount).
  */
-export const POSTPROCESS_VERSION = "postprocess-v3";
+export const POSTPROCESS_VERSION = "postprocess-v4";
 
 const DAYS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
 type Ymd = { y: number; m: number; d: number };

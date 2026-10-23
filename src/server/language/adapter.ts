@@ -8,6 +8,7 @@ import { CodexProvider, HostedProvider, PROBE_TIMEOUT_MS, ProviderError, type Co
 import { extractGoalMessages, explainChangeMessages, PROMPT_VERSION, SCHEMA_VERSION } from "./prompts.js";
 import { flagBudgetConflict, normalizeRecordingDate, POSTPROCESS_VERSION } from "./dates.js";
 import { rulesExtract } from "./rules.js";
+import { dropUnsupportedSpans } from "./spans.js";
 import { fingerprint } from "../build-info.js";
 
 fingerprint(import.meta.url, "language/adapter.js");
@@ -335,22 +336,14 @@ export function plannedWorstCaseSeconds(cfg: Pick<LanguageConfig, "CODEX_DEADLIN
   return planned.worstCaseSeconds(task);
 }
 
-/** A stated value must be supported by a span that actually occurs in the buyer text. */
-function dropUnsupportedSpans(x: Extraction, text: string): Extraction {
-  const lower = text.toLowerCase();
-  const keep = <T extends { span: string } | null>(f: T): T | null => (f && f.span && lower.includes(f.span.toLowerCase()) ? f : null);
-  const out: Extraction = { ...x };
-  for (const k of ["localPeople", "remoteGuests", "hostPort", "os", "callApp", "recordingDate", "recordingTime"] as const) {
-    const before = out[k];
-    (out as any)[k] = keep(before as any);
-    if (before && !(out as any)[k] && !out.unknowns.includes(k)) out.unknowns.push(k);
-  }
-  if (out.budgetCents && !lower.includes(out.budgetCents.span.toLowerCase())) { out.budgetCents = null; if (!out.unknowns.includes("budgetCents")) out.unknowns.push("budgetCents"); }
-  return out;
-}
 
-/** Generated text may only mention dollar amounts and product names present in the deterministic facts. */
+/**
+ * Generated text may only mention dollar amounts and product names present in the deterministic facts, and may not
+ * name a setup by its position ("option 0"): the buyer sees "Fewest changes" and "Alternative", never numbers.
+ */
 export function groundingProblem(text: string, facts: ExplainFacts): string | null {
+  const index = /\b(?:options?|setups?|bundles?|choices?)\s*(?:#|no\.?\s*)?\d+\b(?!-)/i.exec(text);
+  if (index) return `refers to a setup by its position ("${index[0]}")`;
   for (const m of text.match(/\$\s?\d[\d,]*(?:\.\d{2})?/g) ?? []) {
     const norm = m.replace(/\s/g, "");
     if (!facts.allowedMoney.includes(norm)) return `amount ${norm} not in facts`;

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { api, toast, type Config } from "../lib/core";
+import { startFailureText, startPayPal, stepLabel, type PayPalStep } from "../lib/paypal";
 
 declare module "react" {
   namespace JSX {
@@ -16,7 +17,7 @@ function loadSdk(url: string): Promise<any> {
       const s = document.createElement("script");
       s.src = url; s.async = true;
       s.onload = () => resolve((window as any).paypal);
-      s.onerror = () => { sdkPromise = null; reject(new Error("The PayPal Sandbox SDK could not load. Check your connection or ad blocker, then reload.")); };
+      s.onerror = () => { sdkPromise = null; reject(new Error("PayPal's script request failed")); };
       document.head.appendChild(s);
     });
   }
@@ -30,7 +31,8 @@ function loadSdk(url: string): Promise<any> {
  */
 export function PayPalCheckoutButton({ cfg, quoteId, disabled, onChanged, onWorkingChange }: { cfg: Config; quoteId: string; disabled?: boolean; onChanged: () => void; onWorkingChange?: (working: boolean) => void }) {
   const [ready, setReady] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [step, setStep] = useState<PayPalStep>("script");
+  const [failure, setFailure] = useState<unknown>(null);
   const [working, setWorking] = useState(false);
   const onWorking = useRef(onWorkingChange);
   onWorking.current = onWorkingChange;
@@ -44,17 +46,13 @@ export function PayPalCheckoutButton({ cfg, quoteId, disabled, onChanged, onWork
   useEffect(() => {
     if (cfg.paypal.mode === "fake") { setReady(true); return; }
     let cancelled = false;
-    (async () => {
-      const paypal = await loadSdk(cfg.paypal.sdkUrl);
-      let sdk: any;
-      try {
-        sdk = await paypal.createInstance({ clientId: cfg.paypal.clientId, components: ["paypal-payments"], pageType: "checkout" });
-      } catch {
-        const t = await api<{ clientToken: string }>("GET", "/api/paypal/client-token");
-        sdk = await paypal.createInstance({ clientToken: t.clientToken, components: ["paypal-payments"], pageType: "checkout" });
-      }
-      const methods = await sdk.findEligibleMethods({ currencyCode: "USD" });
-      if (!methods.isEligible("paypal")) throw new Error("PayPal is not available in this browser.");
+    startPayPal({
+      loadScript: () => loadSdk(cfg.paypal.sdkUrl),
+      clientId: cfg.paypal.clientId,
+      clientToken: () => api<{ clientToken: string }>("GET", "/api/paypal/client-token").then((t) => t.clientToken),
+      onStep: (s) => { if (!cancelled) setStep(s); },
+    }).then((sdk) => {
+      if (cancelled) return;
       makeSession.current = () => sdk.createPayPalOneTimePaymentSession({
         onApprove: async (data: { orderId: string }) => {
           setWorking(true);
@@ -68,8 +66,12 @@ export function PayPalCheckoutButton({ cfg, quoteId, disabled, onChanged, onWork
         onError: (e: any) => { setWorking(false); toast(`PayPal reported a problem: ${e?.message ?? e?.code ?? "unknown error"}`, "error"); latest.current.onChanged(); },
       });
       session.current = makeSession.current();
-      if (!cancelled) setReady(true);
-    })().catch((e) => !cancelled && setError(e.message));
+      setReady(true);
+    }).catch((e) => {
+      if (cancelled) return;
+      console.warn("[paypal] did not start", e?.step, e?.kind, e?.code ?? e?.message ?? e);
+      setFailure(e);
+    });
     return () => { cancelled = true; };
   }, [cfg]);
 
@@ -103,7 +105,20 @@ export function PayPalCheckoutButton({ cfg, quoteId, disabled, onChanged, onWork
     });
   };
 
-  if (error) return <div className="notice danger" role="alert"><div><strong>PayPal could not load</strong><div>{error}</div></div></div>;
+  if (failure) {
+    // A reload, not an in-page retry: the SDK keeps a failed start for the page's lifetime (a second createInstance
+    // after a blocked pixel fails again at once), and the server keeps the accepted quote across the reload.
+    const text = startFailureText(failure);
+    return (
+      <div className="notice danger" role="alert">
+        <div>
+          <strong>{text.title}</strong>
+          <div>{text.detail}</div>
+          <div className="btn-row" style={{ marginTop: 10 }}><button type="button" className="btn btn-secondary" onClick={() => window.location.reload()}>Reload and try again</button></div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div aria-busy={working}>
       {cfg.paypal.mode === "fake" ? (
@@ -111,7 +126,7 @@ export function PayPalCheckoutButton({ cfg, quoteId, disabled, onChanged, onWork
       ) : ready ? (
         <paypal-button type="pay" class="paypal-gold" onClick={start} aria-disabled={disabled || working} />
       ) : (
-        <div className="muted small" role="status"><span className="spinner" /> Loading PayPal Sandbox…</div>
+        <div className="muted small" role="status"><span className="spinner" /> {stepLabel(step)}</div>
       )}
       {working && (
         <p className="small muted" style={{ marginTop: 8 }} role="status">

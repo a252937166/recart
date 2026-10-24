@@ -2,6 +2,7 @@ import { useMemo, useRef, useState } from "react";
 import { Page } from "../components/Shell";
 import { Code, ErrorBlock, Notice, Pill, Spinner } from "../components/ui";
 import { CopyButton, Link, retryAtText, useFetch, useNow, when, type Config } from "../lib/core";
+import { sourceUrl } from "../lib/source";
 import { authorizationHeader, curlExample, expiryOf, maskKey, mcpUrl } from "../lib/trial";
 
 const store = { get: (k: string) => { try { return sessionStorage.getItem(k); } catch { return null; } }, set: (k: string, v: string | null) => { try { if (v === null) sessionStorage.removeItem(k); else sessionStorage.setItem(k, v); } catch { /* storage unavailable: the explorer still works for this page view */ } } };
@@ -266,7 +267,7 @@ export function Developers({ cfg }: { cfg: Config | null }) {
   }, [spec.data]);
   const repo = cfg?.repoUrl;
   const trial = useTrialKey();
-  const ex = (p: string) => (repo ? <a href={`${repo.replace(/\/$/, "")}/tree/main/recart/${p}`}>{p}</a> : <code>{p}</code>);
+  const ex = (p: string) => (repo ? <a href={sourceUrl(repo, p)}>{p}</a> : <code>{p}</code>);
   return (
     <Page cfg={cfg}>
       <div className="wrap" style={{ paddingTop: 48 }}>

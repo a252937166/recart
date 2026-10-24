@@ -5,14 +5,13 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { randomUUID } from "node:crypto";
 import os from "node:os";
 import path from "node:path";
+import { launchTemporaryProfile } from "./browser.mjs";
 
 const envFile = process.env.RECART_PAYPAL_ENV || path.join(os.homedir(), ".config/recart/paypal-sandbox.env");
 const env = Object.fromEntries(readFileSync(envFile, "utf8").split("\n").filter((l) => l.includes("=")).map((l) => { const i = l.indexOf("="); return [l.slice(0, i), l.slice(i + 1).replace(/^"|"$/g, "")]; }));
 const API = "https://api-m.sandbox.paypal.com";
 const evidenceDir = new URL("../evidence/sandbox/", import.meta.url).pathname;
 mkdirSync(evidenceDir, { recursive: true });
-const pwPath = process.env.PLAYWRIGHT_CORE || "/usr/local/lib/node_modules/@playwright/cli/node_modules/playwright-core/index.mjs";
-const { chromium } = await import(pwPath);
 
 let cachedToken = null;
 async function token() {
@@ -46,8 +45,7 @@ async function createOrder(label, items, taxCents) {
   return { id: r.json.id, status: r.json.status, approveUrl: approve && approve.href, total: body.purchase_units[0].amount.value };
 }
 async function approveWithBuyer(approveUrl, email, password, shotPrefix) {
-  const userDataDir = path.join(os.tmpdir(), "recart-spike-" + randomUUID());
-  const ctx = await chromium.launchPersistentContext(userDataDir, { channel: "chrome", headless: true, viewport: { width: 1280, height: 900 } });
+  const ctx = await launchTemporaryProfile("recart-spike", { headless: true, viewport: { width: 1280, height: 900 } });
   const page = ctx.pages()[0] || (await ctx.newPage());
   const shot = async (n) => { try { await page.screenshot({ path: path.join(evidenceDir, `${shotPrefix}-${n}.png`) }); } catch {} };
   try {

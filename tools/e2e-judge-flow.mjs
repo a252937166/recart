@@ -1,25 +1,26 @@
 // End-to-end judge walkthrough (scenarios A, B, C) against a running ReCart server and the real PayPal Sandbox.
-// Uses an isolated Chrome profile (never the user's browser). Credentials come from ~/.config/recart/paypal-sandbox.env.
+// Uses an isolated Chrome profile (never the user's browser). The Sandbox buyer comes from BUYER_EMAIL and BUYER_PASSWORD,
+// or from PP_SANDBOX_TESTER_EMAIL and PP_SANDBOX_TESTER_PASSWORD in RECART_PAYPAL_ENV (default ~/.config/recart/paypal-sandbox.env).
 // Usage: BASE=http://127.0.0.1:4060 HEADLESS=1 node tools/e2e-judge-flow.mjs
 import { execFileSync } from "node:child_process";
-import { readFileSync, mkdirSync, writeFileSync } from "node:fs";
-import { randomUUID } from "node:crypto";
+import { existsSync, readFileSync, mkdirSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { launchTemporaryProfile } from "./browser.mjs";
 
 const BASE = process.env.BASE ?? "http://127.0.0.1:4060";
 const SCENARIO = process.env.SCENARIO ?? "A";
-const envFile = path.join(os.homedir(), ".config/recart/paypal-sandbox.env");
-const env = Object.fromEntries(readFileSync(envFile, "utf8").split("\n").filter((l) => l.includes("=")).map((l) => { const i = l.indexOf("="); return [l.slice(0, i), l.slice(i + 1).replace(/^"|"$/g, "")]; }));
+const envFile = process.env.RECART_PAYPAL_ENV || path.join(os.homedir(), ".config/recart/paypal-sandbox.env");
+const env = existsSync(envFile) ? Object.fromEntries(readFileSync(envFile, "utf8").split("\n").filter((l) => l.includes("=")).map((l) => { const i = l.indexOf("="); return [l.slice(0, i), l.slice(i + 1).replace(/^"|"$/g, "")]; })) : {};
 const buyer = { email: process.env.BUYER_EMAIL ?? env.PP_SANDBOX_TESTER_EMAIL, password: process.env.BUYER_PASSWORD ?? env.PP_SANDBOX_TESTER_PASSWORD };
+if (!buyer.email || !buyer.password) throw new Error(`No Sandbox buyer: set BUYER_EMAIL and BUYER_PASSWORD, or add PP_SANDBOX_TESTER_EMAIL and PP_SANDBOX_TESTER_PASSWORD to ${envFile}`);
 const outDir = new URL(`../evidence/e2e/${SCENARIO}${process.env.OUT_TAG ? "-" + process.env.OUT_TAG : ""}/`, import.meta.url).pathname;
 mkdirSync(outDir, { recursive: true });
-const { chromium } = await import(process.env.PLAYWRIGHT_CORE ?? "/usr/local/lib/node_modules/@playwright/cli/node_modules/playwright-core/index.mjs");
 
 const log = [];
 const hooks = {};
 const step = (msg) => { const line = `${new Date().toISOString()} ${msg}`; log.push(line); console.log(line); };
-const ctx = await chromium.launchPersistentContext(path.join(os.tmpdir(), "recart-e2e-" + randomUUID()), { channel: "chrome", headless: process.env.HEADLESS !== "0", viewport: { width: 1440, height: 960 } });
+const ctx = await launchTemporaryProfile("recart-e2e", { headless: process.env.HEADLESS !== "0", viewport: { width: 1440, height: 960 } });
 const page = ctx.pages()[0] ?? (await ctx.newPage());
 page.setDefaultTimeout(30_000);
 const shot = async (name, p = page) => { await p.screenshot({ path: path.join(outDir, `${name}.png`), fullPage: true }).catch(() => {}); };

@@ -57,6 +57,7 @@ Every run uses Claude Haiku 4.5 through the Astropods-hosted endpoint and scores
 - **v2 changed the date rule in the prompt.** It fixed "this weekend" but made a plain "Tuesday", said on a Monday, resolve a week late (C04, C13). "Next Friday" was still guessed. The change was reverted.
 - **v3 moved date reading into code.** `src/server/language/dates.ts` recomputes bare weekdays, "today" and "tomorrow" from the reference date in the buyer's timezone. It turns "next weekday", weekends and unnamed next-week phrases into a question. Its unit tests use a different reference date and different phrases.
 - **v4 added a conflict rule to the prompt.** A conflicting field is left empty and listed, with one exact span per field. It also added a deterministic safety net: more than one distinct dollar amount in a request becomes a budget question instead of a guess.
+- **Release 17 added a quote-support check after these runs (2026-10-23, `postprocess-v4`).** A quote must name the value it supports, so "USB-C laptop" no longer sets macOS, and a budget quote must state its amount; otherwise the value becomes a question. A live draft exposed this, not these cases. Replayed over the 28 stored v4 and holdout drafts, the check drops no value, so those stored outputs score the same under the current post-processing. The model was not rerun.
 
 ### Correction to the published numbers
 
@@ -66,7 +67,7 @@ The runner was fixed. Every stored run was rescored from its per-case results, a
 
 ## Reproducing earlier runs
 
-The v1 to v3 sources were edited in place before the project used Git. `evaluation/history/` rebuilds them, and every file a freeze record hashed matches it byte for byte. The rebuilt v1 runner reproduces the stored v1 solver and baseline rows exactly.
+The v1 to v3 sources were edited in place before the project used Git. `evaluation/history/` rebuilds them. It also keeps the v4 and holdout files that later releases changed: the adapter, and in release 17 the prompts and the date module. Every file a freeze record hashed matches it byte for byte, at its original path or in that folder, and `tests/unit/evaluation-freeze.test.ts` checks this. The rebuilt v1 runner reproduces the stored v1 solver and baseline rows exactly.
 
 ## Limits
 

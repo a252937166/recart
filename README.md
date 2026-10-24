@@ -87,17 +87,26 @@ Set `PAYPAL_MODE=fake` to click through without PayPal; an in-process simulator 
 
 | Command | What it does |
 |---|---|
-| `npm test` | 232 checks: solver and money units; the language layer's quote-support and explanation-wording rules; payment, recovery and stage-model integration (simulated PayPal client, real PostgreSQL, controlled clock), including immediate refund restart recovery with the original request ID; merchant API, isolation, idempotency, webhooks and OpenAPI; MCP through the official SDK client; language failover, cooldown and probe sharing with deterministic concurrency interleavings, proxy-timeout budgets, job lanes with atomic terminal failures (including a process killed mid-transaction), bounded SIGTERM shutdown of a real server process with an open event stream, the service unit against systemd 219 and effective shutdown settings, and scoped fault simulation; the web app's cache policy, draft persistence and trial-key helpers; and the published examples run against an unmodified server |
+| `npm test` | 244 checks: solver and money units; the language layer's quote-support and explanation-wording rules; payment, recovery and stage-model integration (simulated PayPal client, real PostgreSQL, controlled clock), including immediate refund restart recovery with the original request ID; merchant API, isolation, idempotency, webhooks and OpenAPI; MCP through the official SDK client; language failover, cooldown and probe sharing with deterministic concurrency interleavings, proxy-timeout budgets, job lanes with atomic terminal failures (including a process killed mid-transaction), bounded SIGTERM shutdown of a real server process with an open event stream, the service unit against systemd 219 and effective shutdown settings, and scoped fault simulation; the web app's cache policy, draft persistence, trial-key helpers, PayPal start deadlines and links into this repository; the frozen evaluation files; and the published examples run against an unmodified server |
 | `cd examples/sample-store-python && python3 -m unittest -v` | The independent sample store's capability tests (needs a running server, `RECART_BASE_URL`) |
 | `cd examples/shopify-sync && npm test` | The Shopify example's capability tests (mock Shopify, real ReCart server) |
 | `cd hosted-agent && python3 -m unittest discover -s tests` | 29 checks for the hosted agent (language endpoint and webhook relay) |
 | `node tools/e2e-judge-flow.mjs` | The guided demo in an isolated browser against real PayPal Sandbox; `SCENARIO=A`, `B` or `C` |
 | `node tools/paypal-spike.mjs` | PP01 to PP03: authorize and capture, authorize and void, full refund |
+| `node tools/paypal-sdk-check.mjs` | Times the checkout button's three PayPal SDK start steps in a fresh browser and names any step or PayPal request that never answers; no credentials |
 | `npx tsx tools/pp04-evidence.mts <order>` | Reads back a lost-capture recovery, including stock consumed at handoff (local server with `PAYPAL_FAULT_INJECTION=1`) |
 | `npx tsx tools/run-benchmark.ts` | The frozen evaluation (see `evaluation/`) |
 | `node tools/build-evidence.mjs` | Rebuilds the summaries the evidence page shows |
 
-The PayPal tools read Sandbox credentials from `~/.config/recart/paypal-sandbox.env` and drive a temporary browser profile, never your own.
+### Browser tools
+
+`e2e-judge-flow.mjs`, `paypal-spike.mjs` and `paypal-sdk-check.mjs` drive Google Chrome, which must be installed, through Playwright's library. `npm ci` installs that library (`playwright-core`), which downloads no browser. Each run uses a new temporary profile, never your own. `PLAYWRIGHT_CHANNEL` picks another installed browser channel, and `PLAYWRIGHT_CORE` another copy of Playwright (the path to its `index.mjs`).
+
+- **`paypal-sdk-check.mjs`** needs no credentials: `BASE=https://recart.axiqo.xyz node tools/paypal-sdk-check.mjs`.
+- **`e2e-judge-flow.mjs`** needs a server running with `PAYPAL_MODE=sandbox` (`BASE`, default `http://127.0.0.1:4060`) and a PayPal Sandbox buyer. Set `BUYER_EMAIL` and `BUYER_PASSWORD` (the login the demo page shows works), or put `PP_SANDBOX_TESTER_EMAIL` and `PP_SANDBOX_TESTER_PASSWORD` in the credentials file. `HEADLESS=0` shows the browser. Results go to `evidence/e2e/<SCENARIO>[-<OUT_TAG>]/`.
+- **`paypal-spike.mjs`** calls PayPal's REST API itself. Its credentials file needs your Sandbox app's `PAYPAL_CLIENT_ID` and `PAYPAL_CLIENT_SECRET`, plus the two tester entries. It replaces `evidence/sandbox/spike-pp01-pp03.json`.
+
+The credentials file holds `KEY=value` lines. It is `~/.config/recart/paypal-sandbox.env`, or the path in `RECART_PAYPAL_ENV`.
 
 ## Repository map
 

@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "at": "2026-10-24T11:30:39.623Z",
+  "base": "https://recart.axiqo.xyz",
+  "scenario": "A",
+  "release": "r2026.10.24-signal-room-17",
+  "extraction": {
+    "status": "OK",
+    "model": "gpt-6-luna",
+    "provider": "codex",
+    "fallbackFrom": null,
+    "durationMs": 13320
+  },
+  "explanation": {
+    "source": "model",
+    "model": "gpt-6-luna",
+    "pending": false,
+    "error": null,
+    "waitedMs": 535
+  },
+  "attempts": [
+    {
+      "state": "VOIDED",
+      "order": "11P67185C51609623",
+      "authorization": "9HY17880G4279361R",
+      "capture": null,
+      "refund": null
+    },
+    {
+      "state": "PAID",
+      "order": "6H5311677C982631A",
+      "authorization": "2LU606809J611584N",
+      "capture": "81V788869B5740516",
+      "refund": null
+    }
+  ],
+  "caseStatus": "RESOLVED_RECOVERED",
+  "log": [
+    "2026-10-24T11:28:38.570Z open https://recart.axiqo.xyz",
+    "2026-10-24T11:28:43.024Z release r2026.10.24-signal-room-17",
+    "2026-10-24T11:28:52.543Z demo session b44e9236-5914-4ee6-a01a-87cd784495bd",
+    "2026-10-24T11:29:09.861Z extraction shown: AI draft (gpt-6-luna)",
+    "2026-10-24T11:29:10.921Z draft by codex (gpt-6-luna) in 13320 ms",
+    "2026-10-24T11:29:26.550Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-24T11:29:35.683Z PayPal login submitted",
+    "2026-10-24T11:29:38.666Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-24T11:29:44.182Z PayPal popup closed (approved)",
+    "2026-10-24T11:29:47.989Z attempt 1 authorized",
+    "2026-10-24T11:29:49.802Z discrepancy reported",
+    "2026-10-24T11:30:01.176Z PayPal popup opened: www.sandbox.paypal.com",
+    "2026-10-24T11:30:05.198Z PayPal session already signed in",
+    "2026-10-24T11:30:06.122Z PayPal: clicked [data-testid=submit-button-initial]",
+    "2026-10-24T11:30:16.647Z PayPal popup closed (approved)",
+    "2026-10-24T11:30:20.463Z attempt 2 authorized",
+    "2026-10-24T11:30:29.856Z handed over",
+    "2026-10-24T11:30:39.100Z explanation model (gpt-6-luna) after 535 ms of waiting at the end"
+  ]
+}

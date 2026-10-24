@@ -1,0 +1,204 @@
+{
+  "recordedAt": "2026-10-24T11:35:57.874087Z",
+  "release": "r2026.10.24-signal-room-17",
+  "sourceCommit": "f234cfc307e7b9fb62041ac61be93e0954441b45",
+  "publicBase": "https://recart.axiqo.xyz",
+  "liveHealth": {
+    "ok": true,
+    "db": true,
+    "release": "r2026.10.24-signal-room-17",
+    "migration": "004_language_faults",
+    "paypalMode": "sandbox",
+    "build": {
+      "pid": 17085,
+      "startedAt": "2026-10-24T11:35:16.936Z",
+      "modules": {
+        "services/payments.js": "b73ce1e9603abdd8c7776214facd1c358e67fa1b5262896093459466e95ed476",
+        "services/recovery.js": "1e30cc26d30e93034a68cde4574ab844779fbf0876c453f09f3efc63ed6171fa",
+        "http/app.js": "2a2aecb4818c8fe1dc57cc051aa1681bb934109bf8baef5cdcee3df85ce0bd74",
+        "shutdown.js": "65988945f55c8c4bdf86f6b9b688336e9ee1002c05008c721ae7364983b6d70a",
+        "jobs/worker.js": "2d70a7edf3fd88a89eb7e42893358b342e34894268efc91c81b98b4bd71e10fb",
+        "language/faults.js": "8ae9af0167060fcbfee95efe9e1570f137e52a2824e0323aa4215bfd5f96fa35",
+        "language/adapter.js": "5f48333e288292bacbf4f863206d40d037f7091e50b6eac0d9197d842cea139a",
+        "logging.js": "bbd07efe4544c2e418f2d0dac64e2640e9f1b6eaa707b1490d3ab49314978469",
+        "main.js": "de94158d9d234055e1d4c0a95a2e348017e23fe7dcaa885099903cad4c273ec1"
+      }
+    }
+  },
+  "links": {
+    "repoUrl": "https://github.com/a252937166/recart",
+    "videoUrl": "https://www.youtube.com/watch?v=iMizZDPYph0"
+  },
+  "tests": {
+    "typescript": {
+      "passed": 232,
+      "total": 232
+    },
+    "hostedAgent": {
+      "passed": 29,
+      "total": 29
+    },
+    "summary": {
+      "recordedAt": "2026-10-24T11:31:34.033Z",
+      "passed": 261,
+      "total": 261
+    },
+    "deployedR17Regressions": {
+      "passed": 11,
+      "total": 11
+    },
+    "service": {
+      "passed": 22,
+      "total": 22
+    }
+  },
+  "deployedFiles": {
+    "ok": true,
+    "files": 116,
+    "javascriptModules": 58,
+    "differences": []
+  },
+  "stories": {
+    "A": {
+      "ok": true,
+      "at": "2026-10-24T11:30:39.623Z",
+      "release": "r2026.10.24-signal-room-17",
+      "caseStatus": "RESOLVED_RECOVERED",
+      "attempts": [
+        {
+          "state": "VOIDED",
+          "order": "11P67185C51609623",
+          "authorization": "9HY17880G4279361R",
+          "capture": null,
+          "refund": null
+        },
+        {
+          "state": "PAID",
+          "order": "6H5311677C982631A",
+          "authorization": "2LU606809J611584N",
+          "capture": "81V788869B5740516",
+          "refund": null
+        }
+      ],
+      "extraction": {
+        "status": "OK",
+        "model": "gpt-6-luna",
+        "provider": "codex",
+        "fallbackFrom": null,
+        "durationMs": 13320
+      },
+      "explanation": {
+        "source": "model",
+        "model": "gpt-6-luna",
+        "pending": false,
+        "error": null,
+        "waitedMs": 535
+      }
+    },
+    "B": {
+      "ok": true,
+      "at": "2026-10-24T11:33:07.459Z",
+      "release": "r2026.10.24-signal-room-17",
+      "caseStatus": "RESOLVED_RECOVERED",
+      "attempts": [
+        {
+          "state": "VOIDED",
+          "order": "0J63091535809472V",
+          "authorization": "6Y321777MJ602134E",
+          "capture": null,
+          "refund": null
+        },
+        {
+          "state": "PAID",
+          "order": "19L85595E81368350",
+          "authorization": "8T668297M0137952F",
+          "capture": "4G035381WY414042V",
+          "refund": null
+        }
+      ],
+      "extraction": {
+        "status": "OK",
+        "model": "gpt-6-luna",
+        "provider": "codex",
+        "fallbackFrom": null,
+        "durationMs": 12504
+      },
+      "explanation": {
+        "source": "model",
+        "model": "gpt-6-luna",
+        "pending": false,
+        "error": null,
+        "waitedMs": 867
+      }
+    },
+    "C": {
+      "ok": true,
+      "at": "2026-10-24T11:34:55.270Z",
+      "release": "r2026.10.24-signal-room-17",
+      "caseStatus": "CLOSED_NO_SOLUTION",
+      "attempts": [
+        {
+          "state": "VOIDED",
+          "order": "16T97528K3010135P",
+          "authorization": "5UB85802JJ457984M",
+          "capture": null,
+          "refund": null
+        }
+      ],
+      "extraction": {
+        "status": "OK",
+        "model": "gpt-6-luna",
+        "provider": "codex",
+        "fallbackFrom": null,
+        "durationMs": 18674
+      },
+      "explanation": {
+        "source": "model",
+        "model": "gpt-6-luna",
+        "pending": false,
+        "error": null,
+        "waitedMs": 551
+      }
+    }
+  },
+  "liveLanguageSupport": {
+    "recordedAt": "2026-10-24T11:31:27.052434+00:00",
+    "release": "r2026.10.24-signal-room-17",
+    "draft": {
+      "postprocess": "postprocess-v4",
+      "operatingSystem": null,
+      "hostPort": {
+        "span": "USB-C laptop",
+        "value": "usb-c"
+      },
+      "questions": [
+        "What operating system does the laptop run?",
+        "Which app will you use for the remote guest?"
+      ]
+    },
+    "explanation": {
+      "promptVersion": "lang-prompts-v4",
+      "status": "OK",
+      "summary": "Your current bundle totals $376.92, but its 2-in USB-C Interface with Loopback is missing. Both options replace it with a USB-B interface and adapt the cable path to your computer\u2019s port; each remains under $450.00.",
+      "options": [
+        {
+          "index": 0,
+          "tradeoff": "Fewest changes: swaps the interface and cable path, totaling $422.28 with a $45.36 change."
+        },
+        {
+          "index": 1,
+          "tradeoff": "Alternative: also swaps the two Dynamic XLR Mic A for two Condenser XLR Mic C, totaling $443.88 with a $66.96 change."
+        }
+      ]
+    }
+  },
+  "operationalState": {
+    "recordedAt": "2026-10-24T11:35:34.748099+00:00",
+    "runningJobs": 0,
+    "failedJobs": 0,
+    "activeScopedFaults": 0,
+    "pendingExplanations": 0,
+    "unsettledPaymentOperations": 0
+  },
+  "historicalEvidence": "The live proxy-timeout and restart checks and the frozen language evaluation retain their recorded dates and original releases. They were not re-run for r17."
+}

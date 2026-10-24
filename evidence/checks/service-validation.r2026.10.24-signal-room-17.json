@@ -1,0 +1,37 @@
+{
+  "recordedAt": "2026-10-24T11:35:57.874087Z",
+  "release": "r2026.10.24-signal-room-17",
+  "systemd": 219,
+  "host": "demo host",
+  "phases": {
+    "verify": [
+      "PASS: systemd-analyze verify reports nothing about /etc/systemd/system/recart.service",
+      "PASS: no file-style output targets in the unit"
+    ],
+    "installed": [
+      "PASS: StandardOutput=journal",
+      "PASS: StandardError=journal",
+      "PASS: SyslogIdentifier=recart",
+      "PASS: KillSignal=SIGTERM",
+      "PASS: Environment has LOG_PRIORITY_PREFIX=true",
+      "PASS: unit loaded from /etc/systemd/system/recart.service",
+      "PASS: no drop-in overrides",
+      "PASS: no unit parse warnings logged since 2026-10-24 00:00:00",
+      "PASS: systemd-analyze verify reports nothing about the installed unit",
+      "PASS: TimeoutStopSec 45s leaves room for the app's 25 s shutdown bound",
+      "PASS: no stale /var/log/recart.log"
+    ],
+    "running": [
+      "PASS: recart active, MainPID 17085, started Sat Oct 24 19:35:15 2026",
+      "PASS: startup line of PID 17085 in the journal: [recart] listening on 127.0.0.1:4060 (paypal=sandbox, preset=judge, workers=core+language, language=codex+hosted)",
+      "PASS: journal entries carry SYSLOG_IDENTIFIER=recart",
+      "PASS: stdout line reached the journal",
+      "PASS: stderr line reached the journal at priority err",
+      "PASS: stdout line filed below err",
+      "PASS: priority prefixes stripped by journald",
+      "PASS: stdout line copied to /var/log/messages",
+      "PASS: stderr line copied to /var/log/messages"
+    ]
+  },
+  "ok": true
+}

@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-10-23T16:13:46.678Z",
+  "recordedAt": "2026-10-24T11:36:09.169Z",
   "rows": [
     {
       "id": "PP01",
@@ -28,8 +28,8 @@
     {
       "id": "PP05",
       "path": "Real PayPal webhooks verified on the public server (verify-webhook-signature on the raw body)",
-      "result": "299 verified with PayPal: 273 matched purchases here and triggered reconciliation, 26 were other Sandbox test orders; 1 unverifiable event quarantined. Delivered through the Astropods-hosted relay because Sandbox does not deliver to this domain",
-      "resources": "webhook 04034153BN793150U; PAYMENT.AUTHORIZATION.VOIDED, PAYMENT.AUTHORIZATION.CREATED, CHECKOUT.ORDER.APPROVED, PAYMENT.CAPTURE.COMPLETED"
+      "result": "332 verified with PayPal: 306 matched purchases here and triggered reconciliation, 26 were other Sandbox test orders; 1 unverifiable event quarantined. Delivered through the Astropods-hosted relay because Sandbox does not deliver to this domain",
+      "resources": "webhook 04034153BN793150U; PAYMENT.AUTHORIZATION.CREATED, PAYMENT.AUTHORIZATION.VOIDED, CHECKOUT.ORDER.APPROVED, PAYMENT.CAPTURE.COMPLETED"
     },
     {
       "id": "OPS-1",
@@ -54,36 +54,36 @@
       "path": "Service unit and logging on the host's systemd 219: unit verified before install, effective settings after, startup and error lines reaching the journal and /var/log/messages",
       "result": "22 of 22 checks passed. Logs go to the journal (stdout at info, stderr at err via priority prefixes) and are copied to /var/log/messages by rsyslog; no unsupported-directive warnings",
       "resources": "deploy/validate-service.sh verify, installed, running",
-      "recordedAt": "2026-10-11T08:09:55.947264Z",
-      "release": "r2026.10.11-signal-room-15",
-      "record": "evidence/checks/service-validation.r2026.10.11-signal-room-15.json"
+      "recordedAt": "2026-10-24T11:35:57.874087Z",
+      "release": "r2026.10.24-signal-room-17",
+      "record": "evidence/checks/service-validation.r2026.10.24-signal-room-17.json"
     },
     {
       "id": "E2E-A",
       "path": "Story A (Recovered) through the public site: rebuilt and recovered",
       "result": "attempt 1 voided, attempt 2 paid; case resolved recovered; draft by codex (gpt-6-luna), explanation by the model (gpt-6-luna)",
-      "resources": "order 6VP72388J9092700W; order 0UD55432LH3526831 capture 28K68779T7737142A",
-      "recordedAt": "2026-10-23T16:09:21.076Z",
-      "release": "r2026.10.11-signal-room-16",
-      "record": "evidence/e2e/A-r16/"
+      "resources": "order 11P67185C51609623; order 6H5311677C982631A capture 81V788869B5740516",
+      "recordedAt": "2026-10-24T11:30:39.623Z",
+      "release": "r2026.10.24-signal-room-17",
+      "record": "evidence/e2e/A-r17-20261024/"
     },
     {
       "id": "E2E-B",
       "path": "Story B (Buyer decides) through the public site: decision needed, limit raised to $425, recovered",
       "result": "attempt 1 voided, attempt 2 paid; case resolved recovered; draft by codex (gpt-6-luna), explanation by the model (gpt-6-luna)",
-      "resources": "order 6C679024R6555811D; order 1Y268732J09900928 capture 2PH7003186067242G",
-      "recordedAt": "2026-10-23T16:11:46.266Z",
-      "release": "r2026.10.11-signal-room-16",
-      "record": "evidence/e2e/B-r16/"
+      "resources": "order 0J63091535809472V; order 19L85595E81368350 capture 4G035381WY414042V",
+      "recordedAt": "2026-10-24T11:33:07.459Z",
+      "release": "r2026.10.24-signal-room-17",
+      "record": "evidence/e2e/B-r17-20261024/"
     },
     {
       "id": "E2E-C",
       "path": "Story C (No safe replacement) through the public site: no supported fix, purchase closed",
-      "result": "attempt 1 voided; case closed no solution; draft by codex (gpt-6-luna), explanation by the model (gpt-6-luna) after 10 s",
-      "resources": "order 5VC36679F7447313J",
-      "recordedAt": "2026-10-23T16:13:30.265Z",
-      "release": "r2026.10.11-signal-room-16",
-      "record": "evidence/e2e/C-r16/"
+      "result": "attempt 1 voided; case closed no solution; draft by codex (gpt-6-luna), explanation by the model (gpt-6-luna)",
+      "resources": "order 16T97528K3010135P",
+      "recordedAt": "2026-10-24T11:34:55.270Z",
+      "release": "r2026.10.24-signal-room-17",
+      "record": "evidence/e2e/C-r17-20261024/"
     }
   ]
 }

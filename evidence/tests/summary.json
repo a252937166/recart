@@ -1,8 +1,13 @@
 {
-  "recordedAt": "2026-10-11T08:26:17.357Z",
-  "total": 229,
-  "passed": 229,
+  "recordedAt": "2026-10-24T11:31:34.033Z",
+  "total": 261,
+  "passed": 261,
   "groups": [
+    {
+      "name": "Published examples against an unmodified server: independent Python store, Shopify sync, quickstart",
+      "total": 3,
+      "passed": 3
+    },
     {
       "name": "Restart recovery, timing presets, language fallbacks, returning to a purchase (integration)",
       "total": 11,
@@ -29,34 +34,14 @@
       "passed": 2
     },
     {
-      "name": "Published examples against an unmodified server: independent Python store, Shopify sync, quickstart",
-      "total": 3,
-      "passed": 3
-    },
-    {
-      "name": "Deployment guards (unit)",
-      "total": 3,
-      "passed": 3
-    },
-    {
-      "name": "Deterministic date reading and budget-conflict check (unit)",
-      "total": 11,
-      "passed": 11
-    },
-    {
-      "name": "Service units: only directives and log targets systemd 219 supports, journal logging with priorities, stop timeout above the app's shutdown bound (unit)",
-      "total": 5,
-      "passed": 5
-    },
-    {
-      "name": "Solver, money and time (unit)",
-      "total": 21,
-      "passed": 21
-    },
-    {
       "name": "Job lanes: payment jobs run while an explanation waits; atomic pending state; restart takeover; a last failure and its cleanup commit together, only by the lease owner, never on a requested rerun, including a process killed mid-transaction (integration)",
       "total": 12,
       "passed": 12
+    },
+    {
+      "name": "payment-restart.test.ts",
+      "total": 6,
+      "passed": 6
     },
     {
       "name": "SIGTERM on a real server process with an open event stream and a running explanation: clean exit in time, lease handed back, immediate takeover (process-level)",
@@ -87,6 +72,11 @@
       "name": "Scoped fault simulation: a delayed or failing provider for one session or merchant only, cooldown untouched (integration)",
       "total": 7,
       "passed": 7
+    },
+    {
+      "name": "support.test.ts",
+      "total": 1,
+      "passed": 1
     },
     {
       "name": "Proxy timeouts: every drafting route covers the worst-case primary-plus-backup call (config check and timed requests)",
@@ -137,6 +127,41 @@
       "name": "Developers page: trial key copy text and expiry wording (unit)",
       "total": 3,
       "passed": 3
+    },
+    {
+      "name": "Deployment guards (unit)",
+      "total": 3,
+      "passed": 3
+    },
+    {
+      "name": "Deterministic date reading and budget-conflict check (unit)",
+      "total": 11,
+      "passed": 11
+    },
+    {
+      "name": "explain-wording.test.ts",
+      "total": 3,
+      "passed": 3
+    },
+    {
+      "name": "Service units: only directives and log targets systemd 219 supports, journal logging with priorities, stop timeout above the app's shutdown bound (unit)",
+      "total": 5,
+      "passed": 5
+    },
+    {
+      "name": "service-validation.test.ts",
+      "total": 15,
+      "passed": 15
+    },
+    {
+      "name": "Solver, money and time (unit)",
+      "total": 21,
+      "passed": 21
+    },
+    {
+      "name": "spans.test.ts",
+      "total": 7,
+      "passed": 7
     },
     {
       "name": "Hosted Astropods agent: language endpoint and PayPal webhook relay (mocked upstreams)",

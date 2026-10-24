@@ -9,6 +9,7 @@ Built for the PayPal AI Hackathon 2026. Payments run on PayPal Sandbox; no real 
 - **Developers:** https://recart.axiqo.xyz/developers. REST API, signed webhooks, remote MCP server, a live sandbox explorer and the endpoint reference from the published OpenAPI document. "Get a trial key" gives any visitor an isolated sandbox store and a temporary test key for REST and MCP, with no sign-up.
 - **For merchants:** https://recart.axiqo.xyz/merchants. Live status of the Shopify reference integration.
 - **Evidence:** https://recart.axiqo.xyz/evidence. Sandbox resources, automated checks and the frozen evaluation.
+- **Demo video:** https://www.youtube.com/watch?v=iMizZDPYph0.
 
 ## The problem
 

@@ -109,6 +109,12 @@ export function useSessionState(caseId?: string | null) {
       if (e instanceof ApiError && e.status === 404) { setState(null); setStatus(caseId ? "unavailable" : "none"); }
     }
   }, [caseId]);
+  // Session creation already returns the complete read model. Adopt it immediately and retire older in-flight reads.
+  const adoptState = useCallback((next: AppState) => {
+    ++seq.current;
+    setState(next);
+    setStatus("ready");
+  }, []);
   const hasSession = status === "ready";
   useEffect(() => {
     void load();
@@ -123,7 +129,7 @@ export function useSessionState(caseId?: string | null) {
     timer.current = window.setInterval(() => { if (document.visibilityState === "visible") void load(); }, 4000);
     return () => { es?.close(); if (timer.current) clearInterval(timer.current); };
   }, [load, hasSession]);
-  return { state, status, reload: load, setState };
+  return { state, status, reload: load, setState, adoptState };
 }
 
 export function useNow(intervalMs = 1000) {

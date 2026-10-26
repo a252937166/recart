@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { DemoLoading } from "../components/demo/DemoLoading";
 import { RecoveryPanel } from "../components/demo/Recovery";
 import { RequirementsPanel } from "../components/demo/Requirements";
 import { SetupPanel } from "../components/demo/Setup";
@@ -16,20 +17,47 @@ const STORIES = [
 ] as const;
 
 /** Story chooser and judge guide: what happens, what you need, and one button to start. */
-export function DemoIntro({ cfg, state }: { cfg: Config | null; state?: AppState | null }) {
+export function DemoIntro({ cfg, state, onStarted }: { cfg: Config | null; state?: AppState | null; onStarted?: (state: AppState) => void }) {
   const [story, setStory] = useState<"A" | "B" | "C">("A");
   const [limited, setLimited] = useState<string | null>(null);
-  const act = useAction();
-  const start = () => act.run("start", async () => {
+  const [startError, setStartError] = useState<string | null>(null);
+  const [starting, setStarting] = useState(false);
+  const startInFlight = useRef(false);
+  const active = useRef(false);
+  const startButton = useRef<HTMLButtonElement>(null);
+  useEffect(() => { active.current = true; return () => { active.current = false; }; }, []);
+  useEffect(() => {
+    if (!limited && !startError) return;
+    startButton.current?.focus({ preventScroll: true });
+    startButton.current?.scrollIntoView({ block: "center", behavior: "auto" });
+  }, [limited, startError]);
+  const start = async () => {
+    // A ref guards clicks in the same event turn, before React disables/removes the button.
+    if (startInFlight.current) return;
+    startInFlight.current = true;
+    const pathAtStart = location.pathname + location.search;
+    const stillHere = () => active.current && location.pathname + location.search === pathAtStart;
+    setStarting(true);
     setLimited(null);
-    let r: { csrf: string };
-    try { r = await api<{ csrf: string }>("POST", "/api/sessions", { scenario: story, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "America/Los_Angeles" }); }
-    catch (e) { if (e instanceof ApiError && e.status === 429) { setLimited(limitedText(e)); return; } throw e; }
-    setCsrf(r.csrf);
-    navigate("/demo");
-  });
+    setStartError(null);
+    try {
+      const r = await api<{ csrf: string; state: AppState }>("POST", "/api/sessions", { scenario: story, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "America/Los_Angeles" });
+      if (!stillHere()) return;
+      setCsrf(r.csrf);
+      onStarted?.(r.state);
+      if (!onStarted || location.pathname !== "/demo") navigate("/demo");
+    } catch (e) {
+      if (!stillHere()) return;
+      if (e instanceof ApiError && e.status === 429) setLimited(limitedText(e));
+      else setStartError(e instanceof Error ? e.message : "The server did not respond. Please try starting the story again.");
+    } finally {
+      startInFlight.current = false;
+      if (active.current) setStarting(false);
+    }
+  };
   const inProgress = state && state.session?.status === "ACTIVE" && !state.stage?.ending;
   const buyer = cfg?.judgeBuyers[0];
+  if (starting) return <Page cfg={cfg}><DemoLoading storyTitle={STORIES.find((s) => s.id === story)!.title} /></Page>;
   return (
     <Page cfg={cfg}>
       <div className="wrap" style={{ paddingTop: 48 }}>
@@ -74,8 +102,9 @@ export function DemoIntro({ cfg, state }: { cfg: Config | null; state?: AppState
           </section>
         </div>
         {limited && <Notice tone="attention" title="The demo is busy from your network" role="alert">{limited}</Notice>}
+        {startError && <Notice tone="danger" title="Your demo could not be prepared" role="alert">{startError} You can try starting the story again.</Notice>}
         <div className="btn-row" style={{ marginTop: 28 }}>
-          <button className="btn btn-primary" onClick={start} disabled={!!act.busy}>{act.busy ? <Spinner label="Preparing your store" /> : `Start the ${STORIES.find((s) => s.id === story)!.title} story`}</button>
+          <button ref={startButton} className="btn btn-primary" onClick={() => void start()} disabled={starting}>{`Start the ${STORIES.find((s) => s.id === story)!.title} story`}</button>
           <span className="small muted">Each demo gets its own store, stock and inbox for {cfg?.sessionHours ?? 24} hours.</span>
         </div>
       </div>
@@ -126,12 +155,12 @@ function StageHeader({ state, view, onNewDemo }: { state: AppState; view: "buyer
 
 /** The running demo: stage header, role tabs, and the active view. */
 export function Demo({ cfg, view, caseId }: { cfg: Config | null; view: "buyer" | "store" | "messages"; caseId?: string }) {
-  const { state, status, reload } = useSessionState(caseId ?? null);
+  const { state, status, reload, adoptState } = useSessionState(caseId ?? null);
   const [editGoal, setEditGoal] = useState(0);
   const [goalEditing, setGoalEditing] = useState(false);
   const act = useAction();
   const newDemo = () => act.run("new", async () => { await api("POST", "/api/sessions/close").catch(() => {}); navigate("/demo/start"); });
-  if (status === "loading" || !cfg) return <><SiteHeader /><main id="main" className="wrap" style={{ paddingTop: 48 }}><Spinner label="Loading your demo" /></main></>;
+  if (status === "loading" || !cfg) return <Page cfg={cfg}><DemoLoading /></Page>;
   if (status === "unavailable") return (
     <Page cfg={cfg}><div className="wrap" style={{ paddingTop: 48, maxWidth: 720 }}>
       <h1>This purchase cannot be opened here</h1>
@@ -139,7 +168,7 @@ export function Demo({ cfg, view, caseId }: { cfg: Config | null; view: "buyer" 
       <Link to="/demo/start" className="btn btn-primary">Start a separate demo</Link>
     </div></Page>
   );
-  if (status === "none" || !state) return <DemoIntro cfg={cfg} />;
+  if (status === "none" || !state) return <DemoIntro cfg={cfg} onStarted={adoptState} />;
   const unread = (state.inbox ?? []).filter((n: any) => n.status === "DELIVERED" && !n.read_at).length;
   const closing = state.session.status !== "ACTIVE";
   const here = state.stage.current && !state.stage.current.waiting ? state.stage.current.view : null;

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { api, ApiError, limitedText, usd, useAction, when, type AppState } from "../../lib/core";
 import { Notice, Pill, Spinner } from "../ui";
 import { clearDraft, loadDraft, saveDraft, startingDraft } from "./draft";
+import { DraftWaiting } from "./DraftWaiting";
 import { Beacon, guideAt } from "./guide";
 import { APPS, OSES, PORTS } from "./parts";
 
@@ -68,6 +69,7 @@ export function RequirementsPanel({ state, reload, forceEdit, onEditingChange }:
   const [attempted, setAttempted] = useState(false);
   const [limited, setLimited] = useState<string | null>(null);
   const act = useAction();
+  const reading = act.busy === "extract";
   const ref = useRef<HTMLElement>(null);
   useEffect(() => { if (goal && !editing) setForm(fromGoal(goal, tz)); }, [goal, editing, tz]);
   useEffect(() => { onEditingChange?.(editing && !!goal); }, [editing, goal, onEditingChange]);
@@ -158,10 +160,11 @@ export function RequirementsPanel({ state, reload, forceEdit, onEditingChange }:
         <label htmlFor="req">Describe your recording in your own words</label>
         <textarea id="req" className="input" value={text} onChange={(e) => setText(e.target.value)} maxLength={1500} />
       </div>
-      <Beacon block on={target === "read"}><button className={`btn btn-block ${target === "read" ? "btn-primary" : "btn-secondary"}`} onClick={read} disabled={!!act.busy || !text.trim()}>{act.busy === "extract" ? <Spinner label="Reading" /> : "Read my request"}</button></Beacon>
+      <Beacon block on={target === "read" && !reading}><button className={`btn btn-block ${target === "read" ? "btn-primary" : "btn-secondary"}${reading ? " request-reading" : ""}`} onClick={read} disabled={!!act.busy || !text.trim()} aria-busy={reading}>{reading ? "Reading your request" : "Read my request"}</button></Beacon>
+      {reading && <DraftWaiting />}
       {limited && <Notice tone="attention" title="AI drafting is busy from your network" role="alert">{limited} Fill in the form below yourself; everything else works.</Notice>}
-      {source && (
-        <div className="inset" style={{ marginTop: 12 }}>
+      {source && !reading && (
+        <div className="inset draft-result" style={{ marginTop: 12 }}>
           <Pill tone={source.startsWith("AI") ? "action" : "attention"}>{source}</Pill>
           {extraction && (
             <ul className="small" style={{ margin: "10px 0 0", paddingLeft: 18 }}>
@@ -174,6 +177,7 @@ export function RequirementsPanel({ state, reload, forceEdit, onEditingChange }:
           {extraction?.questions?.length > 0 && <ul className="small" style={{ margin: "8px 0 0", paddingLeft: 18, color: "var(--attention)" }}>{extraction.questions.map((q: string, i: number) => <li key={i}>{q}</li>)}</ul>}
         </div>
       )}
+      {source && reading && <p className="hint draft-waiting-previous">The fields below keep your previous values while you wait for the new draft.</p>}
       <form onSubmit={(e) => { e.preventDefault(); void confirm(); }} style={{ marginTop: 16 }} noValidate>
         <div className="grid-2">
           <div className="field"><label htmlFor="lp">People in the room</label>{at("localPeople", <input id="lp" className={`input ${miss("localPeople")}`} type="number" min={1} max={8} value={form.localPeople} onChange={set("localPeople")} />)}</div>

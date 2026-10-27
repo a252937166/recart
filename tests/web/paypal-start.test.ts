@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { PayPalStartError, startFailureText, startPayPal, stepLabel, type PayPalSdk, type PayPalStep } from "../../src/web/lib/paypal.js";
+import { PayPalStartError, startFailureText, startPayPal, stepLabel, type PayPalAuth, type PayPalSdk, type PayPalStep } from "../../src/web/lib/paypal.js";
 
 // The checkout button starts PayPal's SDK in three steps. A request that never answers used to leave the page on
 // "Loading PayPal Sandbox…" for good; each step now has a deadline and the page names the step that stopped.
@@ -10,7 +10,7 @@ const sdk = (eligible = true, eligibility?: () => Promise<{ isEligible(m: string
 });
 const sdkError = (code: string) => Object.assign(new Error("sdk said no"), { code });
 
-function start(over: { loadScript?: () => Promise<any>; createInstance?: (o: Record<string, unknown>) => Promise<PayPalSdk>; clientToken?: () => Promise<string> } = {}) {
+function start(over: { loadScript?: () => Promise<any>; createInstance?: (o: Record<string, unknown>) => Promise<PayPalSdk>; clientToken?: () => Promise<string>; auth?: PayPalAuth } = {}) {
   const steps: PayPalStep[] = [];
   const created: Record<string, unknown>[] = [];
   const createInstance = over.createInstance ?? (async () => sdk());
@@ -18,6 +18,7 @@ function start(over: { loadScript?: () => Promise<any>; createInstance?: (o: Rec
     loadScript: over.loadScript ?? (async () => ({ createInstance: (o: Record<string, unknown>) => { created.push(o); return createInstance(o); } })),
     clientId: "client-id",
     clientToken: over.clientToken ?? (async () => "client-token"),
+    ...(over.auth ? { auth: over.auth } : {}),
     onStep: (s) => steps.push(s),
     stepMs: 40,
   });
@@ -43,15 +44,15 @@ describe("starting PayPal's SDK", () => {
     expect([stalledEligibility.step, stalledEligibility.kind]).toEqual(["eligibility", "timeout"]);
   });
 
-  it("falls back to a client token when the client ID is refused", async () => {
+  it("does not retry a refused client ID in the same document's potentially poisoned SDK", async () => {
     const run = start({ createInstance: async (o) => { if (o.clientId) throw sdkError("ERR_INVALID_CLIENT_ID"); return sdk(); } });
-    await expect(run.result).resolves.toBeTruthy();
-    expect(run.created.map((o) => Object.keys(o)[0])).toEqual(["clientId", "clientToken"]);
-    expect(run.created[1]?.clientToken).toBe("client-token");
+    const e = await failureOf(run.result);
+    expect(e.code).toBe("ERR_INVALID_CLIENT_ID");
+    expect(run.created.map((o) => Object.keys(o)[0])).toEqual(["clientId"]);
   });
 
-  it("keeps the fallback inside the connect step's deadline", async () => {
-    const run = start({ createInstance: async (o) => { if (o.clientId) throw sdkError("ERR_DEV_POST_MESSAGE_ACK_TIMEOUT"); return never<PayPalSdk>(); } });
+  it("keeps a fresh document's token attempt inside the connect deadline", async () => {
+    const run = start({ auth: "client-token", createInstance: async () => never<PayPalSdk>() });
     const e = await failureOf(run.result);
     expect([e.step, e.kind]).toEqual(["connect", "timeout"]);
   });

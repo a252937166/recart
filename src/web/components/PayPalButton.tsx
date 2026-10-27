@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { api, toast, type Config } from "../lib/core";
-import { startFailureText, startPayPal, stepLabel, type PayPalStep } from "../lib/paypal";
+import { createPayPalStartManager, createPayPalTokenReconnect, PayPalStartError, readPayPalAuth, rememberPayPalTokenRetry, startFailureText, stepLabel, type PayPalStep } from "../lib/paypal";
 
 declare module "react" {
   namespace JSX {
@@ -11,6 +11,9 @@ declare module "react" {
 }
 
 let sdkPromise: Promise<any> | null = null;
+const starts = createPayPalStartManager();
+const reconnectWithToken = createPayPalTokenReconnect();
+const retryStorage = () => { try { return window.sessionStorage; } catch { return null; } };
 function loadSdk(url: string): Promise<any> {
   if (!sdkPromise) {
     sdkPromise = new Promise((resolve, reject) => {
@@ -33,6 +36,7 @@ export function PayPalCheckoutButton({ cfg, quoteId, disabled, onChanged, onWork
   const [ready, setReady] = useState(false);
   const [step, setStep] = useState<PayPalStep>("script");
   const [failure, setFailure] = useState<unknown>(null);
+  const [reconnecting, setReconnecting] = useState(false);
   const [working, setWorking] = useState(false);
   const onWorking = useRef(onWorkingChange);
   onWorking.current = onWorkingChange;
@@ -44,35 +48,63 @@ export function PayPalCheckoutButton({ cfg, quoteId, disabled, onChanged, onWork
   latest.current = { onChanged, quoteId };
 
   useEffect(() => {
+    setReady(false); setFailure(null); setReconnecting(false);
     if (cfg.paypal.mode === "fake") { setReady(true); return; }
     let cancelled = false;
-    startPayPal({
+    let scheduledReload: ReturnType<typeof setTimeout> | undefined;
+    let reloadWatchdog: ReturnType<typeof setTimeout> | undefined;
+    // The key deliberately excludes authentication mode: a failed SDK document must never start a second instance
+    // merely because another component sees the persisted retry preference before the reload has happened.
+    const key = `${cfg.paypal.sdkUrl}|${cfg.paypal.clientId}`;
+    const unsubscribe = starts.subscribe(key, {
       loadScript: () => loadSdk(cfg.paypal.sdkUrl),
       clientId: cfg.paypal.clientId,
-      clientToken: () => api<{ clientToken: string }>("GET", "/api/paypal/client-token").then((t) => t.clientToken),
+      auth: readPayPalAuth(retryStorage()),
+      clientToken: async (signal) => {
+        const response = await fetch("/api/paypal/client-token", { credentials: "same-origin", cache: "no-store", signal });
+        const body = await response.json();
+        if (!response.ok || typeof body.clientToken !== "string" || !body.clientToken) throw new Error("PayPal could not prepare a secure connection.");
+        return body.clientToken;
+      },
+    }, {
       onStep: (s) => { if (!cancelled) setStep(s); },
-    }).then((sdk) => {
-      if (cancelled) return;
-      makeSession.current = () => sdk.createPayPalOneTimePaymentSession({
-        onApprove: async (data: { orderId: string }) => {
-          setWorking(true);
-          try {
-            await api("POST", `/api/checkout/${checkoutId.current}/approved`, { orderId: data.orderId });
-            toast("PayPal approval received. The server authorized a Sandbox payment hold.");
-          } catch (e: any) { toast(e.message, "error"); }
-          finally { setWorking(false); latest.current.onChanged(); }
-        },
-        onCancel: () => { setWorking(false); toast("PayPal approval was cancelled. Nothing was authorized."); latest.current.onChanged(); },
-        onError: (e: any) => { setWorking(false); toast(`PayPal reported a problem: ${e?.message ?? e?.code ?? "unknown error"}`, "error"); latest.current.onChanged(); },
-      });
-      session.current = makeSession.current();
-      setReady(true);
-    }).catch((e) => {
-      if (cancelled) return;
-      console.warn("[paypal] did not start", e?.step, e?.kind, e?.code ?? e?.message ?? e);
-      setFailure(e);
+      onReady: (sdk, auth) => {
+        if (cancelled) return;
+        if (auth === "client-token") rememberPayPalTokenRetry(retryStorage());
+        try {
+          makeSession.current = () => sdk.createPayPalOneTimePaymentSession({
+            onApprove: async (data: { orderId: string }) => {
+              setWorking(true);
+              try {
+                await api("POST", `/api/checkout/${checkoutId.current}/approved`, { orderId: data.orderId });
+                toast("PayPal approval received. The server authorized a Sandbox payment hold.");
+              } catch (e: any) { toast(e.message, "error"); }
+              finally { setWorking(false); latest.current.onChanged(); }
+            },
+            onCancel: () => { setWorking(false); toast("PayPal approval was cancelled. Nothing was authorized."); latest.current.onChanged(); },
+            onError: (e: any) => { setWorking(false); toast(`PayPal reported a problem: ${e?.message ?? e?.code ?? "unknown error"}`, "error"); latest.current.onChanged(); },
+          });
+          session.current = makeSession.current();
+          setReady(true);
+        } catch (e) { setFailure(e); }
+      },
+      onError: (e, auth) => {
+        if (cancelled) return;
+        if (reconnectWithToken(e, auth, retryStorage(), () => {
+          setReconnecting(true);
+          // Accepted quotes are durable server state. Reloading creates neither an order nor an authorization.
+          scheduledReload = setTimeout(() => {
+            if (cancelled) return;
+            try { window.location.reload(); } catch { setReconnecting(false); setFailure(e); }
+          }, 0);
+          // A browser or embedding host can refuse navigation; keep a manual recovery instead of another spinner.
+          reloadWatchdog = setTimeout(() => { if (!cancelled) { setReconnecting(false); setFailure(e); } }, 2000);
+        })) return;
+        console.warn("[paypal] did not start", ...(e instanceof PayPalStartError ? [e.step, e.kind, e.code ?? e.message] : ["SDK start failed"]));
+        setFailure(e);
+      },
     });
-    return () => { cancelled = true; };
+    return () => { cancelled = true; clearTimeout(scheduledReload); clearTimeout(reloadWatchdog); unsubscribe(); session.current = null; makeSession.current = null; };
   }, [cfg]);
 
   const start = () => {
@@ -105,6 +137,7 @@ export function PayPalCheckoutButton({ cfg, quoteId, disabled, onChanged, onWork
     });
   };
 
+  if (reconnecting) return <div className="muted small" role="status"><span className="spinner" /> Reconnecting to PayPal Sandbox…</div>;
   if (failure) {
     // A reload, not an in-page retry: the SDK keeps a failed start for the page's lifetime (a second createInstance
     // after a blocked pixel fails again at once), and the server keeps the accepted quote across the reload.
